@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+
+tf_help_message="
+Description: start THE FLOW execution.
+
+Usage: the_flow [-path <str>] [-ui_mode [interactive] [terminal]] [-syn] [-impl] [-atpg] [-help]
+
+    -path <str> :
+        absolute path to directory which consists tf_var.py file
+
+    -ui_mode [interactive] [terminal] :
+        interactive - (default) turn on THE FLOW ui functional
+        terminal    - automatically set TF_Q1 = 1, TF_Q2 = 1 and turn off xterm using
+
+    -syn :
+        execute synthesis flow
+
+    -impl :
+        execute implementation flow
+
+    -atpg :
+        execute ATPG flow
+
+    -help :
+        show help message in terminal window
+"
+
+argument_flag=0
+argument_number=""
+argument_value=()
+tf_ui_mode=""
+tf_path=""
+tf_is_syn=0
+tf_is_impl=0
+tf_is_atpg=0
+
+for i in "$@"
+  do
+  argument_flag=$((argument_flag + 1))
+  argument_number="$argument_number $argument_flag"
+  argument_value[argument_flag]="$i"
+done
+
+if [[ $argument_number == "" ]] ; then
+  echo "$tf_help_message"
+else
+  for ((j = 1 ; j <= $# ; j++))
+  do
+    if [[ ${argument_value[$j]} == "-help" ]] ; then
+      echo "$tf_help_message"
+    elif [[ ${argument_value[$j]} == "-impl" ]] ; then
+      tf_is_impl=1
+    elif [[ ${argument_value[$j]} == "-syn" ]] ; then
+      tf_is_syn=1
+    elif [[ ${argument_value[$j]} == "-atpg" ]] ; then
+      tf_is_atpg=1
+    elif [[ ${argument_value[$j]} == "-ui_mode" ]] ; then
+      if [[ ${argument_value[$j + 1]} == "interactive" ]] ; then
+        tf_ui_mode="interactive"
+      elif [[ ${argument_value[$j + 1]} == "terminal" ]] ; then
+        tf_ui_mode="terminal"
+      else
+        echo "Unknown value for [-ui_mode [interactive] [terminal]] option. Please, run [the_flow -help] and read description."
+        exit
+      fi
+    elif [[ ${argument_value[$j]} == "-path" ]] ; then
+      if [ ! -d "${argument_value[$j + 1]}" ] ; then
+        echo "Directory ${argument_value[$j + 1]} doesn't exist. Please, check [-path <str>] option value and rerun."
+        exit
+      else
+        tf_path=${argument_value[$j + 1]}
+      fi
+    else
+      if [[ ${argument_value[$j]} != "interactive" &&
+            ${argument_value[$j]} != "terminal" &&
+            ${argument_value[$j]} != "$tf_path"
+            ]] ; then
+        echo "Unknown option is [${argument_value[$j]}]. Please, run [the_flow -help] and read description."
+      fi
+    fi
+  done
+fi
+
+if [[ $tf_ui_mode == "" ]] ; then
+  tf_ui_mode="interactive"
+fi
+
+if [[ $tf_path == "" ]] ; then
+  echo "[-path <str>] option is mandatory. Please, set [-path <str>] option and rerun."
+  exit
+fi
+
+if [[ $tf_is_syn == 1 &&  $tf_is_impl == 1 ]] ; then
+  echo "Can't use [-syn] and [-impl] options the same time. This functional will be added in future major release."
+  exit
+elif [[ $tf_is_syn == 0 &&  $tf_is_impl == 0 && $tf_is_atpg == 0 ]] ; then
+  echo "Choose one of mandatory option [-syn], [-impl] or [-atpg]."
+  exit
+fi
+
+python3 "$(which the_flow)"_scripts.py "$tf_path" "$tf_ui_mode" $tf_is_syn $tf_is_impl $tf_is_atpg
