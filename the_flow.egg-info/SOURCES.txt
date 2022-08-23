@@ -1,6 +1,6 @@
 LICENSE
 MANIFEST.in
-README.md
+README
 pyproject.toml
 setup.py
 the_flow/__init__.py
