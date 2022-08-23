@@ -86,3 +86,20 @@ class messages:
                              var_name +
                              ' doesn\'t exist.')
         common_func.tf_exit_with_error()
+
+    @staticmethod
+    def mmmcgen_1(file_name, var_name):
+        """
+        ERROR : Files * from * doesn't exist.
+
+        :param file_name: File name.
+        :param var_name: Variable name.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_error('[MMMCGEN-1] File ' +
+                             file_name +
+                             ' from ' +
+                             var_name +
+                             ' doesn\'t exist.')
+        common_func.tf_exit_with_error()

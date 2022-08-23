@@ -28,7 +28,7 @@ tf_var_table = (
     # Mandatory variables
     ['cfg_common',   '/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/common_data/cfg'],
     ['DESIGN_NAME',  'soc_top'],   # Name of top or partition module.
-    ['EXP_NAME_SYN', 'testing_1'],  # Name of current experiment. This name used like directory name created in workarea.
+    ['EXP_NAME_SYN', 'testing_syn'],  # Name of current experiment. This name used like directory name created in workarea.
     ['EXP_NAME_ATPG', 'testing_atpg'],
 
     # Optional
@@ -38,8 +38,8 @@ tf_var_table = (
 # Available sdc modes (mode name | sdc file name)
 # SDC files MUST places in the_flow.py/design_name/frontend/sdc
 mmmc_sdc_mode_table = (
-    ['func', 'func.tcl', 'scan.tcl'],
-    ['scan', 'scan.tcl']
+    ['func', './sdc_dir/sdc_dir_file.sdc', 'constraint_1.sdc', 'constraint_2.sdc'],
+    ['scan', 'constraint_3.sdc', 'constraint_4.sdc']
 )
 
 tf_var_mmmc_table = (
