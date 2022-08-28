@@ -3,14 +3,10 @@
 tf_help_message="
 Description: start THE FLOW execution.
 
-Usage: the_flow [-path <str>] [-ui_mode [interactive] [terminal]] [-syn] [-impl] [-atpg] [-help]
+Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-help]
 
     -path <str> :
         absolute path to directory which consists tf_var.py file
-
-    -ui_mode [interactive] [terminal] :
-        interactive - (default) turn on THE FLOW ui functional
-        terminal    - automatically set TF_Q1 = 1, TF_Q2 = 1 and turn off xterm using
 
     -syn :
         execute synthesis flow
@@ -21,6 +17,18 @@ Usage: the_flow [-path <str>] [-ui_mode [interactive] [terminal]] [-syn] [-impl]
     -atpg :
         execute ATPG flow
 
+    -ui_mode [interactive] [terminal] :
+        interactive - (default) turn on THE FLOW ui functional
+        terminal    - automatically set TF_Q2 = 1 and turn off xterm using
+
+    -update_run_dir [all] [cfg] [step_scripts] [input_data] :
+        all          - delete experiment directory if this already exists and continue THE FLOW execution
+        cfg          - update config files if these already exist in experiment directory and continue THE FLOW execution
+        step_scripts - update step .tcl scripts if these already exist in experiment directory and continue THE FLOW execution
+        input_data   - update input data if these already exist in experiment directory and continue THE FLOW execution
+
+        Note : this option used only with [-ui_mode terminal]
+
     -help :
         show help message in terminal window
 "
@@ -28,11 +36,17 @@ Usage: the_flow [-path <str>] [-ui_mode [interactive] [terminal]] [-syn] [-impl]
 argument_flag=0
 argument_number=""
 argument_value=()
-tf_ui_mode=""
+
 tf_path=""
 tf_is_syn=0
 tf_is_impl=0
 tf_is_atpg=0
+tf_ui_mode=""
+tf_update_run_dir=0
+tf_update_all=0
+tf_update_cfg=0
+tf_update_step_scripts=0
+tf_update_input_data=0
 
 for i in "$@"
   do
@@ -46,12 +60,17 @@ if [[ $argument_number == "" ]] ; then
 else
   for ((j = 1 ; j <= $# ; j++))
   do
-    if [[ ${argument_value[$j]} == "-help" ]] ; then
-      echo "$tf_help_message"
-    elif [[ ${argument_value[$j]} == "-impl" ]] ; then
-      tf_is_impl=1
+    if [[ ${argument_value[$j]} == "-path" ]] ; then
+      if [ ! -d "${argument_value[$j + 1]}" ] ; then
+        echo "Directory ${argument_value[$j + 1]} doesn't exist. Please, check [-path <str>] option value and rerun."
+        exit
+      else
+        tf_path=${argument_value[$j + 1]}
+      fi
     elif [[ ${argument_value[$j]} == "-syn" ]] ; then
       tf_is_syn=1
+    elif [[ ${argument_value[$j]} == "-impl" ]] ; then
+      tf_is_impl=1
     elif [[ ${argument_value[$j]} == "-atpg" ]] ; then
       tf_is_atpg=1
     elif [[ ${argument_value[$j]} == "-ui_mode" ]] ; then
@@ -63,26 +82,40 @@ else
         echo "Unknown value for [-ui_mode [interactive] [terminal]] option. Please, run [the_flow -help] and read description."
         exit
       fi
-    elif [[ ${argument_value[$j]} == "-path" ]] ; then
-      if [ ! -d "${argument_value[$j + 1]}" ] ; then
-        echo "Directory ${argument_value[$j + 1]} doesn't exist. Please, check [-path <str>] option value and rerun."
+    elif [[ ${argument_value[$j]} == "-update_run_dir" ]] ; then
+      tf_update_run_dir=1
+      if [[ $tf_ui_mode != "terminal" ]] ; then
+        echo "Please, use option [-ui_mode terminal] before [-update_run_dir]."
         exit
       else
-        tf_path=${argument_value[$j + 1]}
+        for ((n = 1 ; n <= $# ; n++))
+        do
+          if [[ ${argument_value[$n]} == "all" ]] ; then
+            tf_update_all=1
+          elif [[ ${argument_value[$n]} == "cfg" ]] ; then
+            tf_update_cfg=1
+          elif [[ ${argument_value[$n]} == "step_scripts" ]] ; then
+            tf_update_step_scripts=1
+          elif [[ ${argument_value[$n]} == "input_data" ]] ; then
+            tf_update_input_data=1
+          fi
+        done
       fi
+    elif [[ ${argument_value[$j]} == "-help" ]] ; then
+      echo "$tf_help_message"
     else
       if [[ ${argument_value[$j]} != "interactive" &&
             ${argument_value[$j]} != "terminal" &&
-            ${argument_value[$j]} != "$tf_path"
+            ${argument_value[$j]} != "$tf_path" &&
+            ${argument_value[$j]} != "all" &&
+            ${argument_value[$j]} != "cfg" &&
+            ${argument_value[$j]} != "step_scripts" &&
+            ${argument_value[$j]} != "input_data"
             ]] ; then
         echo "Unknown option is [${argument_value[$j]}]. Please, run [the_flow -help] and read description."
       fi
     fi
   done
-fi
-
-if [[ $tf_ui_mode == "" ]] ; then
-  tf_ui_mode="interactive"
 fi
 
 if [[ $tf_path == "" ]] ; then
@@ -98,4 +131,41 @@ elif [[ $tf_is_syn == 0 &&  $tf_is_impl == 0 && $tf_is_atpg == 0 ]] ; then
   exit
 fi
 
-python3 "$(which the_flow)"_scripts.py "$tf_path" "$tf_ui_mode" $tf_is_syn $tf_is_impl $tf_is_atpg
+if [[ $tf_ui_mode == "" ]] ; then
+  tf_ui_mode="interactive"
+fi
+
+if [[ $tf_ui_mode != "" && $tf_ui_mode != "interactive" && $tf_ui_mode != "terminal" ]] ; then
+  echo "$tf_ui_mode option for [-ui_mode] doesn\'t exist."
+  exit
+fi
+
+if [[ $tf_ui_mode == "terminal" && $tf_update_run_dir == 0 ]] ; then
+  echo "Please, use [-update_run_dir [all] [cfg] [step_scripts] [input_data]] after [-ui_mode terminal]."
+  exit
+fi
+
+if [[ $tf_update_run_dir == 1 ]] ; then
+  if [[ $tf_update_all == 0 && $tf_update_cfg == 0 && $tf_update_step_scripts == 0 && $tf_update_input_data == 0 ]] ; then
+    echo "Choose at least one of the following options [-update_run_dir [all] [cfg] [step_scripts] [input_data]]"
+    exit
+  fi
+  if [[ $tf_update_all == 1 ]] ; then
+    if [[ $tf_update_cfg == 1 || $tf_update_step_scripts == 1 || $tf_update_input_data == 1 ]] ; then
+      echo "You cannot use [all] and other options at the same time."
+      exit
+    fi
+  fi
+fi
+
+python3 "$(which the_flow)"_scripts.py \
+        "$tf_path" \
+        $tf_is_syn \
+        $tf_is_impl \
+        $tf_is_atpg \
+        "$tf_ui_mode" \
+        $tf_update_run_dir \
+        $tf_update_all \
+        $tf_update_cfg \
+        $tf_update_step_scripts \
+        $tf_update_input_data

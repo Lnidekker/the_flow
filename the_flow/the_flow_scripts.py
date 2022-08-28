@@ -15,17 +15,26 @@ if __name__ == "__main__":
 
     # Set arguments value of python3 command to global_tf_vars
     global_tf_vars.tf_cfg_dir = sys.argv[1]
-    global_tf_vars.tf_ux_ui_mode = sys.argv[2]
-    global_tf_vars.tf_is_syn = sys.argv[3]
-    global_tf_vars.tf_is_impl = sys.argv[4]
-    global_tf_vars.tf_is_atpg = sys.argv[5]
+    global_tf_vars.tf_is_syn = int(sys.argv[2])
+    global_tf_vars.tf_is_impl = int(sys.argv[3])
+    global_tf_vars.tf_is_atpg = int(sys.argv[4])
+    global_tf_vars.tf_ux_ui_mode = sys.argv[5]
+    global_tf_vars.tf_update_run_dir = int(sys.argv[6])
+    global_tf_vars.tf_update_all = int(sys.argv[7])
+    global_tf_vars.tf_update_cfg = int(sys.argv[8])
+    global_tf_vars.tf_update_step_scripts = int(sys.argv[9])
+    global_tf_vars.tf_update_input_data = int(sys.argv[10])
 
     if global_tf_vars.tf_ux_ui_mode == 'interactive':
         global_tf_vars.tf_q1_answer = 0
         global_tf_vars.tf_q2_answer = 0
+        global_tf_vars.tf_use_xterm = 1
+        global_tf_vars.tf_start_eda_tool = 0
     elif global_tf_vars.tf_ux_ui_mode == 'terminal':
         global_tf_vars.tf_q1_answer = 1
         global_tf_vars.tf_q2_answer = 1
+        global_tf_vars.tf_use_xterm = 0
+        global_tf_vars.tf_start_eda_tool = 1
 
     # Add global_tf_vars.tf_cfg_dir value to PYTHONPATH to see tf_var.py file
     # and import tf_var_table variable
@@ -65,45 +74,25 @@ if __name__ == "__main__":
                 global_tf_vars.tf_update_run_dir_in_cfg = 1
                 global_tf_vars.tf_update_run_dir_input_data = 1
                 global_tf_vars.tf_update_run_dir_scripts = 1
-                global_tf_vars.tf_start_eda_tool = 0
-                global_tf_vars.tf_use_xterm = 1
             elif q1_flag == '2':
-                global_tf_vars.tf_remove_run_dir = 0
                 global_tf_vars.tf_update_run_dir_in_cfg = 1
-                global_tf_vars.tf_update_run_dir_input_data = 0
-                global_tf_vars.tf_update_run_dir_scripts = 0
-                global_tf_vars.tf_start_eda_tool = 0
-                global_tf_vars.tf_use_xterm = 1
             elif q1_flag == '3':
-                global_tf_vars.tf_remove_run_dir = 0
-                global_tf_vars.tf_update_run_dir_in_cfg = 0
-                global_tf_vars.tf_update_run_dir_input_data = 0
                 global_tf_vars.tf_update_run_dir_scripts = 1
-                global_tf_vars.tf_start_eda_tool = 0
-                global_tf_vars.tf_use_xterm = 1
             elif q1_flag == '4':
-                global_tf_vars.tf_remove_run_dir = 0
-                global_tf_vars.tf_update_run_dir_in_cfg = 0
                 global_tf_vars.tf_update_run_dir_input_data = 1
-                global_tf_vars.tf_update_run_dir_scripts = 0
-                global_tf_vars.tf_start_eda_tool = 0
-                global_tf_vars.tf_use_xterm = 1
             elif q1_flag == '5':
-                global_tf_vars.tf_remove_run_dir = 0
-                global_tf_vars.tf_update_run_dir_in_cfg = 0
-                global_tf_vars.tf_update_run_dir_input_data = 0
-                global_tf_vars.tf_update_run_dir_scripts = 0
-                global_tf_vars.tf_start_eda_tool = 0
-                global_tf_vars.tf_use_xterm = 1
+                empty_flag = 0
             elif q1_flag == '6':
                 exit('Normal exit.')
         elif global_tf_vars.tf_q1_answer == 1:
-            global_tf_vars.tf_remove_run_dir = 1
-            global_tf_vars.tf_update_run_dir_in_cfg = 1
-            global_tf_vars.tf_update_run_dir_input_data = 1
-            global_tf_vars.tf_update_run_dir_scripts = 1
-            global_tf_vars.tf_start_eda_tool = 1
-            global_tf_vars.tf_use_xterm = 0
+            if global_tf_vars.tf_update_all == 1:
+                global_tf_vars.tf_remove_run_dir = 1
+            if global_tf_vars.tf_update_cfg == 1:
+                global_tf_vars.tf_update_run_dir_in_cfg = 1
+            if global_tf_vars.tf_update_step_scripts == 1:
+                global_tf_vars.tf_update_run_dir_scripts = 1
+            if global_tf_vars.tf_update_input_data == 1:
+                global_tf_vars.tf_update_run_dir_input_data = 1
         else:
             exit('Unknown tf_ux_ui_mode value')
 
@@ -125,7 +114,7 @@ if __name__ == "__main__":
     import phy_gen
 
     if global_tf_vars.tf_update_run_dir_in_cfg:
-        if global_tf_vars.tf_is_syn == '1':
+        if global_tf_vars.tf_is_syn == 1:
             tf_mmmc_gen = mmmc_gen.mmmc_gen(tf_var.mmmc_analysis_view_syn_table,
                                             tf_var_common.mmmc_pvt_p_table,
                                             tf_var_common.mmmc_pvt_v_table,
@@ -138,7 +127,7 @@ if __name__ == "__main__":
                                             tf_var.mmmc_sdc_mode_table,
                                             tf_var_common.mmmc_ocv_table
                                             )
-        elif global_tf_vars.tf_is_impl == '1':
+        elif global_tf_vars.tf_is_impl == 1:
             tf_mmmc_gen = mmmc_gen.mmmc_gen(tf_var.mmmc_analysis_view_impl_table,
                                             tf_var_common.mmmc_pvt_p_table,
                                             tf_var_common.mmmc_pvt_v_table,
@@ -152,7 +141,7 @@ if __name__ == "__main__":
                                             tf_var_common.mmmc_ocv_table
                                             )
 
-        if global_tf_vars.tf_is_syn == '1' or global_tf_vars.tf_is_impl == '1':
+        if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1:
             tf_mmmc_gen.parsing_analysis_view_table()
             tf_mmmc_gen.make_lib_files_list_for_each_view()
             tf_mmmc_gen.make_cdb_files_list_for_each_view()
@@ -173,21 +162,21 @@ if __name__ == "__main__":
     if global_tf_vars.tf_update_run_dir_scripts:
         shutil.rmtree(global_tf_vars.tf_run_dir_scripts)
         os.mkdir(global_tf_vars.tf_run_dir_scripts)
-        if global_tf_vars.tf_is_syn == '1':
+        if global_tf_vars.tf_is_syn == 1:
             create_tcl_scripts_for_each_step.create_tf_tmp_file_steps_import_file(global_tf_vars.tf_syn_steps_dir)
-        elif global_tf_vars.tf_is_impl == '1':
+        elif global_tf_vars.tf_is_impl == 1:
             create_tcl_scripts_for_each_step.create_tf_tmp_file_steps_import_file(global_tf_vars.tf_impl_steps_dir)
-        elif global_tf_vars.tf_is_atpg == '1':
+        elif global_tf_vars.tf_is_atpg == 1:
             create_tcl_scripts_for_each_step.create_tf_tmp_file_steps_import_file(global_tf_vars.tf_atpg_steps_dir)
 
         sys.path.append(global_tf_vars.tf_run_dir_work_tmp)
         from tf_tmp_file_steps_import import *
 
-        if global_tf_vars.tf_is_syn == '1':
+        if global_tf_vars.tf_is_syn == 1:
             create_tcl_scripts_for_each_step.create_tf_tmp_step_table_file(tf_var.tf_step_syn_table)
-        elif global_tf_vars.tf_is_impl == '1':
+        elif global_tf_vars.tf_is_impl == 1:
             create_tcl_scripts_for_each_step.create_tf_tmp_step_table_file(tf_var.tf_step_impl_table)
-        elif global_tf_vars.tf_is_atpg == '1':
+        elif global_tf_vars.tf_is_atpg == 1:
             create_tcl_scripts_for_each_step.create_tf_tmp_step_table_file(tf_var.tf_step_atpg_table)
 
         from tf_tmp_step_table import *
@@ -215,7 +204,7 @@ if __name__ == "__main__":
         q2_flag = '1'
 
     if q2_flag == '1':
-        if global_tf_vars.tf_is_syn == '1':
+        if global_tf_vars.tf_is_syn == 1:
             for j in range(0, len(tf_var.tf_step_syn_table)):
                 if tf_var.tf_step_syn_table[j][0] == 0:
                     common_func.tf_info('start to execute ' + tf_var.tf_step_syn_table[j][1] + ' step')
@@ -257,7 +246,7 @@ if __name__ == "__main__":
                 else:
                     common_func.tf_error('previous step db doesn\'t exist')
                     exit('exit with error')
-        elif global_tf_vars.tf_is_impl == '1':
+        elif global_tf_vars.tf_is_impl == 1:
             for j in range(0, len(tf_var.tf_step_impl_table)):
                 if tf_var.tf_step_impl_table[j][0] == 0:
                     common_func.tf_info('start to execute ' + tf_var.tf_step_impl_table[j][1] + ' step')
@@ -298,7 +287,7 @@ if __name__ == "__main__":
                 else:
                     common_func.tf_error('previous step db doesn\'t exist')
                     exit('exit with error')
-        elif global_tf_vars.tf_is_atpg == '1':
+        elif global_tf_vars.tf_is_atpg == 1:
             for j in range(0, len(tf_var.tf_step_atpg_table)):
                 common_func.tf_info('start to execute ' + tf_var.tf_step_atpg_table[j][1] + ' step')
                 t = time.time()

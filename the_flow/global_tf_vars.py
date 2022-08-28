@@ -38,20 +38,25 @@ tf_run_dir_work = ''
 tf_run_dir_work_tmp = ''
 
 # Variables which contains arguments value of python3 command
-tf_ux_ui_mode = ''
 tf_is_syn = 0
 tf_is_impl = 0
 tf_is_atpg = 0
+tf_ux_ui_mode = ''
+tf_update_run_dir = 0
+tf_update_all = 0
+tf_update_cfg = 0
+tf_update_step_scripts = 0
+tf_update_input_data = 0
 
 # Variables to navigate THE FLOW script
-tf_remove_run_dir = 1
-tf_update_run_dir_in_cfg = 1
-tf_update_run_dir_input_data = 1
-tf_update_run_dir_scripts = 1
-tf_start_eda_tool = 1
-tf_use_xterm = 1
-tf_q1_answer = 1
-tf_q2_answer = 1
+tf_remove_run_dir = 0
+tf_update_run_dir_in_cfg = 0
+tf_update_run_dir_input_data = 0
+tf_update_run_dir_scripts = 0
+tf_start_eda_tool = 0
+tf_use_xterm = 0
+tf_q1_answer = 0
+tf_q2_answer = 0
 
 # mmmc_gen variables
 mmmc_analysis_view_table_sdc_mode = {}

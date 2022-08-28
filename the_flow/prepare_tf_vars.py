@@ -105,25 +105,25 @@ class prepare_tf_vars:
                 messages.init_3(self.tf_dir_structure_table[i][0])
 
         if global_tf_vars.tf_sdc_dir == {}:
-            if global_tf_vars.tf_is_syn == '1' or global_tf_vars.tf_is_impl == '1':
+            if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1:
                 messages.init_4('tf_dir_structure_table[sdc]')
 
-        if global_tf_vars.tf_workarea_syn_dir == '' and global_tf_vars.tf_is_syn == '1':
+        if global_tf_vars.tf_workarea_syn_dir == '' and global_tf_vars.tf_is_syn == 1:
             messages.init_4('tf_dir_structure_table[workarea_syn]')
 
-        if global_tf_vars.tf_workarea_impl_dir == '' and global_tf_vars.tf_is_impl == '1':
+        if global_tf_vars.tf_workarea_impl_dir == '' and global_tf_vars.tf_is_impl == 1:
             messages.init_4('tf_dir_structure_table[workarea_impl]')
 
-        if global_tf_vars.tf_workarea_atpg_dir == '' and global_tf_vars.tf_is_atpg == '1':
+        if global_tf_vars.tf_workarea_atpg_dir == '' and global_tf_vars.tf_is_atpg == 1:
             messages.init_4('tf_dir_structure_table[workarea_atpg]')
 
-        if global_tf_vars.tf_syn_steps_dir == {} and global_tf_vars.tf_is_syn == '1':
+        if global_tf_vars.tf_syn_steps_dir == {} and global_tf_vars.tf_is_syn == 1:
             messages.init_4('tf_dir_structure_table[syn_steps]')
 
-        if global_tf_vars.tf_impl_steps_dir == {} and global_tf_vars.tf_is_impl == '1':
+        if global_tf_vars.tf_impl_steps_dir == {} and global_tf_vars.tf_is_impl == 1:
             messages.init_4('tf_dir_structure_table[impl_steps]')
 
-        if global_tf_vars.tf_atpg_steps_dir == {} and global_tf_vars.tf_is_atpg == '1':
+        if global_tf_vars.tf_atpg_steps_dir == {} and global_tf_vars.tf_is_atpg == 1:
             messages.init_4('tf_dir_structure_table[atpg_steps]')
 
     def parsing_tf_var_table(self):
@@ -135,13 +135,13 @@ class prepare_tf_vars:
             if self.tf_var_table[i][0] == 'DESIGN_NAME':
                 global_tf_vars.tf_design_name = self.tf_var_table[i][1]
                 common_func.tf_info('Design name is ' + global_tf_vars.tf_design_name + '.')
-            elif self.tf_var_table[i][0] == 'EXP_NAME_SYN' and global_tf_vars.tf_is_syn == '1':
+            elif self.tf_var_table[i][0] == 'EXP_NAME_SYN' and global_tf_vars.tf_is_syn == 1:
                 global_tf_vars.tf_exp_name_syn = self.tf_var_table[i][1]
                 common_func.tf_info('Synthesis experiment name is ' + global_tf_vars.tf_exp_name_syn + '.')
-            elif self.tf_var_table[i][0] == 'EXP_NAME_IMPL' and global_tf_vars.tf_is_impl == '1':
+            elif self.tf_var_table[i][0] == 'EXP_NAME_IMPL' and global_tf_vars.tf_is_impl == 1:
                 global_tf_vars.tf_exp_name_impl = self.tf_var_table[i][1]
                 common_func.tf_info('Implementation experiment name is ' + global_tf_vars.tf_exp_name_impl + '.')
-            elif self.tf_var_table[i][0] == 'EXP_NAME_ATPG' and global_tf_vars.tf_is_atpg == '1':
+            elif self.tf_var_table[i][0] == 'EXP_NAME_ATPG' and global_tf_vars.tf_is_atpg == 1:
                 global_tf_vars.tf_exp_name_atpg = self.tf_var_table[i][1]
                 common_func.tf_info('ATPG experiment name is ' + global_tf_vars.tf_exp_name_atpg + '.')
             elif self.tf_var_table[i][0] == 'cfg_common':
@@ -157,11 +157,11 @@ class prepare_tf_vars:
         if global_tf_vars.tf_design_name == '':
             messages.init_4('tf_var_table[DESIGN_NAME]')
 
-        if global_tf_vars.tf_is_syn == '1' and global_tf_vars.tf_exp_name_syn == '':
+        if global_tf_vars.tf_is_syn == 1 and global_tf_vars.tf_exp_name_syn == '':
             messages.init_4('tf_var_table[EXP_NAME_SYN]')
 
-        if global_tf_vars.tf_is_impl == '1' and global_tf_vars.tf_exp_name_impl == '':
+        if global_tf_vars.tf_is_impl == 1 and global_tf_vars.tf_exp_name_impl == '':
             messages.init_4('tf_var_table[EXP_NAME_IMPL]')
 
-        if global_tf_vars.tf_is_atpg == '1' and global_tf_vars.tf_exp_name_atpg == '':
+        if global_tf_vars.tf_is_atpg == 1 and global_tf_vars.tf_exp_name_atpg == '':
             messages.init_4('tf_var_table[EXP_NAME_ATPG]')
