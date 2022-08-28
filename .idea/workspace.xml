@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.1.36">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/the_flow.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/the_flow.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/common_func.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/copy_input_data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/create_run_dir.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/global_tf_vars.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/messages.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/mmmc_gen.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/phy_gen.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/prepare_tf_vars.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/templates/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/templates/tf_atpg_step.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/templates/tf_impl_step.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/templates/tf_syn_step.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/templates/tf_var.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/templates/tf_var_common.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/the_flow" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/the_flow/the_flow_scripts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.1.36-py3-none-any.whl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow.egg-info/PKG-INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow.egg-info/SOURCES.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow.egg-info/dependency_links.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow.egg-info/top_level.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/copy_input_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/copy_input_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/create_run_dir.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_run_dir.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/global_tf_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/global_tf_vars.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/prepare_tf_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/prepare_tf_vars.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/the_flow" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/the_flow" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" afterDir="false" />
-    </list>
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.2.0" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -190,7 +155,21 @@
       <option name="project" value="LOCAL" />
       <updated>1661236758783</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="v0.2.0">
+      <created>1661714236524</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1661714236524</updated>
+    </task>
+    <task id="LOCAL-00007" summary="v0.2.0">
+      <created>1661714347574</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1661714347574</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -211,7 +190,8 @@
     <MESSAGE value="test commit from pycharm" />
     <MESSAGE value="corr README" />
     <MESSAGE value="v0.1.36" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.1.36" />
+    <MESSAGE value="v0.2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.2.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
