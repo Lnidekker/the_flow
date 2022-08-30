@@ -102,11 +102,14 @@ if __name__ == "__main__":
         common_func.tf_info('Directory ' + global_tf_vars.tf_run_dir + ' has been deleted.')
 
     # Create run dir
-    if global_tf_vars.tf_remove_run_dir == 1:
+    if not os.path.isdir(global_tf_vars.tf_run_dir):
         create_run_dir.create_run_dir()
+        global_tf_vars.tf_update_run_dir_in_cfg = 1
+        global_tf_vars.tf_update_run_dir_input_data = 1
+        global_tf_vars.tf_update_run_dir_scripts = 1
 
     # Copy input data to run dir
-    if global_tf_vars.tf_update_run_dir_input_data:
+    if global_tf_vars.tf_update_run_dir_input_data == 1:
         copy_input_data.copy_input_data()
 
     # Create mmmc_config.tcl and mmmc_derate.tcl
