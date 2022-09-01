@@ -297,7 +297,10 @@ class mmmc_gen:
 
     @staticmethod
     def create_library_set_template(name, lib_files, cdb_files):
-        t = Template('create_library_set -name {{ n }} -timing \"{{ lib }}\" -si \"{{ cdb }}\"')
+        if cdb_files == "":
+            t = Template('create_library_set -name {{ n }} -timing \"{{ lib }}\"')
+        else:
+            t = Template('create_library_set -name {{ n }} -timing \"{{ lib }}\" -si \"{{ cdb }}\"')
         return t.render(n=name, lib=lib_files, cdb=cdb_files)
 
     @staticmethod
