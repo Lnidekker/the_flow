@@ -57,6 +57,8 @@ tf_start_eda_tool = 0
 tf_use_xterm = 0
 tf_q1_answer = 0
 tf_q2_answer = 0
+tf_q1_flag = ''
+tf_q2_flag = ''
 
 # mmmc_gen variables
 mmmc_analysis_view_table_sdc_mode = {}

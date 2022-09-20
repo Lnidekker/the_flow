@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.2.2 fix script with new experiment name">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.3.0">
+      <change afterPath="$PROJECT_DIR$/the_flow/q1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/the_flow/q2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/the_flow/run_eda_tools.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.2.2-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.3.0-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/cfg/mmmc_config.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/cfg/mmmc_derate.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/cfg/phy_config.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/rtl/rtl_1/rtl_1_2/rtl_file_1_2_1.v" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/rtl/rtl_1/rtl_file_1_1.v" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/rtl/rtl_1/rtl_file_1_2.v" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/rtl/rtl_file0.v" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/sdc/constraint_1.sdc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/sdc/constraint_2.sdc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/sdc/constraint_3.sdc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/sdc/constraint_4.sdc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/in/sdc/sdc_dir/sdc_dir_file.sdc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/scripts/.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/scripts/tf_test_step_1.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/scripts/tf_test_step_2.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/work/tmp/tf_tmp_file_steps_import.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/testing_syn/work/tmp/tf_tmp_step_table.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/global_tf_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/global_tf_vars.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/mmmc_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/mmmc_gen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/phy_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/phy_gen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661870133879</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="v0.3.0">
+      <created>1662039324183</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1662039324183</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -228,7 +225,8 @@
     <MESSAGE value="v0.1.36" />
     <MESSAGE value="v0.2.0" />
     <MESSAGE value="v0.2.2 fix script with new experiment name" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.2.2 fix script with new experiment name" />
+    <MESSAGE value="v0.3.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.3.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

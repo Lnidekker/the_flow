@@ -8,6 +8,7 @@ Each step contains the following information:
 import sys
 import os
 import glob
+import shutil
 import common_func
 import global_tf_vars
 import tf_var
@@ -124,3 +125,41 @@ def create_tf_tmp_step_table_file(steps_table):
         print('    [1, \'\', \'\']')
         print(')')
     sys.stdout = original_stdout
+
+
+def run_create_tcl_scripts_for_each_step():
+
+    shutil.rmtree(global_tf_vars.tf_run_dir_scripts)
+    os.mkdir(global_tf_vars.tf_run_dir_scripts)
+    if global_tf_vars.tf_is_syn == 1:
+        create_tf_tmp_file_steps_import_file(global_tf_vars.tf_syn_steps_dir)
+    elif global_tf_vars.tf_is_impl == 1:
+        create_tf_tmp_file_steps_import_file(global_tf_vars.tf_impl_steps_dir)
+    elif global_tf_vars.tf_is_atpg == 1:
+        create_tf_tmp_file_steps_import_file(global_tf_vars.tf_atpg_steps_dir)
+
+    sys.path.append(global_tf_vars.tf_run_dir_work_tmp)
+    #from tf_tmp_file_steps_import import *
+    import tf_tmp_file_steps_import
+
+    if global_tf_vars.tf_is_syn == 1:
+        create_tf_tmp_step_table_file(tf_var.tf_step_syn_table)
+    elif global_tf_vars.tf_is_impl == 1:
+        create_tf_tmp_step_table_file(tf_var.tf_step_impl_table)
+    elif global_tf_vars.tf_is_atpg == 1:
+        create_tf_tmp_step_table_file(tf_var.tf_step_atpg_table)
+
+    #from tf_tmp_step_table import *
+    import tf_tmp_step_table
+
+    for i in range(len(tf_tmp_step_table.tf_tmp_step_table)):  # Create tcl scr for all steps
+        if tf_tmp_step_table.tf_tmp_step_table[i][0] == 0:
+            create_tcl_scripts_for_each_step(
+                tf_tmp_step_table.tf_tmp_step_table[i][1],
+                '',
+                tf_tmp_step_table.tf_tmp_step_table[i][2])
+        else:
+            create_tcl_scripts_for_each_step(
+                tf_tmp_step_table.tf_tmp_step_table[i][1],
+                tf_tmp_step_table.tf_tmp_step_table[i - 1][1],
+                tf_tmp_step_table.tf_tmp_step_table[i][2])

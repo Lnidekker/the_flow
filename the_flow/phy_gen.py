@@ -4,6 +4,7 @@ Physical data generator.
 import sys
 from jinja2 import Template
 import tf_var
+import tf_var_common
 import common_func
 import global_tf_vars
 from messages import messages
@@ -81,3 +82,10 @@ class phy_gen:
             print('')
             print(phy_gen.create_verilog_list_template(global_tf_vars.phy_verilog_files))
         sys.stdout = original_stdout
+
+    @staticmethod
+    def run_phy_gen():
+        tf_phy_gen = phy_gen(tf_var_common.phy_lef_table, tf_var_common.phy_verilog_table)
+        tf_phy_gen.make_lef_list()
+        tf_phy_gen.make_verilog_list()
+        tf_phy_gen.make_phy_config_file()
