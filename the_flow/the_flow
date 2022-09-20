@@ -27,7 +27,9 @@ Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-ui_mode [interactive] [te
         step_scripts - update step .tcl scripts if these already exist in experiment directory and continue THE FLOW execution
         input_data   - update input data if these already exist in experiment directory and continue THE FLOW execution
 
-        Note : this option used only with [-ui_mode terminal]
+        Note :
+            - this option used only with [-ui_mode terminal]
+            - if [-ui_mode terminal] option used without [-update_run_dir] experiment directory will not changed
 
     -help :
         show help message in terminal window
@@ -140,10 +142,10 @@ if [[ $tf_ui_mode != "" && $tf_ui_mode != "interactive" && $tf_ui_mode != "termi
   exit
 fi
 
-if [[ $tf_ui_mode == "terminal" && $tf_update_run_dir == 0 ]] ; then
-  echo "Please, use [-update_run_dir [all] [cfg] [step_scripts] [input_data]] after [-ui_mode terminal]."
-  exit
-fi
+#if [[ $tf_ui_mode == "terminal" && $tf_update_run_dir == 0 ]] ; then
+#  echo "Please, use [-update_run_dir [all] [cfg] [step_scripts] [input_data]] after [-ui_mode terminal]."
+#  exit
+#fi
 
 if [[ $tf_update_run_dir == 1 ]] ; then
   if [[ $tf_update_all == 0 && $tf_update_cfg == 0 && $tf_update_step_scripts == 0 && $tf_update_input_data == 0 ]] ; then
