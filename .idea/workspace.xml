@@ -115,10 +115,10 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.tb_unit" />
       <item itemvalue="Shell Script.the_flow -ui_mode terminal -atpg" />
       <item itemvalue="Shell Script.the_flow -ui_mode terminal" />
       <item itemvalue="Shell Script.the_flow" />
+      <item itemvalue="Python.tb_unit" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

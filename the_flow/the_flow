@@ -64,7 +64,7 @@ else
   do
     if [[ ${argument_value[$j]} == "-path" ]] ; then
       if [ ! -d "${argument_value[$j + 1]}" ] ; then
-        echo "Directory ${argument_value[$j + 1]} doesn't exist. Please, check [-path <str>] option value and rerun."
+        echo -e "\e[31mTF_ERROR   : Directory ${argument_value[$j + 1]} doesn't exist. Please, check [-path <str>] option value and rerun.\e[0m"
         exit
       else
         tf_path=${argument_value[$j + 1]}
@@ -81,13 +81,13 @@ else
       elif [[ ${argument_value[$j + 1]} == "terminal" ]] ; then
         tf_ui_mode="terminal"
       else
-        echo "Unknown value for [-ui_mode [interactive] [terminal]] option. Please, run [the_flow -help] and read description."
+        echo -e "\e[31mTF_ERROR   : Unknown value for [-ui_mode [interactive] [terminal]] option. Please, run [the_flow -help] and read description.\e[0m"
         exit
       fi
     elif [[ ${argument_value[$j]} == "-update_run_dir" ]] ; then
       tf_update_run_dir=1
       if [[ $tf_ui_mode != "terminal" ]] ; then
-        echo "Please, use option [-ui_mode terminal] before [-update_run_dir]."
+        echo -e "\e[31mTF_ERROR   : Please, use option [-ui_mode terminal] before [-update_run_dir].\e[0m"
         exit
       else
         for ((n = 1 ; n <= $# ; n++))
@@ -114,22 +114,23 @@ else
             ${argument_value[$j]} != "step_scripts" &&
             ${argument_value[$j]} != "input_data"
             ]] ; then
-        echo "Unknown option is [${argument_value[$j]}]. Please, run [the_flow -help] and read description."
+        echo -e "\e[31mTF_ERROR   : Unknown option is [${argument_value[$j]}]. Please, run [the_flow -help] and read description.\e[0m"
+        exit
       fi
     fi
   done
 fi
 
 if [[ $tf_path == "" ]] ; then
-  echo "[-path <str>] option is mandatory. Please, set [-path <str>] option and rerun."
+  echo -e "\e[31mTF_ERROR   : [-path <str>] option is mandatory. Please, set [-path <str>] option and rerun.\e[0m"
   exit
 fi
 
 if [[ $tf_is_syn == 1 &&  $tf_is_impl == 1 ]] ; then
-  echo "Can't use [-syn] and [-impl] options the same time. This functional will be added in future major release."
+  echo -e "\e[31mTF_ERROR   : Can't use [-syn] and [-impl] options the same time. This functional will be added in future major release.\e[0m"
   exit
 elif [[ $tf_is_syn == 0 &&  $tf_is_impl == 0 && $tf_is_atpg == 0 ]] ; then
-  echo "Choose one of mandatory option [-syn], [-impl] or [-atpg]."
+  echo -e "\e[31mTF_ERROR   : Choose one of mandatory option [-syn], [-impl] or [-atpg].\e[0m"
   exit
 fi
 
@@ -138,7 +139,7 @@ if [[ $tf_ui_mode == "" ]] ; then
 fi
 
 if [[ $tf_ui_mode != "" && $tf_ui_mode != "interactive" && $tf_ui_mode != "terminal" ]] ; then
-  echo "$tf_ui_mode option for [-ui_mode] doesn\'t exist."
+  echo -e "\e[31mTF_ERROR   : $tf_ui_mode option for [-ui_mode] doesn\'t exist.\e[0m"
   exit
 fi
 
@@ -149,12 +150,12 @@ fi
 
 if [[ $tf_update_run_dir == 1 ]] ; then
   if [[ $tf_update_all == 0 && $tf_update_cfg == 0 && $tf_update_step_scripts == 0 && $tf_update_input_data == 0 ]] ; then
-    echo "Choose at least one of the following options [-update_run_dir [all] [cfg] [step_scripts] [input_data]]"
+    echo -e "\e[31mTF_ERROR   : Choose at least one of the following options [-update_run_dir [all] [cfg] [step_scripts] [input_data]].\e[0m"
     exit
   fi
   if [[ $tf_update_all == 1 ]] ; then
     if [[ $tf_update_cfg == 1 || $tf_update_step_scripts == 1 || $tf_update_input_data == 1 ]] ; then
-      echo "You cannot use [all] and other options at the same time."
+      echo -e "\e[31mTF_ERROR   : You cannot use [all] and other options at the same time.\e[0m"
       exit
     fi
   fi
