@@ -1,3 +1,6 @@
+import os
+import datetime
+
 tf_dir_structure_table = (
     # Recommended to use absolute directory path.
     # If you want to use relative path, you have to make corresponding variable in tf_var_table and use syntax like:
@@ -28,7 +31,7 @@ tf_var_table = (
     # Mandatory variables
     ['cfg_common',   '/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/common_data/cfg'],
     ['DESIGN_NAME',  'soc_top'],   # Name of top or partition module.
-    ['EXP_NAME_SYN', 'testing_syn'],  # Name of current experiment. This name used like directory name created in workarea.
+    ['EXP_NAME_SYN', str(datetime.date.today())],  # Name of current experiment. This name used like directory name created in workarea.
     ['EXP_NAME_ATPG', 'testing_atpg'],
 
     # Optional

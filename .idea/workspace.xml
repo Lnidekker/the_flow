@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.3.1">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.3.6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.3.6-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/the_flow" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/the_flow" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663707486517</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="v0.3.6">
+      <created>1665175520497</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1665175520497</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -232,7 +239,8 @@
     <MESSAGE value="v0.2.2 fix script with new experiment name" />
     <MESSAGE value="v0.3.0" />
     <MESSAGE value="v0.3.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.3.1" />
+    <MESSAGE value="v0.3.6" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.3.6" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
