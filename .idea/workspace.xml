@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.4.1 - add str() for sys.argv[*]">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.4.2 - add db passing for syn flow">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/common_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/common_func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/global_tf_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/global_tf_vars.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/q1.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/q1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/q2.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/q2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.4.1-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.4.2-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/run_eda_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/run_eda_tools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665340058757</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="v0.4.2 - add db passing for syn flow">
+      <created>1665911016877</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1665911016877</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -268,7 +273,8 @@
     <MESSAGE value="start of release history" />
     <MESSAGE value="add str() for sys.argv[*]" />
     <MESSAGE value="v0.4.1 - add str() for sys.argv[*]" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.4.1 - add str() for sys.argv[*]" />
+    <MESSAGE value="v0.4.2 - add db passing for syn flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.4.2 - add db passing for syn flow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

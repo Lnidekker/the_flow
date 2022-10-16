@@ -11,14 +11,15 @@ def run_eda_tools():
 
     if global_tf_vars.tf_is_syn == 1:
         for j in range(0, len(tf_var.tf_step_syn_table)):
+            global_tf_vars.tf_go_to_next_step = 0
             if common_func.tf_dir_exists_check(global_tf_vars.tf_run_dir_db + '/' +
-                                               tf_var.tf_step_syn_table[j][1] + '.db') == 'True':
+                                               tf_var.tf_step_syn_table[j][1] + '.db'):
                 q3.q3(tf_var.tf_step_syn_table[j][1])
                 if global_tf_vars.tf_q3_flag == '1':
                     global_tf_vars.tf_go_to_next_step = 1
                 elif global_tf_vars.tf_q3_flag == '2':
                     for k in range(j, len(tf_var.tf_step_syn_table)):
-                        shutil.rmtree(global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_syn_table[k][1] + '.db')
+                        os.remove(global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_syn_table[k][1] + '.db')
             if global_tf_vars.tf_go_to_next_step == 0:
                 if tf_var.tf_step_syn_table[j][0] == 0:
                     common_func.tf_info('start to execute ' + tf_var.tf_step_syn_table[j][1] + ' step')
