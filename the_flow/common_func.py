@@ -3,7 +3,7 @@ Common functions are used in THE FLOW code.
 """
 
 from jinja2 import Template
-from os import close
+from os import close, path
 from shutil import move
 from tempfile import mkstemp
 
@@ -69,6 +69,19 @@ def tf_file_exists_check(file):
     except IOError:
         return 'False'
     return 'True'
+
+
+def tf_dir_exists_check(directory):
+    """
+    This function is used to check directory existing.
+
+    :param directory: Dir name
+    :type directory: str
+
+    :return: 'True' or 'False'
+    """
+
+    return path.exists(directory)
 
 
 def tf_remove_double_lines(file):

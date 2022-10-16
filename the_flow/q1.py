@@ -6,7 +6,7 @@ def q1():
 
     common_func.tf_info('Directory ' + global_tf_vars.tf_run_dir + ' exists.')
     if global_tf_vars.tf_q1_answer == 0:
-        global_tf_vars.tf_q1_flag = input('[TF_Q1] What do you want to do?\n'
+        global_tf_vars.tf_q1_flag = input('[TF-Q1] What do you want to do?\n'
                                           '            1-remove existing directory and continue THE FLOW execution\n'
                                           '            2-update cfg files and continue THE FLOW execution\n'
                                           '            3-update step .tcl scripts and continue THE FLOW execution\n'

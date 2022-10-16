@@ -29,11 +29,13 @@ if __name__ == "__main__":
     if global_tf_vars.tf_ux_ui_mode == 'interactive':
         global_tf_vars.tf_q1_answer = 0
         global_tf_vars.tf_q2_answer = 0
+        global_tf_vars.tf_q3_answer = 0
         global_tf_vars.tf_use_xterm = 1
         global_tf_vars.tf_start_eda_tool = 0
     elif global_tf_vars.tf_ux_ui_mode == 'terminal':
         global_tf_vars.tf_q1_answer = 1
         global_tf_vars.tf_q2_answer = 1
+        global_tf_vars.tf_q3_answer = 1
         global_tf_vars.tf_use_xterm = 0
         global_tf_vars.tf_start_eda_tool = 1
 
