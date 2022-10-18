@@ -19,7 +19,7 @@ Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-ui_mode [interactive] [te
 
     -ui_mode [interactive] [terminal] :
         interactive - (default) turn on THE FLOW ui functional
-        terminal    - automatically set TF_Q2 = 1 and turn off xterm using
+        terminal    - automatically set TF-Q2 = 1 and turn off xterm using
 
     -update_run_dir [all] [cfg] [step_scripts] [input_data] :
         all          - delete experiment directory if this already exists and continue THE FLOW execution

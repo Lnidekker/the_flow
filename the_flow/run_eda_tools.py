@@ -18,7 +18,9 @@ def run_eda_tools():
                     global_tf_vars.tf_go_to_next_step = 1
                 elif global_tf_vars.tf_q3_flag == '2':
                     for k in range(j, len(tf_var.tf_step_syn_table)):
-                        os.remove(global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_syn_table[k][1] + '.db')
+                        if common_func.tf_dir_exists_check(
+                                global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_syn_table[k][1] + '.db'):
+                            os.remove(global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_syn_table[k][1] + '.db')
             if global_tf_vars.tf_go_to_next_step == 0:
                 if tf_var.tf_step_syn_table[j][0] == 0:
                     common_func.tf_info('start to execute ' + tf_var.tf_step_syn_table[j][1] + ' step')
@@ -70,7 +72,9 @@ def run_eda_tools():
                     global_tf_vars.tf_go_to_next_step = 1
                 elif global_tf_vars.tf_q3_flag == '2':
                     for k in range(j, len(tf_var.tf_step_syn_table)):
-                        os.remove(global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_syn_table[k][1] + '.db')
+                        if common_func.tf_dir_exists_check(
+                                global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_syn_table[k][1] + '.db'):
+                            os.remove(global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_syn_table[k][1] + '.db')
             if global_tf_vars.tf_go_to_next_step == 0:
                 if tf_var.tf_step_impl_table[j][0] == 0:
                     common_func.tf_info('start to execute ' + tf_var.tf_step_impl_table[j][1] + ' step')
