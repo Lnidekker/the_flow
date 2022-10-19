@@ -25,6 +25,8 @@ if __name__ == "__main__":
     global_tf_vars.tf_update_cfg = int(sys.argv[8])
     global_tf_vars.tf_update_step_scripts = int(sys.argv[9])
     global_tf_vars.tf_update_input_data = int(sys.argv[10])
+    global_tf_vars.tf_from_step = int(sys.argv[11])
+    global_tf_vars.tf_from_step_name = str(sys.argv[12])
 
     if global_tf_vars.tf_ux_ui_mode == 'interactive':
         global_tf_vars.tf_q1_answer = 0

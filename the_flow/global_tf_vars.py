@@ -47,6 +47,8 @@ tf_update_all = 0
 tf_update_cfg = 0
 tf_update_step_scripts = 0
 tf_update_input_data = 0
+tf_from_step = 0
+tf_from_step_name = ''
 
 # Variables to navigate THE FLOW script
 tf_remove_run_dir = 0

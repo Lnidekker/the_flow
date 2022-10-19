@@ -9,6 +9,17 @@ import q3
 def run_eda_tools():
 
     if global_tf_vars.tf_is_syn == 1:
+
+        if global_tf_vars.tf_from_step == 1:
+            flag = 0
+            for i in range(0, len(tf_var.tf_step_syn_table)):
+                if tf_var.tf_step_syn_table[i][1] == global_tf_vars.tf_from_step_name:
+                    flag = 1
+            if flag == 0:
+                common_func.tf_error('Step name "' + global_tf_vars.tf_from_step_name +
+                                     '" from [-from_step] option doesn\'t exist.')
+                common_func.tf_exit_with_error()
+
         for j in range(0, len(tf_var.tf_step_syn_table)):
             global_tf_vars.tf_go_to_next_step = 0
             if common_func.tf_dir_exists_check(global_tf_vars.tf_run_dir_db + '/' +
@@ -63,6 +74,17 @@ def run_eda_tools():
                     common_func.tf_error('previous step db doesn\'t exist')
                     exit('exit with error')
     elif global_tf_vars.tf_is_impl == 1:
+
+        if global_tf_vars.tf_from_step == 1:
+            flag = 0
+            for i in range(0, len(tf_var.tf_step_impl_table)):
+                if tf_var.tf_step_impl_table[i][1] == global_tf_vars.tf_from_step_name:
+                    flag = 1
+            if flag == 0:
+                common_func.tf_error('Step name "' + global_tf_vars.tf_from_step_name +
+                                     '" from [-from_step] option doesn\'t exist.')
+                common_func.tf_exit_with_error()
+
         for j in range(0, len(tf_var.tf_step_impl_table)):
             global_tf_vars.tf_go_to_next_step = 0
             if common_func.tf_dir_exists_check(global_tf_vars.tf_run_dir_db + '/' +
