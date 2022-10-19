@@ -8,19 +8,23 @@ tf_sdc_dir = {}
 tf_workarea_syn_dir = ''
 tf_workarea_impl_dir = ''
 tf_workarea_atpg_dir = ''
+tf_workarea_power_dir = ''
 tf_syn_steps_dir = {}
 tf_impl_steps_dir = {}
 tf_atpg_steps_dir = {}
+tf_power_steps_dir = {}
 tf_rtl_dir = {}
 tf_syn_src_dir = {}
 tf_impl_src_dir = {}
 tf_atpg_src_dir = {}
+tf_power_src_dir = {}
 
 # Variables from tf_var_table
 tf_design_name = ''
 tf_exp_name_syn = ''
 tf_exp_name_impl = ''
 tf_exp_name_atpg = ''
+tf_exp_name_power = ''
 
 # Run dir structure
 tf_run_dir = ''
@@ -41,6 +45,7 @@ tf_run_dir_work_tmp = ''
 tf_is_syn = 0
 tf_is_impl = 0
 tf_is_atpg = 0
+tf_is_power = 0
 tf_ux_ui_mode = ''
 tf_update_run_dir = 0
 tf_update_all = 0

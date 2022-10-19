@@ -39,19 +39,22 @@ import os
 # Be careful, you can't add other variables into tf_dir_structure_table.
 tf_dir_structure_table = (
     # Mandatory variables
-    ['sdc', ''],            # <list of dirs> example: project_home/soc_top/data/sdc
-    ['workarea_syn', ''],   # <only one dir> example: project_home/soc_top/workarea
-    ['workarea_impl', ''],  # <only one dir> example: project_home/soc_top/workarea
-    ['workarea_atpg', ''],  # <only one dir> example: project_home/soc_top/workarea
-    ['syn_steps', ''],      # <list of dirs> example: project_home/soc_top/data/syn_steps
-    ['impl_steps', ''],     # <list of dirs> example: project_home/soc_top/data/impl_steps
-    ['atpg_steps', ''],     # <list of dirs> example: project_home/soc_top/data/atpg_steps
+    ['sdc', ''],             # <list of dirs> example: project_home/soc_top/data/sdc
+    ['workarea_syn', ''],    # <only one dir> example: project_home/soc_top/workarea
+    ['workarea_impl', ''],   # <only one dir> example: project_home/soc_top/workarea
+    ['workarea_atpg', ''],   # <only one dir> example: project_home/soc_top/workarea
+    ['workarea_power', ''],  # <only one dir> example: project_home/soc_top/workarea
+    ['syn_steps', ''],       # <list of dirs> example: project_home/soc_top/data/syn_steps
+    ['impl_steps', ''],      # <list of dirs> example: project_home/soc_top/data/impl_steps
+    ['atpg_steps', ''],      # <list of dirs> example: project_home/soc_top/data/atpg_steps
+    ['power_steps', ''],     # <list of dirs> example: project_home/soc_top/data/power_steps
 
     # Optional variables
     ['rtl', ''],       # <list of dirs> example: project_home/common_data/rtl
     ['syn_src', ''],   # <list of dirs> example: project_home/soc_top/data/syn_src
     ['impl_src', ''],  # <list of dirs> example: project_home/soc_top/data/impl_src
-    ['atpg_src', '']   # <list of dirs> example: project_home/soc_top/data/atpg_src
+    ['atpg_src', ''],  # <list of dirs> example: project_home/soc_top/data/atpg_src
+    ['power_src', '']  # <list of dirs> example: project_home/soc_top/data/power_src
 )
 
 # Variables from tf_var_table are used to automation step scripts.
@@ -63,7 +66,8 @@ tf_var_table = (
     ['DESIGN_NAME', ''],    # Top module name.
     ['EXP_NAME_SYN', ''],   # Synthesis experiment name.
     ['EXP_NAME_IMPL', ''],  # Implementation experiment name.
-    ['EXP_NAME_ATPG', '']   # ATPG experiment name.
+    ['EXP_NAME_ATPG', ''],  # ATPG experiment name.
+    ['EXP_NAME_POWER', '']  # Power analysis experiment name.
 
     # Optional
 )
@@ -117,6 +121,24 @@ tf_step_impl_table = (
 
 # tf_step_atpg_table contains set of steps for ATPG.
 tf_step_atpg_table = (
+    [0, 'step_name'],
+    [1, 'step_name'],
+    [1, 'step_name']
+)
+
+
+# Variables from mmmc_analysis_view_power_table are used to set analysis views for power analysis
+# during mmmc_gen execution.
+# Use the following mandatory template:
+#   ['<constraint mode>', '<process>', '<voltage>', '<temperature>', '<extraction>', '<type of analysis>']
+# Types of analysis: s - setup; h - hold.
+mmmc_analysis_view_power_table = (
+    ['', '', '', '', '', ''],
+    ['', '', '', '', '', '']
+)
+
+# tf_step_power_table contains set of steps for power analysis
+tf_step_power_table = (
     [0, 'step_name'],
     [1, 'step_name'],
     [1, 'step_name']

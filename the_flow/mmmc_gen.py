@@ -576,8 +576,21 @@ class mmmc_gen:
                                    tf_var.mmmc_sdc_mode_table,
                                    tf_var_common.mmmc_ocv_table
                                    )
+        elif global_tf_vars.tf_is_power == 1:
+            tf_mmmc_gen = mmmc_gen(tf_var.mmmc_analysis_view_power_table,
+                                   tf_var_common.mmmc_pvt_p_table,
+                                   tf_var_common.mmmc_pvt_v_table,
+                                   tf_var_common.mmmc_pvt_t_table,
+                                   tf_var_common.mmmc_pvt_table,
+                                   tf_var_common.mmmc_lib_file_table,
+                                   tf_var_common.mmmc_cdb_file_table,
+                                   tf_var_common.mmmc_pvt_qrc_table,
+                                   tf_var_common.mmmc_qrc_file_table,
+                                   tf_var.mmmc_sdc_mode_table,
+                                   tf_var_common.mmmc_ocv_table
+                                   )
 
-        if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1:
+        if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:
             tf_mmmc_gen.parsing_analysis_view_table()
             tf_mmmc_gen.make_lib_files_list_for_each_view()
             tf_mmmc_gen.make_cdb_files_list_for_each_view()

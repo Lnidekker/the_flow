@@ -137,6 +137,8 @@ def run_create_tcl_scripts_for_each_step():
         create_tf_tmp_file_steps_import_file(global_tf_vars.tf_impl_steps_dir)
     elif global_tf_vars.tf_is_atpg == 1:
         create_tf_tmp_file_steps_import_file(global_tf_vars.tf_atpg_steps_dir)
+    elif global_tf_vars.tf_is_power == 1:
+        create_tf_tmp_file_steps_import_file(global_tf_vars.tf_power_steps_dir)
 
     sys.path.append(global_tf_vars.tf_run_dir_work_tmp)
     #from tf_tmp_file_steps_import import *
@@ -148,6 +150,8 @@ def run_create_tcl_scripts_for_each_step():
         create_tf_tmp_step_table_file(tf_var.tf_step_impl_table)
     elif global_tf_vars.tf_is_atpg == 1:
         create_tf_tmp_step_table_file(tf_var.tf_step_atpg_table)
+    elif global_tf_vars.tf_is_power == 1:
+        create_tf_tmp_step_table_file(tf_var.tf_step_power_table)
 
     #from tf_tmp_step_table import *
     import tf_tmp_step_table

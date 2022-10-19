@@ -3,7 +3,7 @@
 tf_help_message="
 Description: start THE FLOW execution.
 
-Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-from_step <str>] [-help]
+Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-from_step <str>] [-help]
 
     -path <str> :
         absolute path to directory which consists tf_var.py file
@@ -16,6 +16,9 @@ Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-ui_mode [interactive] [te
 
     -atpg :
         execute ATPG flow
+
+    -power :
+        execute power analysis flow
 
     -ui_mode [interactive] [terminal] :
         interactive - (default) turn on THE FLOW ui functional
@@ -50,6 +53,7 @@ tf_path=""
 tf_is_syn=0
 tf_is_impl=0
 tf_is_atpg=0
+tf_is_power=0
 tf_ui_mode=""
 tf_update_run_dir=0
 tf_update_all=0
@@ -84,6 +88,8 @@ else
       tf_is_impl=1
     elif [[ ${argument_value[$j]} == "-atpg" ]] ; then
       tf_is_atpg=1
+    elif [[ ${argument_value[$j]} == "-power" ]] ; then
+      tf_is_power=1
     elif [[ ${argument_value[$j]} == "-ui_mode" ]] ; then
       if [[ ${argument_value[$j + 1]} == "interactive" ]] ; then
         tf_ui_mode="interactive"
@@ -144,11 +150,11 @@ if [[ $tf_path == "" ]] ; then
   exit
 fi
 
-if [[ $tf_is_syn == 1 &&  $tf_is_impl == 1 ]] ; then
+if [[ $tf_is_syn == 1 && $tf_is_impl == 1 ]] ; then
   echo -e "\e[31mTF_ERROR   : Can't use [-syn] and [-impl] options the same time. This functional will be added in future major release.\e[0m"
   exit
-elif [[ $tf_is_syn == 0 &&  $tf_is_impl == 0 && $tf_is_atpg == 0 ]] ; then
-  echo -e "\e[31mTF_ERROR   : Choose one of mandatory option [-syn], [-impl] or [-atpg].\e[0m"
+elif [[ $tf_is_syn == 0 &&  $tf_is_impl == 0 && $tf_is_atpg == 0 && $tf_is_power == 0 ]] ; then
+  echo -e "\e[31mTF_ERROR   : Choose one of mandatory option [-syn], [-impl], [-atpg] or [-power].\e[0m"
   exit
 fi
 
@@ -184,6 +190,7 @@ python3 "$(which the_flow)"_scripts.py \
         $tf_is_syn \
         $tf_is_impl \
         $tf_is_atpg \
+        $tf_is_power \
         "$tf_ui_mode" \
         $tf_update_run_dir \
         $tf_update_all \
