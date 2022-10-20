@@ -55,7 +55,7 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
             if tf_var_common.tf_var_common_table[i][0] != '':
                 print('set ' + tf_var_common.tf_var_common_table[i][0] + ' \"' + list_ + '\"')
         print('')
-        if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1:
+        if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:
             print('if {$PREVIOUS_STEP_NAME != \"\"} {read_db ../db/$PREVIOUS_STEP_NAME.db}')
         print('')
         print('# STEP START')
@@ -66,6 +66,8 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
             print('write_db -all_root_attributes ../db/' + step_name + '.db')
         elif global_tf_vars.tf_is_impl == 1:
             print('write_db -lib -sdc -def ../db/' + step_name + '.db')
+        elif global_tf_vars.tf_is_power == 1:
+            print('write_db ../db/' + step_name + '.db')
         print('')
         print('exit')
         sys.stdout = original_stdout
