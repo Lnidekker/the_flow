@@ -114,3 +114,4 @@ tf_tmp_step_table = {}
 # phy_gen variables
 phy_lef_files = ''
 phy_verilog_files = ''
+phy_cl_dirs = ''
