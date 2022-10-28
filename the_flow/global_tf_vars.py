@@ -8,19 +8,23 @@ tf_sdc_dir = {}
 tf_workarea_syn_dir = ''
 tf_workarea_impl_dir = ''
 tf_workarea_atpg_dir = ''
+tf_workarea_power_dir = ''
 tf_syn_steps_dir = {}
 tf_impl_steps_dir = {}
 tf_atpg_steps_dir = {}
+tf_power_steps_dir = {}
 tf_rtl_dir = {}
 tf_syn_src_dir = {}
 tf_impl_src_dir = {}
 tf_atpg_src_dir = {}
+tf_power_src_dir = {}
 
 # Variables from tf_var_table
 tf_design_name = ''
 tf_exp_name_syn = ''
 tf_exp_name_impl = ''
 tf_exp_name_atpg = ''
+tf_exp_name_power = ''
 
 # Run dir structure
 tf_run_dir = ''
@@ -41,12 +45,15 @@ tf_run_dir_work_tmp = ''
 tf_is_syn = 0
 tf_is_impl = 0
 tf_is_atpg = 0
+tf_is_power = 0
 tf_ux_ui_mode = ''
 tf_update_run_dir = 0
 tf_update_all = 0
 tf_update_cfg = 0
 tf_update_step_scripts = 0
 tf_update_input_data = 0
+tf_from_step = 0
+tf_from_step_name = ''
 
 # Variables to navigate THE FLOW script
 tf_remove_run_dir = 0
@@ -57,8 +64,12 @@ tf_start_eda_tool = 0
 tf_use_xterm = 0
 tf_q1_answer = 0
 tf_q2_answer = 0
+tf_q3_answer = 0
 tf_q1_flag = ''
 tf_q2_flag = ''
+tf_q3_flag = ''
+tf_delete_all_following_db = 0
+tf_go_to_next_step = 0
 
 # mmmc_gen variables
 mmmc_analysis_view_table_sdc_mode = {}
@@ -103,3 +114,4 @@ tf_tmp_step_table = {}
 # phy_gen variables
 phy_lef_files = ''
 phy_verilog_files = ''
+phy_cl_dirs = ''

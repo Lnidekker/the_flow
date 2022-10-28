@@ -15,25 +15,30 @@ import q2
 if __name__ == "__main__":
 
     # Set arguments value of python3 command to global_tf_vars
-    global_tf_vars.tf_cfg_dir = sys.argv[1]
+    global_tf_vars.tf_cfg_dir = str(sys.argv[1])
     global_tf_vars.tf_is_syn = int(sys.argv[2])
     global_tf_vars.tf_is_impl = int(sys.argv[3])
     global_tf_vars.tf_is_atpg = int(sys.argv[4])
-    global_tf_vars.tf_ux_ui_mode = sys.argv[5]
-    global_tf_vars.tf_update_run_dir = int(sys.argv[6])
-    global_tf_vars.tf_update_all = int(sys.argv[7])
-    global_tf_vars.tf_update_cfg = int(sys.argv[8])
-    global_tf_vars.tf_update_step_scripts = int(sys.argv[9])
-    global_tf_vars.tf_update_input_data = int(sys.argv[10])
+    global_tf_vars.tf_is_power = int(sys.argv[5])
+    global_tf_vars.tf_ux_ui_mode = str(sys.argv[6])
+    global_tf_vars.tf_update_run_dir = int(sys.argv[7])
+    global_tf_vars.tf_update_all = int(sys.argv[8])
+    global_tf_vars.tf_update_cfg = int(sys.argv[9])
+    global_tf_vars.tf_update_step_scripts = int(sys.argv[10])
+    global_tf_vars.tf_update_input_data = int(sys.argv[11])
+    global_tf_vars.tf_from_step = int(sys.argv[12])
+    global_tf_vars.tf_from_step_name = str(sys.argv[13])
 
     if global_tf_vars.tf_ux_ui_mode == 'interactive':
         global_tf_vars.tf_q1_answer = 0
         global_tf_vars.tf_q2_answer = 0
+        global_tf_vars.tf_q3_answer = 0
         global_tf_vars.tf_use_xterm = 1
         global_tf_vars.tf_start_eda_tool = 0
     elif global_tf_vars.tf_ux_ui_mode == 'terminal':
         global_tf_vars.tf_q1_answer = 1
         global_tf_vars.tf_q2_answer = 1
+        global_tf_vars.tf_q3_answer = 1
         global_tf_vars.tf_use_xterm = 0
         global_tf_vars.tf_start_eda_tool = 1
 

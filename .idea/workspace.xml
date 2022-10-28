@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.3.6">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.4.23 - add -power flow; tested">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.3.6-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.4.23-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/global_tf_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/global_tf_vars.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/messages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/phy_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/phy_gen.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +217,77 @@
       <option name="project" value="LOCAL" />
       <updated>1665175520497</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="start of release history">
+      <created>1665337903574</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1665337903574</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add str() for sys.argv[*]">
+      <created>1665339788278</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1665339788278</updated>
+    </task>
+    <task id="LOCAL-00015" summary="v0.4.1 - add str() for sys.argv[*]">
+      <created>1665340058757</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1665340058757</updated>
+    </task>
+    <task id="LOCAL-00016" summary="v0.4.2 - add db passing for syn flow">
+      <created>1665911016877</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1665911016877</updated>
+    </task>
+    <task id="LOCAL-00017" summary="v0.4.9 - add db passing for syn flow; tested">
+      <created>1665917478020</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1665917478020</updated>
+    </task>
+    <task id="LOCAL-00018" summary="v0.4.10 - add db passing for impl flow; not tested">
+      <created>1665937805559</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1665937805559</updated>
+    </task>
+    <task id="LOCAL-00019" summary="v0.4.12 - add db exists check before deleting; tested">
+      <created>1666126898936</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1666126898936</updated>
+    </task>
+    <task id="LOCAL-00020" summary="v0.4.16 - add -from_step func; tested">
+      <created>1666161364521</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1666161364521</updated>
+    </task>
+    <task id="LOCAL-00021" summary="v0.4.20 - add -power flow; not tested">
+      <created>1666187181563</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1666187181563</updated>
+    </task>
+    <task id="LOCAL-00022" summary="v0.4.23 - add -power flow; tested">
+      <created>1666291721138</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1666291721138</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -240,7 +313,17 @@
     <MESSAGE value="v0.3.0" />
     <MESSAGE value="v0.3.1" />
     <MESSAGE value="v0.3.6" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.3.6" />
+    <MESSAGE value="start of release history" />
+    <MESSAGE value="add str() for sys.argv[*]" />
+    <MESSAGE value="v0.4.1 - add str() for sys.argv[*]" />
+    <MESSAGE value="v0.4.2 - add db passing for syn flow" />
+    <MESSAGE value="v0.4.9 - add db passing for syn flow; tested" />
+    <MESSAGE value="v0.4.10 - add db passing for impl flow; not tested" />
+    <MESSAGE value="v0.4.12 - add db exists check before deleting; tested" />
+    <MESSAGE value="v0.4.16 - add -from_step func; tested" />
+    <MESSAGE value="v0.4.20 - add -power flow; not tested" />
+    <MESSAGE value="v0.4.23 - add -power flow; tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.4.23 - add -power flow; tested" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

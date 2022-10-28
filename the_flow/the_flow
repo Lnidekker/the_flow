@@ -3,7 +3,7 @@
 tf_help_message="
 Description: start THE FLOW execution.
 
-Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-help]
+Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-from_step <str>] [-help]
 
     -path <str> :
         absolute path to directory which consists tf_var.py file
@@ -17,9 +17,12 @@ Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-ui_mode [interactive] [te
     -atpg :
         execute ATPG flow
 
+    -power :
+        execute power analysis flow
+
     -ui_mode [interactive] [terminal] :
         interactive - (default) turn on THE FLOW ui functional
-        terminal    - automatically set TF_Q2 = 1 and turn off xterm using
+        terminal    - automatically set TF-Q2 = 1 and turn off xterm using
 
     -update_run_dir [all] [cfg] [step_scripts] [input_data] :
         all          - delete experiment directory if this already exists and continue THE FLOW execution
@@ -30,6 +33,13 @@ Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-ui_mode [interactive] [te
         Note :
             - this option used only with [-ui_mode terminal]
             - if [-ui_mode terminal] option used without [-update_run_dir] experiment directory will not changed
+
+    -from_step <str> :
+        start THE FLOW execution from chosen step which db already exists (the same like TF-Q3 = 2)
+
+        Note:
+            - this option used only with [-ui_mode terminal]
+            - if [-ui_mode terminal] option used without [-from_step] steps with existing db are passed (the same like TF-Q3 = 1)
 
     -help :
         show help message in terminal window
@@ -43,12 +53,15 @@ tf_path=""
 tf_is_syn=0
 tf_is_impl=0
 tf_is_atpg=0
+tf_is_power=0
 tf_ui_mode=""
 tf_update_run_dir=0
 tf_update_all=0
 tf_update_cfg=0
 tf_update_step_scripts=0
 tf_update_input_data=0
+tf_from_step=0
+tf_from_step_name=""
 
 for i in "$@"
   do
@@ -75,6 +88,8 @@ else
       tf_is_impl=1
     elif [[ ${argument_value[$j]} == "-atpg" ]] ; then
       tf_is_atpg=1
+    elif [[ ${argument_value[$j]} == "-power" ]] ; then
+      tf_is_power=1
     elif [[ ${argument_value[$j]} == "-ui_mode" ]] ; then
       if [[ ${argument_value[$j + 1]} == "interactive" ]] ; then
         tf_ui_mode="interactive"
@@ -103,6 +118,14 @@ else
           fi
         done
       fi
+    elif [[ ${argument_value[$j]} == "-from_step" ]] ; then
+      tf_from_step=1
+      if [[ $tf_ui_mode != "terminal" ]] ; then
+        echo -e "\e[31mTF_ERROR   : Please, use option [-ui_mode terminal] before [-from_step].\e[0m"
+        exit
+      else
+        tf_from_step_name=${argument_value[$j + 1]}
+      fi
     elif [[ ${argument_value[$j]} == "-help" ]] ; then
       echo "$tf_help_message"
     else
@@ -112,7 +135,8 @@ else
             ${argument_value[$j]} != "all" &&
             ${argument_value[$j]} != "cfg" &&
             ${argument_value[$j]} != "step_scripts" &&
-            ${argument_value[$j]} != "input_data"
+            ${argument_value[$j]} != "input_data" &&
+            ${argument_value[$j]} != "$tf_from_step_name"
             ]] ; then
         echo -e "\e[31mTF_ERROR   : Unknown option is [${argument_value[$j]}]. Please, run [the_flow -help] and read description.\e[0m"
         exit
@@ -126,11 +150,11 @@ if [[ $tf_path == "" ]] ; then
   exit
 fi
 
-if [[ $tf_is_syn == 1 &&  $tf_is_impl == 1 ]] ; then
+if [[ $tf_is_syn == 1 && $tf_is_impl == 1 ]] ; then
   echo -e "\e[31mTF_ERROR   : Can't use [-syn] and [-impl] options the same time. This functional will be added in future major release.\e[0m"
   exit
-elif [[ $tf_is_syn == 0 &&  $tf_is_impl == 0 && $tf_is_atpg == 0 ]] ; then
-  echo -e "\e[31mTF_ERROR   : Choose one of mandatory option [-syn], [-impl] or [-atpg].\e[0m"
+elif [[ $tf_is_syn == 0 &&  $tf_is_impl == 0 && $tf_is_atpg == 0 && $tf_is_power == 0 ]] ; then
+  echo -e "\e[31mTF_ERROR   : Choose one of mandatory option [-syn], [-impl], [-atpg] or [-power].\e[0m"
   exit
 fi
 
@@ -166,9 +190,12 @@ python3 "$(which the_flow)"_scripts.py \
         $tf_is_syn \
         $tf_is_impl \
         $tf_is_atpg \
+        $tf_is_power \
         "$tf_ui_mode" \
         $tf_update_run_dir \
         $tf_update_all \
         $tf_update_cfg \
         $tf_update_step_scripts \
-        $tf_update_input_data
+        $tf_update_input_data \
+        $tf_from_step \
+        "$tf_from_step_name"

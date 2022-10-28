@@ -73,14 +73,14 @@ class messages:
     @staticmethod
     def phygen_1(file_name, var_name):
         """
-        ERROR : File * from * doesn't exist.
+        ERROR : File or dir * from * doesn't exist.
 
-        :param file_name: File name.
+        :param file_name: File or dir name.
         :param var_name: Variable name.
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[PHYGEN-1] File ' +
+        common_func.tf_error('[PHYGEN-1] File or dir ' +
                              file_name +
                              ' from ' +
                              var_name +
