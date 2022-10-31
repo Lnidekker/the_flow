@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.0 - main release">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/common_data/cfg/tf_var_common.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/common_data/cfg/tf_var_common.py" afterDir="false" />
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.1 - add mmmc presets to tcl scripts ; tested">
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/scripts/.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/scripts/.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/scripts/tf_test_step_1.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/scripts/tf_test_step_1.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/scripts/tf_test_step_2.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/scripts/tf_test_step_2.tcl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -298,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667196607411</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="v0.5.1 - add mmmc presets to tcl scripts ; tested">
+      <created>1667197881203</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1667197881203</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -336,7 +344,8 @@
     <MESSAGE value="v0.4.23 - add -power flow; tested" />
     <MESSAGE value="v0.4.26 - add cl to phy_gen; tested" />
     <MESSAGE value="v0.5.0 - main release" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.5.0 - main release" />
+    <MESSAGE value="v0.5.1 - add mmmc presets to tcl scripts ; tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.5.1 - add mmmc presets to tcl scripts ; tested" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,3 +1,5 @@
+set FLOW "syn"
+
 set STEP_NAME ""
 set PREVIOUS_STEP_NAME "tf_test_step_2"
 
@@ -11,7 +13,7 @@ set test_var "1 2"
 # Variables from tf_var_common.tf_var_common_table
 
 # MMMC presets from tf_var.tf_var_mmmc_table
-set mmmc_presets "test_lib tech_40"
+set MMMC_PRESETS "test_lib tech_40"
 
 if {$PREVIOUS_STEP_NAME != ""} {read_db ../db/$PREVIOUS_STEP_NAME.db}
 

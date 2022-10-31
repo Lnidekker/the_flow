@@ -31,6 +31,16 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
     with open(tf_step_tcl_file, 'a') as f:
 
         sys.stdout = f
+        if global_tf_vars.tf_is_syn == 1:
+            print('set FLOW \"syn\"')
+        elif global_tf_vars.tf_is_impl == 1:
+            print('set FLOW \"impl\"')
+        elif global_tf_vars.tf_is_atpg == 1:
+            print('set FLOW \"atpg\"')
+        elif global_tf_vars.tf_is_power == 1:
+            print('set FLOW \"power\"')
+        print('')
+
         print('set STEP_NAME \"' + step_name + '\"')
         print('set PREVIOUS_STEP_NAME \"' + previous_step_name + '\"')
         print('')
@@ -66,7 +76,7 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
                 list_ = tf_var.tf_var_mmmc_table[i]
             else:
                 list_ = list_ + ' ' + tf_var.tf_var_mmmc_table[i]
-        print('set mmmc_presets \"' + list_ + '\"')
+        print('set MMMC_PRESETS \"' + list_ + '\"')
         print('')
 
         if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:
