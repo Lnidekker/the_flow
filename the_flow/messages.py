@@ -88,6 +88,18 @@ class messages:
         common_func.tf_exit_with_error()
 
     @staticmethod
+    def phygen_2(table_name):
+        """
+        ERROR : *_table from tf_var_common doesn't exist.
+
+        :param table_name: Table name.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_error('[PHYGEN-2] ' + table_name + ' table from tf_var_common doesn\'t exist.')
+        common_func.tf_exit_with_error()
+
+    @staticmethod
     def mmmcgen_1(file_name, var_name):
         """
         ERROR : Files * from * doesn't exist.
