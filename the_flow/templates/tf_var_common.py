@@ -118,3 +118,10 @@ phy_verilog_table = (
     ['', ''],
     ['', '']
 )
+
+# Variables from phy_cl_table are used to configurate cl_list during phy_gen execution.
+# Use the following mandatory template: ['<mmmc_preset name>', 'cl_dir_1', 'cl_dir_2', ... ]
+phy_cl_table = (
+    ['', ''],
+    ['', '']
+)
