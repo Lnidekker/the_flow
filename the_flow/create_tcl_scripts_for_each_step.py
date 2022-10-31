@@ -29,10 +29,12 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
     original_stdout = sys.stdout
     tf_step_tcl_file = global_tf_vars.tf_run_dir_scripts + '/' + step_name + '.tcl'
     with open(tf_step_tcl_file, 'a') as f:
+
         sys.stdout = f
         print('set STEP_NAME \"' + step_name + '\"')
         print('set PREVIOUS_STEP_NAME \"' + previous_step_name + '\"')
         print('')
+
         print('# Variables from tf_var.tf_var_table')
         for i in range(len(tf_var.tf_var_table)):
             list_ = ''
@@ -44,6 +46,7 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
             if tf_var.tf_var_table[i][0] != '':
                 print('set ' + tf_var.tf_var_table[i][0] + ' \"' + list_ + '\"')
         print('')
+
         print('# Variables from tf_var_common.tf_var_common_table')
         for i in range(len(tf_var_common.tf_var_common_table)):
             list_ = ''
@@ -55,6 +58,17 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
             if tf_var_common.tf_var_common_table[i][0] != '':
                 print('set ' + tf_var_common.tf_var_common_table[i][0] + ' \"' + list_ + '\"')
         print('')
+
+        print('# MMMC presets from tf_var.tf_var_mmmc_table')
+        list_ = ''
+        for i in range(0, len(tf_var.tf_var_mmmc_table)):
+            if list_ == '':
+                list_ = tf_var.tf_var_mmmc_table[i]
+            else:
+                list_ = list_ + ' ' + tf_var.tf_var_mmmc_table[i]
+        print('set mmmc_presets \"' + list_ + '\"')
+        print('')
+
         if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:
             print('if {$PREVIOUS_STEP_NAME != \"\"} {read_db ../db/$PREVIOUS_STEP_NAME.db}')
         print('')

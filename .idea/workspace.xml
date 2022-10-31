@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.4.26 - add cl to phy_gen; tested">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.0 - main release">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.4.26-py3-none-any.whl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/templates/tf_var_common.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/templates/tf_var_common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/common_data/cfg/tf_var_common.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/common_data/cfg/tf_var_common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666293487648</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="v0.5.0 - main release">
+      <created>1667196607411</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1667196607411</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -329,7 +335,8 @@
     <MESSAGE value="v0.4.20 - add -power flow; not tested" />
     <MESSAGE value="v0.4.23 - add -power flow; tested" />
     <MESSAGE value="v0.4.26 - add cl to phy_gen; tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.4.26 - add cl to phy_gen; tested" />
+    <MESSAGE value="v0.5.0 - main release" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.5.0 - main release" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
