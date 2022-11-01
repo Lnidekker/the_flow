@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.2 - add FLOW variables to tcl scripts ; tested">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.3 - add phy_gen tables check ; tested">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/in/cfg/phy_config.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/scripts/.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/scripts/tf_test_step_1.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/scripts/tf_test_step_2.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/work/tmp/tf_tmp_file_steps_import.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-10-31/work/tmp/tf_tmp_step_table.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.5.0-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/messages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/mmmc_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/mmmc_gen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/phy_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/phy_gen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667198419378</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="v0.5.3 - add phy_gen tables check ; tested">
+      <created>1667199981420</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1667199981420</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -358,7 +363,8 @@
     <MESSAGE value="v0.5.0 - main release" />
     <MESSAGE value="v0.5.1 - add mmmc presets to tcl scripts ; tested" />
     <MESSAGE value="v0.5.2 - add FLOW variables to tcl scripts ; tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.5.2 - add FLOW variables to tcl scripts ; tested" />
+    <MESSAGE value="v0.5.3 - add phy_gen tables check ; tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.5.3 - add phy_gen tables check ; tested" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

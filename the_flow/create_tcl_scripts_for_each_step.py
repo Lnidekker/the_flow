@@ -13,6 +13,7 @@ import common_func
 import global_tf_vars
 import tf_var
 import tf_var_common
+from messages import messages
 
 
 def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):

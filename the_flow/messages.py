@@ -71,6 +71,19 @@ class messages:
         common_func.tf_exit_with_error()
 
     @staticmethod
+    def init_5(table_name, file_name):
+        """
+        ERROR : *_table from * doesn't exist.
+
+        :param table_name: Table name.
+        :param file_name: File name.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_error('[INIT-5] ' + table_name + ' table from ' + file_name + ' doesn\'t exist.')
+        common_func.tf_exit_with_error()
+
+    @staticmethod
     def phygen_1(file_name, var_name):
         """
         ERROR : File or dir * from * doesn't exist.
@@ -85,18 +98,6 @@ class messages:
                              ' from ' +
                              var_name +
                              ' doesn\'t exist.')
-        common_func.tf_exit_with_error()
-
-    @staticmethod
-    def phygen_2(table_name):
-        """
-        ERROR : *_table from tf_var_common doesn't exist.
-
-        :param table_name: Table name.
-        :return: Text message into terminal window.
-        """
-
-        common_func.tf_error('[PHYGEN-2] ' + table_name + ' table from tf_var_common doesn\'t exist.')
         common_func.tf_exit_with_error()
 
     @staticmethod

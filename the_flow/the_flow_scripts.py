@@ -11,6 +11,7 @@ import global_tf_vars
 import common_func
 import q1
 import q2
+from messages import messages
 
 if __name__ == "__main__":
 
@@ -48,6 +49,11 @@ if __name__ == "__main__":
     import tf_var
 
     # Parsing tf_var_table
+    try:
+        tf_var.tf_var_table
+    except AttributeError:
+        messages.init_5('tf_var_table', 'tf_var')
+
     tf = prepare_tf_vars.prepare_tf_vars('', tf_var.tf_var_table)
     tf.parsing_tf_var_table()
 
@@ -57,8 +63,18 @@ if __name__ == "__main__":
     import tf_var_common
 
     # Parsing tf_dir_structure_table
+    try:
+        tf_var.tf_dir_structure_table
+    except AttributeError:
+        messages.init_5('tf_dir_structure_table', 'tf_var')
+
     tf = prepare_tf_vars.prepare_tf_vars(tf_var.tf_dir_structure_table, tf_var.tf_var_table)
     tf.parsing_tf_dir_structure_table()
+
+    # Check tables existing from tf_var and tf_var_common
+    import check_tables
+
+    check_tables.check_tables()
 
     # Initialise global_ft_vars for run dir structure
     create_run_dir.run_dir_structure_is()

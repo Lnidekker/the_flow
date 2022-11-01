@@ -115,21 +115,6 @@ class phy_gen:
     @staticmethod
     def run_phy_gen():
 
-        try:
-            tf_var_common.phy_lef_table
-        except AttributeError:
-            messages.phygen_2('phy_lef_table')
-
-        try:
-            tf_var_common.phy_verilog_table
-        except AttributeError:
-            messages.phygen_2('phy_verilog_table')
-
-        try:
-            tf_var_common.phy_cl_table
-        except AttributeError:
-            messages.phygen_2('phy_cl_table')
-
         tf_phy_gen = phy_gen(tf_var_common.phy_lef_table, tf_var_common.phy_verilog_table, tf_var_common.phy_cl_table)
         tf_phy_gen.make_lef_list()
         tf_phy_gen.make_verilog_list()
