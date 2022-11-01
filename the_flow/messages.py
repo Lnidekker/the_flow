@@ -116,3 +116,15 @@ class messages:
                              var_name +
                              ' doesn\'t exist.')
         common_func.tf_exit_with_error()
+
+    @staticmethod
+    def tclscr_1(file_name):
+        """
+        ERROR : There are several step files * with the same names.
+
+        :param file_name: File name.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_error('[TCLSCR-1] There are several step files with ' + file_name + ' name.')
+        common_func.tf_exit_with_error()

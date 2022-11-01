@@ -154,7 +154,45 @@ def create_tf_tmp_step_table_file(steps_table):
     sys.stdout = original_stdout
 
 
+def check_steps():
+
+    step_file_list = {}
+    step_file_list_flag = 0
+
+    if global_tf_vars.tf_is_syn == 1:
+        step_dir = global_tf_vars.tf_syn_steps_dir
+    elif global_tf_vars.tf_is_impl == 1:
+        step_dir = global_tf_vars.tf_impl_steps_dir
+    elif global_tf_vars.tf_is_atpg == 1:
+        step_dir = global_tf_vars.tf_atpg_steps_dir
+    elif global_tf_vars.tf_is_power == 1:
+        step_dir = global_tf_vars.tf_power_steps_dir
+
+    for i in range(len(step_dir)):
+        sys.path.append(step_dir[i])
+        os.chdir(step_dir[i])
+        for j in glob.glob('tf*.py'):
+            step_file_list[step_file_list_flag] = j
+            step_file_list_flag = step_file_list_flag + 1
+
+    for i in range(len(step_file_list)):
+        flag = 0
+        for j in range(len(step_file_list)):
+            if step_file_list[i] == step_file_list[j]:
+                flag = flag + 1
+        if flag > 1:
+            messages.tclscr_1(step_file_list[i])
+
+
+
+
+
+
+
+
 def run_create_tcl_scripts_for_each_step():
+
+    check_steps()
 
     shutil.rmtree(global_tf_vars.tf_run_dir_scripts)
     os.mkdir(global_tf_vars.tf_run_dir_scripts)
@@ -180,7 +218,6 @@ def run_create_tcl_scripts_for_each_step():
     elif global_tf_vars.tf_is_power == 1:
         create_tf_tmp_step_table_file(tf_var.tf_step_power_table)
 
-    #from tf_tmp_step_table import *
     import tf_tmp_step_table
 
     for i in range(len(tf_tmp_step_table.tf_tmp_step_table)):  # Create tcl scr for all steps

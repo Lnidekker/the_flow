@@ -1,11 +1,11 @@
 tf_test_step_1 = '''
-    1
+    5
 '''
 
 tf_test_step_2 = '''
-    2
+    6
 '''
 
 tf_test_step_2 = '''
-    3
+    7
 '''
