@@ -157,22 +157,28 @@ def create_tf_tmp_step_table_file(steps_table):
 def check_steps():
 
     step_file_list = {}
+    step_dirs_list = {}
     step_file_list_flag = 0
 
     if global_tf_vars.tf_is_syn == 1:
         step_dir = global_tf_vars.tf_syn_steps_dir
+        step_table = tf_var.tf_step_syn_table
     elif global_tf_vars.tf_is_impl == 1:
         step_dir = global_tf_vars.tf_impl_steps_dir
+        step_table = tf_var.tf_step_impl_table
     elif global_tf_vars.tf_is_atpg == 1:
         step_dir = global_tf_vars.tf_atpg_steps_dir
+        step_table = tf_var.tf_step_atpg_table
     elif global_tf_vars.tf_is_power == 1:
         step_dir = global_tf_vars.tf_power_steps_dir
+        step_table = tf_var.tf_step_power_table
 
     for i in range(len(step_dir)):
         sys.path.append(step_dir[i])
         os.chdir(step_dir[i])
         for j in glob.glob('tf*.py'):
             step_file_list[step_file_list_flag] = j
+            step_dirs_list[step_file_list_flag] = step_dir[i]
             step_file_list_flag = step_file_list_flag + 1
 
     for i in range(len(step_file_list)):
@@ -180,14 +186,27 @@ def check_steps():
         for j in range(len(step_file_list)):
             if step_file_list[i] == step_file_list[j]:
                 flag = flag + 1
-        if flag > 1:
-            messages.tclscr_1(step_file_list[i])
+            if flag > 1:
+                messages.tclscr_1(step_file_list[i], step_dirs_list[i] + '/' + step_file_list[i] + ' and ' +
+                                  step_dirs_list[j] + '/' + step_file_list[j] + '.')
 
-
-
-
-
-
+    for s in range(len(step_table)):
+        name_counter = 0
+        file_counter = {}
+        for i in range(len(step_dir)):
+            sys.path.append(step_dir[i])
+            os.chdir(step_dir[i])
+            for j in glob.glob('tf*.py'):
+                with open(j, 'r') as file:
+                    for line_number, line in enumerate(file, start=1):
+                        if step_table[s][1] in line:
+                            file_counter[name_counter] = step_dir[i] + '/' + j
+                            name_counter = name_counter + 1
+        if name_counter > 1:
+            files = ''
+            for i in range(len(file_counter)):
+                files = files + ', ' + file_counter[i]
+            messages.tclscr_2(step_table[s][1], files, str(name_counter))
 
 
 def run_create_tcl_scripts_for_each_step():
@@ -206,7 +225,6 @@ def run_create_tcl_scripts_for_each_step():
         create_tf_tmp_file_steps_import_file(global_tf_vars.tf_power_steps_dir)
 
     sys.path.append(global_tf_vars.tf_run_dir_work_tmp)
-    #from tf_tmp_file_steps_import import *
     import tf_tmp_file_steps_import
 
     if global_tf_vars.tf_is_syn == 1:

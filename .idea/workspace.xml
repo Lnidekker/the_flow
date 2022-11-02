@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.4 - add existing check for all tables from tf_var/tf_var_common; tested">
-      <change afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/data/syn_steps_/tf_test_syn_step.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/data/syn_steps_/tf_test_syn_step_.py" afterDir="false" />
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.5 - add check of step files name ; tested">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/data/syn_steps/tf_test_syn_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/data/syn_steps/tf_test_syn_step.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-01/scripts/.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-01/scripts/tf_test_step_1.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-01/scripts/tf_test_step_2.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-01/work/tmp/tf_tmp_file_steps_import.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-01/work/tmp/tf_tmp_step_table.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.5.3-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/messages.py" afterDir="false" />
     </list>
@@ -59,16 +52,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ToolWindowPull Requests.ShowToolbar": "false",
-    "last_opened_file_path": "/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/soc_top/data",
-    "settings.editor.selected.configurable": "advanced.settings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ToolWindowPull Requests.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/soc_top/data&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests/src_prj/soc_top/data" />
@@ -337,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667279534059</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="v0.5.5 - add check of step files name ; tested">
+      <created>1667286173889</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1667286173889</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -379,7 +379,8 @@
     <MESSAGE value="v0.5.2 - add FLOW variables to tcl scripts ; tested" />
     <MESSAGE value="v0.5.3 - add phy_gen tables check ; tested" />
     <MESSAGE value="v0.5.4 - add existing check for all tables from tf_var/tf_var_common; tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.5.4 - add existing check for all tables from tf_var/tf_var_common; tested" />
+    <MESSAGE value="v0.5.5 - add check of step files name ; tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.5.5 - add check of step files name ; tested" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
