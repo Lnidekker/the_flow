@@ -84,6 +84,18 @@ class messages:
         common_func.tf_exit_with_error()
 
     @staticmethod
+    def init_6(table_name, file_name):
+        """
+        WARNING : *_table from * doesn't exist.
+
+        :param table_name: Table name.
+        :param file_name: File name.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_warning('[INIT-6] ' + table_name + ' table from ' + file_name + ' doesn\'t exist.')
+
+    @staticmethod
     def phygen_1(file_name, var_name):
         """
         ERROR : File or dir * from * doesn't exist.

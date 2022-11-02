@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.5 - add check of step files name ; tested">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.6 - add check of recurring steps ; tested">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.5.3-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.5.6-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/data/syn_steps/tf_test_syn_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/data/syn_steps/tf_test_syn_step.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/data/syn_steps/tf_test_syn_step_.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/data/syn_steps/tf_test_syn_step_.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/check_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/check_tables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/messages.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -337,7 +339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667286173889</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="v0.5.6 - add check of recurring steps ; tested">
+      <created>1667371323571</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1667371323571</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -355,7 +364,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test commit from pycharm" />
     <MESSAGE value="corr README" />
     <MESSAGE value="v0.1.36" />
     <MESSAGE value="v0.2.0" />
@@ -380,7 +388,8 @@
     <MESSAGE value="v0.5.3 - add phy_gen tables check ; tested" />
     <MESSAGE value="v0.5.4 - add existing check for all tables from tf_var/tf_var_common; tested" />
     <MESSAGE value="v0.5.5 - add check of step files name ; tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.5.5 - add check of step files name ; tested" />
+    <MESSAGE value="v0.5.6 - add check of recurring steps ; tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.5.6 - add check of recurring steps ; tested" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -6,6 +6,3 @@ tf_test_step_2 = '''
     2
 '''
 
-tf_test_step_2 = '''
-    3
-'''
