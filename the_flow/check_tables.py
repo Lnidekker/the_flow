@@ -182,19 +182,31 @@ def check_tables():
     try:
         tf_var.tf_var_syn_table
     except AttributeError:
-        messages.init_6('tf_var_syn_table', 'tf_var.py')
+        if global_tf_vars.tf_is_syn == 1:
+            messages.init_5('tf_var_syn_table', 'tf_var.py')
+        else:
+            messages.init_6('tf_var_syn_table', 'tf_var.py')
 
     try:
         tf_var.tf_var_impl_table
     except AttributeError:
-        messages.init_6('tf_var_impl_table', 'tf_var.py')
+        if global_tf_vars.tf_is_impl == 1:
+            messages.init_5('tf_var_impl_table', 'tf_var.py')
+        else:
+            messages.init_6('tf_var_impl_table', 'tf_var.py')
 
     try:
         tf_var.tf_var_atpg_table
     except AttributeError:
-        messages.init_6('tf_var_atpg_table', 'tf_var.py')
+        if global_tf_vars.tf_is_atpg == 1:
+            messages.init_5('tf_var_atpg_table', 'tf_var.py')
+        else:
+            messages.init_6('tf_var_atpg_table', 'tf_var.py')
 
     try:
         tf_var.tf_var_power_table
     except AttributeError:
-        messages.init_6('tf_var_power_table', 'tf_var.py')
+        if global_tf_vars.tf_is_power == 1:
+            messages.init_5('tf_var_power_table', 'tf_var.py')
+        else:
+            messages.init_6('tf_var_power_table', 'tf_var.py')
