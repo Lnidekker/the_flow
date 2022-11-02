@@ -199,7 +199,7 @@ def check_steps():
             for j in glob.glob('tf*.py'):
                 with open(j, 'r') as file:
                     for line_number, line in enumerate(file, start=1):
-                        if step_table[s][1] in line:
+                        if step_table[s][1] + ' ' in line:
                             file_counter[name_counter] = step_dir[i] + '/' + j
                             name_counter = name_counter + 1
         if name_counter > 1:
