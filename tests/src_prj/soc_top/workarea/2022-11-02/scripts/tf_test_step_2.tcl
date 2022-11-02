@@ -10,6 +10,10 @@ set EXP_NAME_SYN "2022-11-02"
 set EXP_NAME_ATPG "testing_atpg"
 set test_var "1 2"
 
+# Variables from tf_var.tf_var_syn_table
+set syn_1 "1"
+set syn_2 "2 3"
+
 # Variables from tf_var_common.tf_var_common_table
 
 # MMMC presets from tf_var.tf_var_mmmc_table

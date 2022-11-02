@@ -58,6 +58,30 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
                 print('set ' + tf_var.tf_var_table[i][0] + ' \"' + list_ + '\"')
         print('')
 
+        if global_tf_vars.tf_is_syn == 1:
+            print('# Variables from tf_var.tf_var_syn_table')
+            var_table = tf_var.tf_var_syn_table
+        elif global_tf_vars.tf_is_impl == 1:
+            print('# Variables from tf_var.tf_var_impl_table')
+            var_table = tf_var.tf_var_impl_table
+        elif global_tf_vars.tf_is_atpg == 1:
+            print('# Variables from tf_var.tf_var_atpg_table')
+            var_table = tf_var.tf_var_atpg_table
+        elif global_tf_vars.tf_is_power == 1:
+            print('# Variables from tf_var.tf_var_power_table')
+            var_table = tf_var.tf_var_power_table
+
+        for i in range(len(var_table)):
+            list_ = ''
+            for j in range(1, len(var_table[i])):
+                if list_ == '':
+                    list_ = var_table[i][j]
+                else:
+                    list_ = list_ + ' ' + var_table[i][j]
+            if var_table[i][0] != '':
+                print('set ' + var_table[i][0] + ' \"' + list_ + '\"')
+        print('')
+
         print('# Variables from tf_var_common.tf_var_common_table')
         for i in range(len(tf_var_common.tf_var_common_table)):
             list_ = ''

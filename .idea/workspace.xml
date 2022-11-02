@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.7 - corr check of tables existing ; tested">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.8 - corr check of recurring steps ; tested">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.5.7-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-02/scripts/.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-02/scripts/.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-02/scripts/tf_test_step_1.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-02/scripts/tf_test_step_1.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-02/scripts/tf_test_step_2.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-02/scripts/tf_test_step_2.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/check_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/check_tables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/templates/tf_var.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/templates/tf_var.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -350,7 +355,21 @@
       <option name="project" value="LOCAL" />
       <updated>1667379364300</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="v0.5.8 - corr check of recurring steps ; tested">
+      <created>1667381292148</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1667381292148</updated>
+    </task>
+    <task id="LOCAL-00033" summary="v0.5.8 - corr check of recurring steps ; tested">
+      <created>1667381302140</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1667381302140</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -368,7 +387,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v0.1.36" />
     <MESSAGE value="v0.2.0" />
     <MESSAGE value="v0.2.2 fix script with new experiment name" />
     <MESSAGE value="v0.3.0" />
@@ -393,7 +411,8 @@
     <MESSAGE value="v0.5.5 - add check of step files name ; tested" />
     <MESSAGE value="v0.5.6 - add check of recurring steps ; tested" />
     <MESSAGE value="v0.5.7 - corr check of tables existing ; tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.5.7 - corr check of tables existing ; tested" />
+    <MESSAGE value="v0.5.8 - corr check of recurring steps ; tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.5.8 - corr check of recurring steps ; tested" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

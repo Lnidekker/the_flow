@@ -39,6 +39,26 @@ tf_var_table = (
     ['test_var', '1', '2']
 )
 
+tf_var_syn_table = (
+    ['syn_1', '1'],
+    ['syn_2', '2', '3']
+)
+
+tf_var_impl_table = (
+    ['impl_1', '1'],
+    ['impl_2', '2', '3']
+)
+
+tf_var_atpg_table = (
+    ['atpg_1', '1'],
+    ['atpg_2', '2', '3']
+)
+
+tf_var_power_table = (
+    ['power_1', '1'],
+    ['power_2', '2', '3']
+)
+
 # Available sdc modes (mode name | sdc file name)
 # SDC files MUST places in the_flow.py/design_name/frontend/sdc
 mmmc_sdc_mode_table = (
