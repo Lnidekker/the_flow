@@ -60,26 +60,39 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
 
         if global_tf_vars.tf_is_syn == 1:
             print('# Variables from tf_var.tf_var_syn_table')
-            var_table = tf_var.tf_var_syn_table
+            if global_tf_vars.tf_var_syn_table_exists:
+                var_table = tf_var.tf_var_syn_table
+            else:
+                var_table = ''
         elif global_tf_vars.tf_is_impl == 1:
             print('# Variables from tf_var.tf_var_impl_table')
-            var_table = tf_var.tf_var_impl_table
+            if global_tf_vars.tf_var_impl_table_exists:
+                var_table = tf_var.tf_var_impl_table
+            else:
+                var_table = ''
         elif global_tf_vars.tf_is_atpg == 1:
             print('# Variables from tf_var.tf_var_atpg_table')
-            var_table = tf_var.tf_var_atpg_table
+            if global_tf_vars.tf_var_atpg_table_exists:
+                var_table = tf_var.tf_var_atpg_table
+            else:
+                var_table = ''
         elif global_tf_vars.tf_is_power == 1:
             print('# Variables from tf_var.tf_var_power_table')
-            var_table = tf_var.tf_var_power_table
+            if global_tf_vars.tf_var_power_table_exists:
+                var_table = tf_var.tf_var_power_table
+            else:
+                var_table = ''
 
-        for i in range(len(var_table)):
-            list_ = ''
-            for j in range(1, len(var_table[i])):
-                if list_ == '':
-                    list_ = var_table[i][j]
-                else:
-                    list_ = list_ + ' ' + var_table[i][j]
-            if var_table[i][0] != '':
-                print('set ' + var_table[i][0] + ' \"' + list_ + '\"')
+        if var_table != '':
+            for i in range(len(var_table)):
+                list_ = ''
+                for j in range(1, len(var_table[i])):
+                    if list_ == '':
+                        list_ = var_table[i][j]
+                    else:
+                        list_ = list_ + ' ' + var_table[i][j]
+                if var_table[i][0] != '':
+                    print('set ' + var_table[i][0] + ' \"' + list_ + '\"')
         print('')
 
         print('# Variables from tf_var_common.tf_var_common_table')
