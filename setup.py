@@ -4,8 +4,8 @@ setup(
     name='the_flow',
     packages=['the_flow', 'the_flow.templates'],
     include_package_data=True,
-    version='0.5.10',
-    description='corr tables check ; tested',
+    version='0.6.0',
+    description='main release',
     author='Leonid Nidekker',
     author_email='leonidnidekker@gmail.com',
     license='MIT'

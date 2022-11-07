@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.9 - add tf_var_*_table for each flow ; tested">
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.5.8-py3-none-any.whl" beforeDir="false" />
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.5.10 - corr tables check ; tested">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -368,7 +368,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667409132676</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="v0.5.10 - corr tables check ; tested">
+      <created>1667410277690</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1667410277690</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -386,7 +393,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v0.2.2 fix script with new experiment name" />
     <MESSAGE value="v0.3.0" />
     <MESSAGE value="v0.3.1" />
     <MESSAGE value="v0.3.6" />
@@ -411,7 +417,8 @@
     <MESSAGE value="v0.5.7 - corr check of tables existing ; tested" />
     <MESSAGE value="v0.5.8 - corr check of recurring steps ; tested" />
     <MESSAGE value="v0.5.9 - add tf_var_*_table for each flow ; tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.5.9 - add tf_var_*_table for each flow ; tested" />
+    <MESSAGE value="v0.5.10 - corr tables check ; tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.5.10 - corr tables check ; tested" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
