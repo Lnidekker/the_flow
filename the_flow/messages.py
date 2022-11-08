@@ -71,6 +71,31 @@ class messages:
         common_func.tf_exit_with_error()
 
     @staticmethod
+    def init_5(table_name, file_name):
+        """
+        ERROR : *_table from * doesn't exist.
+
+        :param table_name: Table name.
+        :param file_name: File name.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_error('[INIT-5] ' + table_name + ' table from ' + file_name + ' doesn\'t exist.')
+        common_func.tf_exit_with_error()
+
+    @staticmethod
+    def init_6(table_name, file_name):
+        """
+        WARNING : *_table from * doesn't exist.
+
+        :param table_name: Table name.
+        :param file_name: File name.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_warning('[INIT-6] ' + table_name + ' table from ' + file_name + ' doesn\'t exist.')
+
+    @staticmethod
     def phygen_1(file_name, var_name):
         """
         ERROR : File or dir * from * doesn't exist.
@@ -102,4 +127,33 @@ class messages:
                              ' from ' +
                              var_name +
                              ' doesn\'t exist.')
+        common_func.tf_exit_with_error()
+
+    @staticmethod
+    def tclscr_1(file_name, files):
+        """
+        ERROR : There are several step files * with the same names.
+
+        :param file_name: File name.
+        :param files: List of files with the same names.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_error('[TCLSCR-1] There are several step files with ' + file_name +
+                             ' name. This files are ' + files)
+        common_func.tf_exit_with_error()
+
+    @staticmethod
+    def tclscr_2(step_name, files, number):
+        """
+        ERROR : There are several steps with the same names.
+
+        :param step_name: Step name.
+        :param files: List of files witch contain recurring steps.
+        :param number: Number of repetitions.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_error('[TCLSCR-2] There are ' + number + ' steps with ' + step_name +
+                             ' name. These steps from following files: ' + files)
         common_func.tf_exit_with_error()

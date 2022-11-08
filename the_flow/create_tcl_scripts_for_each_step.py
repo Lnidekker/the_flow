@@ -13,6 +13,7 @@ import common_func
 import global_tf_vars
 import tf_var
 import tf_var_common
+from messages import messages
 
 
 def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
@@ -29,10 +30,22 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
     original_stdout = sys.stdout
     tf_step_tcl_file = global_tf_vars.tf_run_dir_scripts + '/' + step_name + '.tcl'
     with open(tf_step_tcl_file, 'a') as f:
+
         sys.stdout = f
+        if global_tf_vars.tf_is_syn == 1:
+            print('set FLOW \"syn\"')
+        elif global_tf_vars.tf_is_impl == 1:
+            print('set FLOW \"impl\"')
+        elif global_tf_vars.tf_is_atpg == 1:
+            print('set FLOW \"atpg\"')
+        elif global_tf_vars.tf_is_power == 1:
+            print('set FLOW \"power\"')
+        print('')
+
         print('set STEP_NAME \"' + step_name + '\"')
         print('set PREVIOUS_STEP_NAME \"' + previous_step_name + '\"')
         print('')
+
         print('# Variables from tf_var.tf_var_table')
         for i in range(len(tf_var.tf_var_table)):
             list_ = ''
@@ -44,6 +57,44 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
             if tf_var.tf_var_table[i][0] != '':
                 print('set ' + tf_var.tf_var_table[i][0] + ' \"' + list_ + '\"')
         print('')
+
+        if global_tf_vars.tf_is_syn == 1:
+            print('# Variables from tf_var.tf_var_syn_table')
+            if global_tf_vars.tf_var_syn_table_exists:
+                var_table = tf_var.tf_var_syn_table
+            else:
+                var_table = ''
+        elif global_tf_vars.tf_is_impl == 1:
+            print('# Variables from tf_var.tf_var_impl_table')
+            if global_tf_vars.tf_var_impl_table_exists:
+                var_table = tf_var.tf_var_impl_table
+            else:
+                var_table = ''
+        elif global_tf_vars.tf_is_atpg == 1:
+            print('# Variables from tf_var.tf_var_atpg_table')
+            if global_tf_vars.tf_var_atpg_table_exists:
+                var_table = tf_var.tf_var_atpg_table
+            else:
+                var_table = ''
+        elif global_tf_vars.tf_is_power == 1:
+            print('# Variables from tf_var.tf_var_power_table')
+            if global_tf_vars.tf_var_power_table_exists:
+                var_table = tf_var.tf_var_power_table
+            else:
+                var_table = ''
+
+        if var_table != '':
+            for i in range(len(var_table)):
+                list_ = ''
+                for j in range(1, len(var_table[i])):
+                    if list_ == '':
+                        list_ = var_table[i][j]
+                    else:
+                        list_ = list_ + ' ' + var_table[i][j]
+                if var_table[i][0] != '':
+                    print('set ' + var_table[i][0] + ' \"' + list_ + '\"')
+        print('')
+
         print('# Variables from tf_var_common.tf_var_common_table')
         for i in range(len(tf_var_common.tf_var_common_table)):
             list_ = ''
@@ -55,6 +106,17 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
             if tf_var_common.tf_var_common_table[i][0] != '':
                 print('set ' + tf_var_common.tf_var_common_table[i][0] + ' \"' + list_ + '\"')
         print('')
+
+        print('# MMMC presets from tf_var.tf_var_mmmc_table')
+        list_ = ''
+        for i in range(0, len(tf_var.tf_var_mmmc_table)):
+            if list_ == '':
+                list_ = tf_var.tf_var_mmmc_table[i]
+            else:
+                list_ = list_ + ' ' + tf_var.tf_var_mmmc_table[i]
+        print('set MMMC_PRESETS \"' + list_ + '\"')
+        print('')
+
         if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:
             print('if {$PREVIOUS_STEP_NAME != \"\"} {read_db ../db/$PREVIOUS_STEP_NAME.db}')
         print('')
@@ -129,7 +191,64 @@ def create_tf_tmp_step_table_file(steps_table):
     sys.stdout = original_stdout
 
 
+def check_steps():
+
+    step_file_list = {}
+    step_dirs_list = {}
+    step_file_list_flag = 0
+
+    if global_tf_vars.tf_is_syn == 1:
+        step_dir = global_tf_vars.tf_syn_steps_dir
+        step_table = tf_var.tf_step_syn_table
+    elif global_tf_vars.tf_is_impl == 1:
+        step_dir = global_tf_vars.tf_impl_steps_dir
+        step_table = tf_var.tf_step_impl_table
+    elif global_tf_vars.tf_is_atpg == 1:
+        step_dir = global_tf_vars.tf_atpg_steps_dir
+        step_table = tf_var.tf_step_atpg_table
+    elif global_tf_vars.tf_is_power == 1:
+        step_dir = global_tf_vars.tf_power_steps_dir
+        step_table = tf_var.tf_step_power_table
+
+    for i in range(len(step_dir)):
+        sys.path.append(step_dir[i])
+        os.chdir(step_dir[i])
+        for j in glob.glob('tf*.py'):
+            step_file_list[step_file_list_flag] = j
+            step_dirs_list[step_file_list_flag] = step_dir[i]
+            step_file_list_flag = step_file_list_flag + 1
+
+    for i in range(len(step_file_list)):
+        flag = 0
+        for j in range(len(step_file_list)):
+            if step_file_list[i] == step_file_list[j]:
+                flag = flag + 1
+            if flag > 1:
+                messages.tclscr_1(step_file_list[i], step_dirs_list[i] + '/' + step_file_list[i] + ' and ' +
+                                  step_dirs_list[j] + '/' + step_file_list[j] + '.')
+
+    for s in range(len(step_table)):
+        name_counter = 0
+        file_counter = {}
+        for i in range(len(step_dir)):
+            sys.path.append(step_dir[i])
+            os.chdir(step_dir[i])
+            for j in glob.glob('tf*.py'):
+                with open(j, 'r') as file:
+                    for line_number, line in enumerate(file, start=1):
+                        if step_table[s][1] + ' ' in line:
+                            file_counter[name_counter] = step_dir[i] + '/' + j
+                            name_counter = name_counter + 1
+        if name_counter > 1:
+            files = ''
+            for i in range(len(file_counter)):
+                files = files + ', ' + file_counter[i]
+            messages.tclscr_2(step_table[s][1], files, str(name_counter))
+
+
 def run_create_tcl_scripts_for_each_step():
+
+    check_steps()
 
     shutil.rmtree(global_tf_vars.tf_run_dir_scripts)
     os.mkdir(global_tf_vars.tf_run_dir_scripts)
@@ -143,7 +262,6 @@ def run_create_tcl_scripts_for_each_step():
         create_tf_tmp_file_steps_import_file(global_tf_vars.tf_power_steps_dir)
 
     sys.path.append(global_tf_vars.tf_run_dir_work_tmp)
-    #from tf_tmp_file_steps_import import *
     import tf_tmp_file_steps_import
 
     if global_tf_vars.tf_is_syn == 1:
@@ -155,7 +273,6 @@ def run_create_tcl_scripts_for_each_step():
     elif global_tf_vars.tf_is_power == 1:
         create_tf_tmp_step_table_file(tf_var.tf_step_power_table)
 
-    #from tf_tmp_step_table import *
     import tf_tmp_step_table
 
     for i in range(len(tf_tmp_step_table.tf_tmp_step_table)):  # Create tcl scr for all steps

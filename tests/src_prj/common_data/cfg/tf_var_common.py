@@ -89,3 +89,5 @@ phy_verilog_table = (
                  '/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/common_data/verilog/test_lib_file_2.v'],
     ['', '']
 )
+
+phy_cl_table = ()

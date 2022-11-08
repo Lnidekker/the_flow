@@ -1,10 +1,8 @@
 tf_test_step_1 = '''
-    first
-    second
-    end
+    1
 '''
 
 tf_test_step_2 = '''
-    haha
-    hoho
+    2
 '''
+

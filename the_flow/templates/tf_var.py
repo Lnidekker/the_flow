@@ -72,6 +72,38 @@ tf_var_table = (
     # Optional
 )
 
+# Variables from tf_var_syn_table are used to automation step scripts during [-syn] flow.
+# So, you can add every optional variables you want, because all of these
+# will be automatically added to each .tcl step script during [-syn] flow.
+tf_var_syn_table = (
+    ['', ''],
+    ['', '']
+)
+
+# Variables from tf_var_impl_table are used to automation step scripts during [-impl] flow.
+# So, you can add every optional variables you want, because all of these
+# will be automatically added to each .tcl step script during [-impl] flow.
+tf_var_impl_table = (
+    ['', ''],
+    ['', '']
+)
+
+# Variables from tf_var_atpg_table are used to automation step scripts during [-atpg] flow.
+# So, you can add every optional variables you want, because all of these
+# will be automatically added to each .tcl step script during [-atpg] flow.
+tf_var_atpg_table = (
+    ['', ''],
+    ['', '']
+)
+
+# Variables from tf_var_power_table are used to automation step scripts during [-power] flow.
+# So, you can add every optional variables you want, because all of these
+# will be automatically added to each .tcl step script during [-power] flow.
+tf_var_power_table = (
+    ['', ''],
+    ['', '']
+)
+
 # tf_var_mmmc_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution.
 tf_var_mmmc_table = (
     '',

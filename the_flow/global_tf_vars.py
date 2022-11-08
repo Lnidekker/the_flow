@@ -70,6 +70,10 @@ tf_q2_flag = ''
 tf_q3_flag = ''
 tf_delete_all_following_db = 0
 tf_go_to_next_step = 0
+tf_var_syn_table_exists = 1
+tf_var_impl_table_exists = 1
+tf_var_atpg_table_exists = 1
+tf_var_power_table_exists = 1
 
 # mmmc_gen variables
 mmmc_analysis_view_table_sdc_mode = {}

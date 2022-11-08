@@ -550,6 +550,7 @@ class mmmc_gen:
 
     @staticmethod
     def run_mmmc_gen():
+
         if global_tf_vars.tf_is_syn == 1:
             tf_mmmc_gen = mmmc_gen(tf_var.mmmc_analysis_view_syn_table,
                                    tf_var_common.mmmc_pvt_p_table,

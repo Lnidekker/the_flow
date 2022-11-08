@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.4.26 - add cl to phy_gen; tested">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.0 - main release">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.4.26-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/templates/tf_var_common.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/templates/tf_var_common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/check_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/check_tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/global_tf_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/global_tf_vars.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,12 +59,15 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;ToolWindowPull Requests.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/leonidnidekker/Dropbox/python/the_flow&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/leonidnidekker/Dropbox/python/the_flow/the_flow&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/the_flow" />
+      <recent name="$PROJECT_DIR$/tests/src_prj/soc_top/data" />
+      <recent name="$PROJECT_DIR$/tests/src_prj/soc_top/data/syn_steps" />
       <recent name="$PROJECT_DIR$/tests" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -292,7 +297,98 @@
       <option name="project" value="LOCAL" />
       <updated>1666293487648</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="v0.5.0 - main release">
+      <created>1667196607411</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1667196607411</updated>
+    </task>
+    <task id="LOCAL-00025" summary="v0.5.1 - add mmmc presets to tcl scripts ; tested">
+      <created>1667197881203</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1667197881203</updated>
+    </task>
+    <task id="LOCAL-00026" summary="v0.5.2 - add FLOW variables to tcl scripts ; tested">
+      <created>1667198419378</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1667198419378</updated>
+    </task>
+    <task id="LOCAL-00027" summary="v0.5.3 - add phy_gen tables check ; tested">
+      <created>1667199981420</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1667199981420</updated>
+    </task>
+    <task id="LOCAL-00028" summary="v0.5.4 - add existing check for all tables from tf_var/tf_var_common; tested">
+      <created>1667279534059</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1667279534059</updated>
+    </task>
+    <task id="LOCAL-00029" summary="v0.5.5 - add check of step files name ; tested">
+      <created>1667286173889</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1667286173889</updated>
+    </task>
+    <task id="LOCAL-00030" summary="v0.5.6 - add check of recurring steps ; tested">
+      <created>1667371323571</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1667371323571</updated>
+    </task>
+    <task id="LOCAL-00031" summary="v0.5.7 - corr check of tables existing ; tested">
+      <created>1667379364300</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1667379364300</updated>
+    </task>
+    <task id="LOCAL-00032" summary="v0.5.8 - corr check of recurring steps ; tested">
+      <created>1667381292148</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1667381292148</updated>
+    </task>
+    <task id="LOCAL-00033" summary="v0.5.8 - corr check of recurring steps ; tested">
+      <created>1667381302140</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1667381302140</updated>
+    </task>
+    <task id="LOCAL-00034" summary="v0.5.9 - add tf_var_*_table for each flow ; tested">
+      <created>1667409132676</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1667409132676</updated>
+    </task>
+    <task id="LOCAL-00035" summary="v0.5.10 - corr tables check ; tested">
+      <created>1667410277690</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1667410277690</updated>
+    </task>
+    <task id="LOCAL-00036" summary="v0.6.0 - main release">
+      <created>1667797930021</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1667797930021</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -310,12 +406,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test commit from pycharm" />
-    <MESSAGE value="corr README" />
-    <MESSAGE value="v0.1.36" />
-    <MESSAGE value="v0.2.0" />
-    <MESSAGE value="v0.2.2 fix script with new experiment name" />
-    <MESSAGE value="v0.3.0" />
     <MESSAGE value="v0.3.1" />
     <MESSAGE value="v0.3.6" />
     <MESSAGE value="start of release history" />
@@ -329,7 +419,19 @@
     <MESSAGE value="v0.4.20 - add -power flow; not tested" />
     <MESSAGE value="v0.4.23 - add -power flow; tested" />
     <MESSAGE value="v0.4.26 - add cl to phy_gen; tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.4.26 - add cl to phy_gen; tested" />
+    <MESSAGE value="v0.5.0 - main release" />
+    <MESSAGE value="v0.5.1 - add mmmc presets to tcl scripts ; tested" />
+    <MESSAGE value="v0.5.2 - add FLOW variables to tcl scripts ; tested" />
+    <MESSAGE value="v0.5.3 - add phy_gen tables check ; tested" />
+    <MESSAGE value="v0.5.4 - add existing check for all tables from tf_var/tf_var_common; tested" />
+    <MESSAGE value="v0.5.5 - add check of step files name ; tested" />
+    <MESSAGE value="v0.5.6 - add check of recurring steps ; tested" />
+    <MESSAGE value="v0.5.7 - corr check of tables existing ; tested" />
+    <MESSAGE value="v0.5.8 - corr check of recurring steps ; tested" />
+    <MESSAGE value="v0.5.9 - add tf_var_*_table for each flow ; tested" />
+    <MESSAGE value="v0.5.10 - corr tables check ; tested" />
+    <MESSAGE value="v0.6.0 - main release" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.6.0 - main release" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

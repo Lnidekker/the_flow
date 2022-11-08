@@ -12,7 +12,8 @@ tf_dir_structure_table = (
     ['workarea_syn',  '/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/soc_top/workarea'],      # <only one dir> experiments
     ['workarea_impl', '/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/soc_top/workarea'],      # <only one dir> experiments
     ['workarea_atpg', '/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/soc_top/workarea'],
-    ['syn_steps',     '/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/soc_top/data/syn_steps'],   # <only one dir> scripts for synthesis
+    ['syn_steps',     '/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/soc_top/data/syn_steps'],
+#                      '/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/soc_top/data/syn_steps_'],   # <only one dir> scripts for synthesis
     ['impl_steps',    '/Users/leonidnidekker/Dropbox/python/the_flow/tests/src_prj/soc_top/data/impl_steps'],  # <only one dir> scripts for implementation
 
     # Optional variables
@@ -37,6 +38,26 @@ tf_var_table = (
     # Optional
     ['test_var', '1', '2']
 )
+
+#tf_var_syn_table = (
+#    ['syn_1', '1'],
+#    ['syn_2', '2', '3']
+#)
+
+#tf_var_impl_table = (
+#    ['impl_1', '1'],
+#    ['impl_2', '2', '3']
+#)
+
+#tf_var_atpg_table = (
+#    ['atpg_1', '1'],
+#    ['atpg_2', '2', '3']
+#)
+
+#tf_var_power_table = (
+#    ['power_1', '1'],
+#    ['power_2', '2', '3']
+#)
 
 # Available sdc modes (mode name | sdc file name)
 # SDC files MUST places in the_flow.py/design_name/frontend/sdc
@@ -80,4 +101,21 @@ tf_step_impl_table = (
     [1, 'syn_step_1', 'main', ''],
     [1, 'syn_step_1_1', 'incr', ''],
     [2, 'syn_step_2', 'main', '']
+)
+
+tf_step_atpg_table = (
+    [0, 'step_name'],
+    [1, 'step_name'],
+    [1, 'step_name']
+)
+mmmc_analysis_view_power_table = (
+    ['', '', '', '', '', ''],
+    ['', '', '', '', '', '']
+)
+
+# tf_step_power_table contains set of steps for power analysis
+tf_step_power_table = (
+    [0, 'step_name'],
+    [1, 'step_name'],
+    [1, 'step_name']
 )
