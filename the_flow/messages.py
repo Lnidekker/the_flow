@@ -96,6 +96,18 @@ class messages:
         common_func.tf_warning('[INIT-6] ' + table_name + ' table from ' + file_name + ' doesn\'t exist.')
 
     @staticmethod
+    def init_7(files):
+        """
+        ERROR : There are several tf_var.py files.
+
+        :param files: List of tf_var.py files.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_error('[INIT-7] There are several tf_var.py files. These files are: ' + str(files))
+        common_func.tf_exit_with_error()
+
+    @staticmethod
     def phygen_1(file_name, var_name):
         """
         ERROR : File or dir * from * doesn't exist.

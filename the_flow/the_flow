@@ -62,6 +62,7 @@ tf_update_step_scripts=0
 tf_update_input_data=0
 tf_from_step=0
 tf_from_step_name=""
+tf_start_dir=$(pwd)
 
 for i in "$@"
   do
@@ -145,10 +146,10 @@ else
   done
 fi
 
-if [[ $tf_path == "" ]] ; then
-  echo -e "\e[31mTF_ERROR   : [-path <str>] option is mandatory. Please, set [-path <str>] option and rerun.\e[0m"
-  exit
-fi
+#if [[ $tf_path == "" ]] ; then
+#  echo -e "\e[31mTF_ERROR   : [-path <str>] option is mandatory. Please, set [-path <str>] option and rerun.\e[0m"
+#  exit
+#fi
 
 if [[ $tf_is_syn == 1 && $tf_is_impl == 1 ]] ; then
   echo -e "\e[31mTF_ERROR   : Can't use [-syn] and [-impl] options the same time. This functional will be added in future major release.\e[0m"
@@ -198,4 +199,5 @@ python3 "$(which the_flow)"_scripts.py \
         $tf_update_step_scripts \
         $tf_update_input_data \
         $tf_from_step \
-        "$tf_from_step_name"
+        "$tf_from_step_name" \
+        "$tf_start_dir"

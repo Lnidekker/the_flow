@@ -12,6 +12,8 @@ import common_func
 import q1
 import q2
 from messages import messages
+import check_tf_var_files
+
 
 if __name__ == "__main__":
 
@@ -29,6 +31,7 @@ if __name__ == "__main__":
     global_tf_vars.tf_update_input_data = int(sys.argv[11])
     global_tf_vars.tf_from_step = int(sys.argv[12])
     global_tf_vars.tf_from_step_name = str(sys.argv[13])
+    global_tf_vars.tf_start_dir = str(sys.argv[14])
 
     if global_tf_vars.tf_ux_ui_mode == 'interactive':
         global_tf_vars.tf_q1_answer = 0
@@ -42,6 +45,9 @@ if __name__ == "__main__":
         global_tf_vars.tf_q3_answer = 1
         global_tf_vars.tf_use_xterm = 0
         global_tf_vars.tf_start_eda_tool = 1
+
+    if global_tf_vars.tf_cfg_dir == '':
+        check_tf_var_files.run_check_tf_var_files()
 
     # Add global_tf_vars.tf_cfg_dir value to PYTHONPATH to see tf_var.py file
     # and import tf_var_table variable

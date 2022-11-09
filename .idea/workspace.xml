@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.0 - main release">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.3 - no more [-path] option ; not tested">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/check_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/check_tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/global_tf_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/global_tf_vars.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/messages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/the_flow" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/the_flow" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,16 +52,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;ToolWindowPull Requests.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/leonidnidekker/Dropbox/python/the_flow/the_flow&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowPull Requests.ShowToolbar": "false",
+    "last_opened_file_path": "/Users/leonidnidekker/Dropbox/python/the_flow",
+    "settings.editor.selected.configurable": "advanced.settings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/the_flow" />
@@ -109,9 +108,9 @@
       <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
       <option name="SCRIPT_PATH" value="$PROJECT_DIR$/the_flow/the_flow" />
-      <option name="SCRIPT_OPTIONS" value="-path $PROJECT_DIR$/tests/src_prj/soc_top/data/cfg -syn" />
+      <option name="SCRIPT_OPTIONS" value="-syn" />
       <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/the_flow" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/src_prj/soc_top" />
       <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
       <option name="INTERPRETER_OPTIONS" value="" />
