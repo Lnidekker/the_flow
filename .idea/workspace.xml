@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.3 - no more [-path] option ; not tested">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.4 - copy of v0.6.3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/global_tf_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/global_tf_vars.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/messages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/the_flow" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/the_flow" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.6.4-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/the_flow_scripts.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,16 +51,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ToolWindowPull Requests.ShowToolbar": "false",
-    "last_opened_file_path": "/Users/leonidnidekker/Dropbox/python/the_flow",
-    "settings.editor.selected.configurable": "advanced.settings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ToolWindowPull Requests.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/leonidnidekker/Dropbox/python/the_flow&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/the_flow" />
@@ -387,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667797930021</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="v0.6.4 - copy of v0.6.3">
+      <created>1667972800116</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1667972800117</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -405,7 +411,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v0.3.1" />
     <MESSAGE value="v0.3.6" />
     <MESSAGE value="start of release history" />
     <MESSAGE value="add str() for sys.argv[*]" />
@@ -430,7 +435,8 @@
     <MESSAGE value="v0.5.9 - add tf_var_*_table for each flow ; tested" />
     <MESSAGE value="v0.5.10 - corr tables check ; tested" />
     <MESSAGE value="v0.6.0 - main release" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.6.0 - main release" />
+    <MESSAGE value="v0.6.4 - copy of v0.6.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.6.4 - copy of v0.6.3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

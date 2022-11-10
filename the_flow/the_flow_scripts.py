@@ -111,6 +111,8 @@ if __name__ == "__main__":
     import phy_gen
 
     if global_tf_vars.tf_update_run_dir_in_cfg:
+        for i in os.scandir(global_tf_vars.tf_run_dir_in_cfg):
+            os.remove(i)
         mmmc_gen.mmmc_gen.run_mmmc_gen()
         phy_gen.phy_gen.run_phy_gen()
 
