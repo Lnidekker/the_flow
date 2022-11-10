@@ -166,6 +166,6 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[TCLSCR-2] There are ' + number + ' steps with ' + step_name +
-                             ' name. These steps from following files: ' + files)
+        common_func.tf_error('[TCLSCR-2] There are ' + number + ' steps with \"' + step_name +
+                             '\" name. These steps from following files: ' + files)
         common_func.tf_exit_with_error()

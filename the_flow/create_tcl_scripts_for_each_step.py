@@ -179,14 +179,22 @@ def create_tf_tmp_step_table_file(steps_table):
         print('from tf_tmp_file_steps_import import *')
         print('')
         print('tf_tmp_step_table = (')
+        n = 1
         for i in range(len(steps_table)):
-            if steps_table[i][0] == 0:
-                print('    [0, \'' + steps_table[i][1] + '\', ' +
-                      steps_table[i][1] + '],')
-            else:
-                print('    [1, \'' + steps_table[i][1] + '\', ' +
-                      steps_table[i][1] + '],')
-        print('    [1, \'\', \'\']')
+            if steps_table[i][1] == '':
+                n = n + 1
+        flag = 0
+        for i in range(len(steps_table)):
+            if steps_table[i][1] != '':
+                flag = flag + 1
+                if steps_table[i][0] == 0:
+                    print('    [0, \'' + steps_table[i][1] + '\', ' + steps_table[i][1] + '],')
+                elif i < int(len(steps_table)) - n:
+                    print('    [1, \'' + steps_table[i][1] + '\', ' + steps_table[i][1] + '],')
+                else:
+                    print('    [1, \'' + steps_table[i][1] + '\', ' + steps_table[i][1] + ']')
+        if flag < 2:
+            print('    [1, \'\', \'\']')
         print(')')
     sys.stdout = original_stdout
 
@@ -237,8 +245,12 @@ def check_steps():
                 with open(j, 'r') as file:
                     for line_number, line in enumerate(file, start=1):
                         if step_table[s][1] + ' ' in line:
-                            file_counter[name_counter] = step_dir[i] + '/' + j
-                            name_counter = name_counter + 1
+                            if step_table[s][1] != '' and \
+                                    step_table[s][1][0] == 't' and \
+                                    step_table[s][1][1] == 'f' and \
+                                    step_table[s][1][2] == '_':
+                                file_counter[name_counter] = step_dir[i] + '/' + j
+                                name_counter = name_counter + 1
         if name_counter > 1:
             files = ''
             for i in range(len(file_counter)):
