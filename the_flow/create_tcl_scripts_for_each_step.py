@@ -32,6 +32,7 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
     with open(tf_step_tcl_file, 'a') as f:
 
         sys.stdout = f
+        print('# Flow type')
         if global_tf_vars.tf_is_syn == 1:
             print('set FLOW \"syn\"')
         elif global_tf_vars.tf_is_impl == 1:
@@ -42,6 +43,7 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
             print('set FLOW \"power\"')
         print('')
 
+        print('# Steps')
         print('set STEP_NAME \"' + step_name + '\"')
         print('set PREVIOUS_STEP_NAME \"' + previous_step_name + '\"')
         print('')
@@ -115,6 +117,16 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
             else:
                 list_ = list_ + ' ' + tf_var.tf_var_mmmc_table[i]
         print('set MMMC_PRESETS \"' + list_ + '\"')
+        print('')
+
+        print('# MMMC sdc modes')
+        list_ = ''
+        for i in range(len(tf_var.mmmc_sdc_mode_table)):
+            if list_ == '':
+                list_ = tf_var.mmmc_sdc_mode_table[i][0]
+            else:
+                list_ = list_ + ' ' + tf_var.mmmc_sdc_mode_table[i][0]
+        print('set MMMC_SDC_MODES \"' + list_ + '\"')
         print('')
 
         if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:

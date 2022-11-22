@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.6 - fix error when step into table have '' name ; make tcl scripts creator more stable but from now step name must start from tf_*">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.12 - add tf_complete function ; tested">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.6.6-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.6.12-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -401,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668109505671</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="v0.6.12 - add tf_complete function ; tested">
+      <created>1669097089586</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1669097089586</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -431,7 +438,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="start of release history" />
     <MESSAGE value="add str() for sys.argv[*]" />
     <MESSAGE value="v0.4.1 - add str() for sys.argv[*]" />
     <MESSAGE value="v0.4.2 - add db passing for syn flow" />
@@ -456,7 +462,8 @@
     <MESSAGE value="v0.6.0 - main release" />
     <MESSAGE value="v0.6.4 - copy of v0.6.3" />
     <MESSAGE value="v0.6.6 - fix error when step into table have '' name ; make tcl scripts creator more stable but from now step name must start from tf_*" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.6.6 - fix error when step into table have '' name ; make tcl scripts creator more stable but from now step name must start from tf_*" />
+    <MESSAGE value="v0.6.12 - add tf_complete function ; tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.6.12 - add tf_complete function ; tested" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
