@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.5 - resolve issue #6 ; not tested">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.6 - fix error when step into table have '' name ; make tcl scripts creator more stable but from now step name must start from tf_*">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.6.5-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.6.6-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-10/scripts/.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-10/work/tmp/tf_tmp_step_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-10/work/tmp/tf_tmp_step_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/messages.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -398,7 +394,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667972800117</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="v0.6.6 - fix error when step into table have '' name ; make tcl scripts creator more stable but from now step name must start from tf_*">
+      <created>1668109505671</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1668109505671</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -428,7 +431,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v0.3.6" />
     <MESSAGE value="start of release history" />
     <MESSAGE value="add str() for sys.argv[*]" />
     <MESSAGE value="v0.4.1 - add str() for sys.argv[*]" />
@@ -453,7 +455,8 @@
     <MESSAGE value="v0.5.10 - corr tables check ; tested" />
     <MESSAGE value="v0.6.0 - main release" />
     <MESSAGE value="v0.6.4 - copy of v0.6.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.6.4 - copy of v0.6.3" />
+    <MESSAGE value="v0.6.6 - fix error when step into table have '' name ; make tcl scripts creator more stable but from now step name must start from tf_*" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.6.6 - fix error when step into table have '' name ; make tcl scripts creator more stable but from now step name must start from tf_*" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
