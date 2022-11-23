@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.0 - main release">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.12 - add tf_complete function ; tested">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.6.13-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg/tf_var.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/check_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/check_tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/global_tf_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/global_tf_vars.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-22/in/cfg/mmmc_config.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-22/in/cfg/mmmc_config.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/mmmc_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/mmmc_gen.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +34,7 @@
       </GitPushTagMode>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
@@ -59,7 +59,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;ToolWindowPull Requests.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/leonidnidekker/Dropbox/python/the_flow/the_flow&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/leonidnidekker/Dropbox/python/the_flow&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
 }</component>
@@ -75,6 +75,27 @@
     </key>
   </component>
   <component name="RunManager" selected="Shell Script.the_flow">
+    <configuration name="the_flow_scripts" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="the_flow" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/the_flow" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/the_flow/the_flow_scripts.py" />
+      <option name="PARAMETERS" value="'$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg' 1 0 0 0 'terminal' 0 0 0 0 0 0 '' ''" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="the_flow -ui_mode terminal -atpg" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
@@ -109,9 +130,9 @@
       <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
       <option name="SCRIPT_PATH" value="$PROJECT_DIR$/the_flow/the_flow" />
-      <option name="SCRIPT_OPTIONS" value="-path $PROJECT_DIR$/tests/src_prj/soc_top/data/cfg -syn" />
+      <option name="SCRIPT_OPTIONS" value="-syn" />
       <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/the_flow" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/src_prj/soc_top" />
       <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -121,6 +142,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.the_flow_scripts" />
       <item itemvalue="Python.tb_unit" />
       <item itemvalue="Shell Script.the_flow -ui_mode terminal -atpg" />
       <item itemvalue="Shell Script.the_flow -ui_mode terminal" />
@@ -388,7 +410,28 @@
       <option name="project" value="LOCAL" />
       <updated>1667797930021</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="v0.6.4 - copy of v0.6.3">
+      <created>1667972800116</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1667972800117</updated>
+    </task>
+    <task id="LOCAL-00038" summary="v0.6.6 - fix error when step into table have '' name ; make tcl scripts creator more stable but from now step name must start from tf_*">
+      <created>1668109505671</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1668109505671</updated>
+    </task>
+    <task id="LOCAL-00039" summary="v0.6.12 - add tf_complete function ; tested">
+      <created>1669097089586</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1669097089586</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -399,16 +442,25 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v0.3.1" />
-    <MESSAGE value="v0.3.6" />
-    <MESSAGE value="start of release history" />
     <MESSAGE value="add str() for sys.argv[*]" />
     <MESSAGE value="v0.4.1 - add str() for sys.argv[*]" />
     <MESSAGE value="v0.4.2 - add db passing for syn flow" />
@@ -431,7 +483,10 @@
     <MESSAGE value="v0.5.9 - add tf_var_*_table for each flow ; tested" />
     <MESSAGE value="v0.5.10 - corr tables check ; tested" />
     <MESSAGE value="v0.6.0 - main release" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.6.0 - main release" />
+    <MESSAGE value="v0.6.4 - copy of v0.6.3" />
+    <MESSAGE value="v0.6.6 - fix error when step into table have '' name ; make tcl scripts creator more stable but from now step name must start from tf_*" />
+    <MESSAGE value="v0.6.12 - add tf_complete function ; tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.6.12 - add tf_complete function ; tested" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

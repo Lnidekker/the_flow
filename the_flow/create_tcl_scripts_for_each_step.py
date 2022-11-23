@@ -32,6 +32,7 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
     with open(tf_step_tcl_file, 'a') as f:
 
         sys.stdout = f
+        print('# Flow type')
         if global_tf_vars.tf_is_syn == 1:
             print('set FLOW \"syn\"')
         elif global_tf_vars.tf_is_impl == 1:
@@ -42,6 +43,7 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
             print('set FLOW \"power\"')
         print('')
 
+        print('# Steps')
         print('set STEP_NAME \"' + step_name + '\"')
         print('set PREVIOUS_STEP_NAME \"' + previous_step_name + '\"')
         print('')
@@ -117,6 +119,16 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
         print('set MMMC_PRESETS \"' + list_ + '\"')
         print('')
 
+        print('# MMMC sdc modes')
+        list_ = ''
+        for i in range(len(tf_var.mmmc_sdc_mode_table)):
+            if list_ == '':
+                list_ = tf_var.mmmc_sdc_mode_table[i][0]
+            else:
+                list_ = list_ + ' ' + tf_var.mmmc_sdc_mode_table[i][0]
+        print('set MMMC_SDC_MODES \"' + list_ + '\"')
+        print('')
+
         if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:
             print('if {$PREVIOUS_STEP_NAME != \"\"} {read_db ../db/$PREVIOUS_STEP_NAME.db}')
         print('')
@@ -179,14 +191,22 @@ def create_tf_tmp_step_table_file(steps_table):
         print('from tf_tmp_file_steps_import import *')
         print('')
         print('tf_tmp_step_table = (')
+        n = 1
         for i in range(len(steps_table)):
-            if steps_table[i][0] == 0:
-                print('    [0, \'' + steps_table[i][1] + '\', ' +
-                      steps_table[i][1] + '],')
-            else:
-                print('    [1, \'' + steps_table[i][1] + '\', ' +
-                      steps_table[i][1] + '],')
-        print('    [1, \'\', \'\']')
+            if steps_table[i][1] == '':
+                n = n + 1
+        flag = 0
+        for i in range(len(steps_table)):
+            if steps_table[i][1] != '':
+                flag = flag + 1
+                if steps_table[i][0] == 0:
+                    print('    [0, \'' + steps_table[i][1] + '\', ' + steps_table[i][1] + '],')
+                elif i < int(len(steps_table)) - n:
+                    print('    [1, \'' + steps_table[i][1] + '\', ' + steps_table[i][1] + '],')
+                else:
+                    print('    [1, \'' + steps_table[i][1] + '\', ' + steps_table[i][1] + ']')
+        if flag < 2:
+            print('    [1, \'\', \'\']')
         print(')')
     sys.stdout = original_stdout
 
@@ -237,8 +257,12 @@ def check_steps():
                 with open(j, 'r') as file:
                     for line_number, line in enumerate(file, start=1):
                         if step_table[s][1] + ' ' in line:
-                            file_counter[name_counter] = step_dir[i] + '/' + j
-                            name_counter = name_counter + 1
+                            if step_table[s][1] != '' and \
+                                    step_table[s][1][0] == 't' and \
+                                    step_table[s][1][1] == 'f' and \
+                                    step_table[s][1][2] == '_':
+                                file_counter[name_counter] = step_dir[i] + '/' + j
+                                name_counter = name_counter + 1
         if name_counter > 1:
             files = ''
             for i in range(len(file_counter)):

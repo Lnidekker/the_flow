@@ -82,8 +82,8 @@ mmmc_analysis_view_syn_table = (
 )
 
 tf_step_syn_table = (
-    [0, 'tf_test_step_1', 'main'],
-    [1, 'tf_test_step_2', 'main']
+    [0, 'tf_test_step_1'],
+    [1, 'tf_test_step_2']
 )
 
 '''
