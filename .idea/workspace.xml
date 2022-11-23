@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.12 - add tf_complete function ; tested">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.6.12-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.6.13-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/create_tcl_scripts_for_each_step.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-22/in/cfg/mmmc_config.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-22/in/cfg/mmmc_config.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the_flow/mmmc_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/mmmc_gen.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +75,27 @@
     </key>
   </component>
   <component name="RunManager" selected="Shell Script.the_flow">
+    <configuration name="the_flow_scripts" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="the_flow" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/the_flow" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/the_flow/the_flow_scripts.py" />
+      <option name="PARAMETERS" value="'$PROJECT_DIR$/tests/src_prj/soc_top/data/cfg' 1 0 0 0 'terminal' 0 0 0 0 0 0 '' ''" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="the_flow -ui_mode terminal -atpg" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
@@ -120,6 +142,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.the_flow_scripts" />
       <item itemvalue="Python.tb_unit" />
       <item itemvalue="Shell Script.the_flow -ui_mode terminal -atpg" />
       <item itemvalue="Shell Script.the_flow -ui_mode terminal" />
