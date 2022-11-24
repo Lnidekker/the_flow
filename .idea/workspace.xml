@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.6.12 - add tf_complete function ; tested">
+    <list default="true" id="e13c53cd-d646-4b74-ba02-e0928ac038de" name="Changes" comment="v0.7.0 - main release">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.6.13-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/the_flow-0.7.0-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-22/in/cfg/mmmc_config.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src_prj/soc_top/workarea/2022-11-22/in/cfg/mmmc_config.tcl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/the_flow/mmmc_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/the_flow/mmmc_gen.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -431,7 +430,21 @@
       <option name="project" value="LOCAL" />
       <updated>1669097089586</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="v0.6.15 - mmmc_gen for partitions ; tested">
+      <created>1669187237312</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1669187237312</updated>
+    </task>
+    <task id="LOCAL-00041" summary="v0.7.0 - main release">
+      <created>1669187518681</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1669187518681</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -461,8 +474,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add str() for sys.argv[*]" />
-    <MESSAGE value="v0.4.1 - add str() for sys.argv[*]" />
     <MESSAGE value="v0.4.2 - add db passing for syn flow" />
     <MESSAGE value="v0.4.9 - add db passing for syn flow; tested" />
     <MESSAGE value="v0.4.10 - add db passing for impl flow; not tested" />
@@ -486,7 +497,9 @@
     <MESSAGE value="v0.6.4 - copy of v0.6.3" />
     <MESSAGE value="v0.6.6 - fix error when step into table have '' name ; make tcl scripts creator more stable but from now step name must start from tf_*" />
     <MESSAGE value="v0.6.12 - add tf_complete function ; tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.6.12 - add tf_complete function ; tested" />
+    <MESSAGE value="v0.6.15 - mmmc_gen for partitions ; tested" />
+    <MESSAGE value="v0.7.0 - main release" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.7.0 - main release" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

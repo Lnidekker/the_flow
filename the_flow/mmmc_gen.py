@@ -606,11 +606,7 @@ class mmmc_gen:
                             global_tf_vars.mmmc_ocv_qrc[i] + '_' + \
                             global_tf_vars.mmmc_ocv_mode[i]:
                         print(mmmc_gen.create_derate_template(
-                            global_tf_vars.mmmc_ocv_p[i] +
-                            global_tf_vars.mmmc_ocv_v[i] +
-                            global_tf_vars.mmmc_ocv_t[i] +
-                            global_tf_vars.mmmc_ocv_qrc[i] + '_' +
-                            global_tf_vars.mmmc_ocv_mode[i],
+                            global_tf_vars.mmmc_analysis_view_table_name[j],
                             1 + global_tf_vars.mmmc_ocv_cd[i] / 100,
                             1 + global_tf_vars.mmmc_ocv_cl[i] / 100,
                             1 + global_tf_vars.mmmc_ocv_ce[i] / 100,
