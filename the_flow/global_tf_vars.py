@@ -92,6 +92,7 @@ mmmc_analysis_view_table_parasitic = {}
 mmmc_analysis_view_table_mode = {}
 mmmc_analysis_view_table_name = {}
 mmmc_analysis_view_table_lib = {}
+mmmc_analysis_view_table_lib_partitions = {}
 mmmc_analysis_view_table_cdb = {}
 mmmc_analysis_view_table_qrc = {}
 mmmc_analysis_view_table_temperature = {}
@@ -119,6 +120,7 @@ mmmc_ocv_nl = {}
 mmmc_ocv_nl_ = {}
 
 tf_var_mmmc_table = {}
+tf_partition_existing = 0
 
 # Temporary files
 tf_tmp_file_steps_import = ''

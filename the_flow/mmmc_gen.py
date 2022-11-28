@@ -102,6 +102,7 @@ class mmmc_gen:
                 global_tf_vars.mmmc_analysis_view_table_name[n] = mix[0] + '_' + mix[1] + mix[2] + mix[3] + mix[4] + \
                     '_' + mix[5]
                 global_tf_vars.mmmc_analysis_view_table_lib[n] = ''
+                global_tf_vars.mmmc_analysis_view_table_lib_partitions[n] = ''
                 global_tf_vars.mmmc_analysis_view_table_cdb[n] = ''
                 global_tf_vars.mmmc_analysis_view_table_qrc[n] = ''
                 global_tf_vars.mmmc_analysis_view_table_temperature[n] = ''
@@ -218,8 +219,9 @@ class mmmc_gen:
                                                                 self.mmmc_lib_file_table[lib][lib_file]))
                                                         if answer == 'True':
                                                             existing_flag = 1
-                                                            global_tf_vars.mmmc_analysis_view_table_lib[m] = \
-                                                                global_tf_vars.mmmc_analysis_view_table_lib[m] + \
+                                                            global_tf_vars.tf_partition_existing = 1
+                                                            global_tf_vars.mmmc_analysis_view_table_lib_partitions[m] = \
+                                                                global_tf_vars.mmmc_analysis_view_table_lib_partitions[m] + \
                                                                 ' \\\n        ' + \
                                                                 mmmc_gen.create_lib_cdb_file_template(
                                                                     global_tf_vars.mmmc_analysis_view_table_sdc_mode[m],
@@ -423,9 +425,9 @@ class mmmc_gen:
         return t.render(n=name, lib=lib_files, cdb=cdb_files)
 
     @staticmethod
-    def create_timing_condition_template(name):
-        t = Template('create_timing_condition -name {{ n }} -library_sets \"{{ n }}\"')
-        return t.render(n=name)
+    def create_timing_condition_template(name, lib_sets):
+        t = Template('create_timing_condition -name {{ n }} -library_sets \"{{ libs }}\"')
+        return t.render(n=name, libs=lib_sets)
 
     @staticmethod
     def create_rc_corner_template(name, temperature, qrc_tech):
@@ -471,21 +473,44 @@ class mmmc_gen:
             sys.stdout = f
             for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
                 print(mmmc_gen.create_library_set_template(
-                    global_tf_vars.mmmc_analysis_view_table_name[i],
+                    global_tf_vars.mmmc_analysis_view_table_pvt_p[i] +
+                    global_tf_vars.mmmc_analysis_view_table_pvt_v[i] +
+                    global_tf_vars.mmmc_analysis_view_table_pvt_t[i],
                     global_tf_vars.mmmc_analysis_view_table_lib[i],
                     global_tf_vars.mmmc_analysis_view_table_cdb[i]
                 ))
+            if global_tf_vars.tf_partition_existing == 1:
+                for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
+                    print(mmmc_gen.create_library_set_template(
+                        global_tf_vars.mmmc_analysis_view_table_name[i],
+                        global_tf_vars.mmmc_analysis_view_table_lib_partitions[i],
+                        ''
+                    ))
             print('#')
         sys.stdout = original_stdout
-        #common_func.tf_remove_double_lines(mmmc_config_file)
+        common_func.tf_remove_double_lines(mmmc_config_file)
 
         original_stdout = sys.stdout
         with open(mmmc_config_file, 'a') as f:
             sys.stdout = f
-            for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
-                print(mmmc_gen.create_timing_condition_template(
-                    global_tf_vars.mmmc_analysis_view_table_name[i]
-                ))
+            if global_tf_vars.tf_partition_existing == 0:
+                for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
+                    print(mmmc_gen.create_timing_condition_template(
+                        global_tf_vars.mmmc_analysis_view_table_name[i],
+                        global_tf_vars.mmmc_analysis_view_table_pvt_p[i] +
+                        global_tf_vars.mmmc_analysis_view_table_pvt_v[i] +
+                        global_tf_vars.mmmc_analysis_view_table_pvt_t[i]
+                    ))
+            else:
+                for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
+                    print(mmmc_gen.create_timing_condition_template(
+                        global_tf_vars.mmmc_analysis_view_table_name[i],
+                        global_tf_vars.mmmc_analysis_view_table_pvt_p[i] +
+                        global_tf_vars.mmmc_analysis_view_table_pvt_v[i] +
+                        global_tf_vars.mmmc_analysis_view_table_pvt_t[i] +
+                        ' ' +
+                        global_tf_vars.mmmc_analysis_view_table_name[i]
+                    ))
             print('##')
         sys.stdout = original_stdout
         #common_func.tf_remove_double_lines(mmmc_config_file)
@@ -495,13 +520,14 @@ class mmmc_gen:
             sys.stdout = f
             for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
                 print(mmmc_gen.create_rc_corner_template(
-                    global_tf_vars.mmmc_analysis_view_table_name[i],
+                    global_tf_vars.mmmc_analysis_view_table_parasitic[i] + '_' +
+                    global_tf_vars.mmmc_analysis_view_table_pvt_t[i],
                     global_tf_vars.mmmc_analysis_view_table_temperature[i],
                     global_tf_vars.mmmc_analysis_view_table_qrc[i]
                 ))
             print('###')
         sys.stdout = original_stdout
-        #common_func.tf_remove_double_lines(mmmc_config_file)
+        common_func.tf_remove_double_lines(mmmc_config_file)
 
         original_stdout = sys.stdout
         with open(mmmc_config_file, 'a') as f:
@@ -510,7 +536,8 @@ class mmmc_gen:
                 print(mmmc_gen.create_delay_corner_template(
                     global_tf_vars.mmmc_analysis_view_table_name[i],
                     global_tf_vars.mmmc_analysis_view_table_name[i],
-                    global_tf_vars.mmmc_analysis_view_table_name[i]
+                    global_tf_vars.mmmc_analysis_view_table_parasitic[i] + '_' +
+                    global_tf_vars.mmmc_analysis_view_table_pvt_t[i]
                 ))
             print('####')
         sys.stdout = original_stdout
@@ -521,12 +548,12 @@ class mmmc_gen:
             sys.stdout = f
             for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
                 print(mmmc_gen.create_constraint_mode_template(
-                    global_tf_vars.mmmc_analysis_view_table_name[i],
+                    global_tf_vars.mmmc_analysis_view_table_sdc_mode[i],
                     global_tf_vars.mmmc_analysis_view_table_sdc_mode_file[i]
                 ))
             print('#####')
         sys.stdout = original_stdout
-        #common_func.tf_remove_double_lines(mmmc_config_file)
+        common_func.tf_remove_double_lines(mmmc_config_file)
 
         original_stdout = sys.stdout
         with open(mmmc_config_file, 'a') as f:
@@ -534,7 +561,7 @@ class mmmc_gen:
             for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
                 print(mmmc_gen.create_analysis_view_template(
                     global_tf_vars.mmmc_analysis_view_table_name[i],
-                    global_tf_vars.mmmc_analysis_view_table_name[i],
+                    global_tf_vars.mmmc_analysis_view_table_sdc_mode[i],
                     global_tf_vars.mmmc_analysis_view_table_name[i]
                 ))
             print('######')
