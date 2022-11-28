@@ -95,6 +95,30 @@ def check_tables():
             messages.init_6('tf_var_mmmc_table', 'tf_var.py')
 
     try:
+        tf_var.tf_var_mmmc_syn_table
+    except AttributeError:
+        messages.init_6('tf_var_mmmc_syn_table', 'tf_var.py')
+        global_tf_vars.tf_var_mmmc_syn_table_exists = 0
+
+    try:
+        tf_var.tf_var_mmmc_impl_table
+    except AttributeError:
+        messages.init_6('tf_var_mmmc_impl_table', 'tf_var.py')
+        global_tf_vars.tf_var_mmmc_impl_table_exists = 0
+
+    try:
+        tf_var.tf_var_mmmc_atpg_table
+    except AttributeError:
+        messages.init_6('tf_var_mmmc_atpg_table', 'tf_var.py')
+        global_tf_vars.tf_var_mmmc_atpg_table_exists = 0
+
+    try:
+        tf_var.tf_var_mmmc_power_table
+    except AttributeError:
+        messages.init_6('tf_var_mmmc_power_table', 'tf_var.py')
+        global_tf_vars.tf_var_mmmc_power_table_exists = 0
+
+    try:
         tf_var.mmmc_analysis_view_syn_table
     except AttributeError:
         if global_tf_vars.tf_is_syn == 1:

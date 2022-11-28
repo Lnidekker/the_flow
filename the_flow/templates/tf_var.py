@@ -110,6 +110,34 @@ tf_var_mmmc_table = (
     ''
 )
 
+# tf_var_mmmc_syn_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution
+# only for [-syn] flow.
+tf_var_mmmc_syn_table = (
+    '',
+    ''
+)
+
+# tf_var_mmmc_syn_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution
+# only for [-impl] flow.
+tf_var_mmmc_impl_table = (
+    '',
+    ''
+)
+
+# tf_var_mmmc_syn_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution
+# only for [-atpg] flow.
+tf_var_mmmc_atpg_table = (
+    '',
+    ''
+)
+
+# tf_var_mmmc_syn_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution
+# only for [-power] flow.
+tf_var_mmmc_power_table = (
+    '',
+    ''
+)
+
 # Variables from mmmc_sdc_mode_table are used to set constraint modes during mmmc_gen execution.
 # Use the following mandatory template: ['<constraint mode name>', '<sdc file name>']
 # SDC files will be searched in tf_dir_structure_table[sdc] directories.

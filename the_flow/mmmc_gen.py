@@ -38,6 +38,34 @@ class mmmc_gen:
         self.mmmc_ocv_table = mmmc_ocv_table_
 
     @staticmethod
+    def prepare_mmmc_presets():
+        n = 0
+        for i in range(len(tf_var.tf_var_mmmc_table)):
+            if tf_var.tf_var_mmmc_table[i] != '':
+                global_tf_vars.tf_var_mmmc_table[i] = tf_var.tf_var_mmmc_table[i]
+                n = n + 1
+
+        if global_tf_vars.tf_is_syn == 1 and global_tf_vars.tf_var_mmmc_syn_table_exists == 1:
+            for i in range(len(tf_var.tf_var_mmmc_syn_table)):
+                if tf_var.tf_var_mmmc_syn_table[i] != '':
+                    global_tf_vars.tf_var_mmmc_table[n + i] = tf_var.tf_var_mmmc_syn_table[i]
+
+        if global_tf_vars.tf_is_impl == 1 and global_tf_vars.tf_var_mmmc_impl_table_exists == 1:
+            for i in range(len(tf_var.tf_var_mmmc_impl_table)):
+                if tf_var.tf_var_mmmc_impl_table[i] != '':
+                    global_tf_vars.tf_var_mmmc_table[n + i] = tf_var.tf_var_mmmc_impl_table[i]
+
+        if global_tf_vars.tf_is_atpg == 1 and global_tf_vars.tf_var_mmmc_atpg_table_exists == 1:
+            for i in range(len(tf_var.tf_var_mmmc_atpg_table)):
+                if tf_var.tf_var_mmmc_atpg_table[i] != '':
+                    global_tf_vars.tf_var_mmmc_table[n + i] = tf_var.tf_var_mmmc_atpg_table[i]
+
+        if global_tf_vars.tf_is_power == 1 and global_tf_vars.tf_var_mmmc_power_table_exists == 1:
+            for i in range(len(tf_var.tf_var_mmmc_power_table)):
+                if tf_var.tf_var_mmmc_power_table[i] != '':
+                    global_tf_vars.tf_var_mmmc_table[n + i] = tf_var.tf_var_mmmc_power_table[i]
+
+    @staticmethod
     def create_lib_cdb_file_template(sdc_mode, pvt_p, pvt_v, pvt_t, pvt, qrc, mode, template_body):
         t = Template(template_body)
         return t.render(constraint_mode=sdc_mode,
@@ -85,8 +113,8 @@ class mmmc_gen:
     def make_lib_files_list_for_each_view(self):
         common_func.tf_info('(TFMmmcGen.make_lib_files_list_for_each_view) start')
         for lib in range(len(self.mmmc_lib_file_table)):
-            for preset in range(len(tf_var.tf_var_mmmc_table)):
-                if tf_var.tf_var_mmmc_table[preset] == self.mmmc_lib_file_table[lib][0]:
+            for preset in range(len(global_tf_vars.tf_var_mmmc_table)):
+                if global_tf_vars.tf_var_mmmc_table[preset] == self.mmmc_lib_file_table[lib][0]:
                     for lib_file in range(1, len(tf_var_common.mmmc_lib_file_table[lib])):
 
                         existing_flag = 0
@@ -205,15 +233,15 @@ class mmmc_gen:
 
                         if existing_flag == 0:
                             messages.mmmcgen_1(self.mmmc_lib_file_table[lib][lib_file], 'mmmc_lib_file_table[' +
-                                               tf_var.tf_var_mmmc_table[preset] + ']')
+                                               global_tf_vars.tf_var_mmmc_table[preset] + ']')
 
         common_func.tf_info('(TFMmmcGen.make_lib_files_list_for_each_view) finish')
 
     def make_cdb_files_list_for_each_view(self):
         common_func.tf_info('(TFMmmcGen.make_cdb_files_list_for_each_view) start')
         for cdb in range(len(self.mmmc_cdb_file_table)):
-            for preset in range(len(tf_var.tf_var_mmmc_table)):
-                if tf_var.tf_var_mmmc_table[preset] == self.mmmc_cdb_file_table[cdb][0]:
+            for preset in range(len(global_tf_vars.tf_var_mmmc_table)):
+                if global_tf_vars.tf_var_mmmc_table[preset] == self.mmmc_cdb_file_table[cdb][0]:
                     for cdb_file in range(1, len(tf_var_common.mmmc_cdb_file_table[cdb])):
                         existing_flag = 0
                         for p in range(len(self.mmmc_pvt_p_table)):
@@ -285,7 +313,7 @@ class mmmc_gen:
                                                         self.mmmc_cdb_file_table[cdb][cdb_file])
                         if existing_flag == 0:
                             messages.mmmcgen_1(self.mmmc_cdb_file_table[cdb][cdb_file], 'mmmc_cdb_file_table[' +
-                                               tf_var.tf_var_mmmc_table[preset] + ']')
+                                               global_tf_vars.tf_var_mmmc_table[preset] + ']')
 
         common_func.tf_info('(TFMmmcGen.make_cdb_files_list_for_each_view) finish')
 
@@ -293,8 +321,8 @@ class mmmc_gen:
         common_func.tf_info('(TFMmmcGen.make_qrc_files_list_for_each_view) start')
         f = 0
         for n in range(len(self.mmmc_qrc_file_table)):
-            for preset in range(len(tf_var.tf_var_mmmc_table)):
-                if tf_var.tf_var_mmmc_table[preset] == self.mmmc_qrc_file_table[n][0]:
+            for preset in range(len(global_tf_vars.tf_var_mmmc_table)):
+                if global_tf_vars.tf_var_mmmc_table[preset] == self.mmmc_qrc_file_table[n][0]:
                     existing_flag = 0
                     for i in range(len(self.mmmc_pvt_qrc_table)):
                         for j in range(len(self.mmmc_pvt_qrc_table[i])):
@@ -309,7 +337,7 @@ class mmmc_gen:
                                 f = f + 1
                     if existing_flag == 0:
                         messages.mmmcgen_1(self.mmmc_qrc_file_table[n][1], 'mmmc_qrc_file_table[' +
-                                           tf_var.tf_var_mmmc_table[preset] + ']')
+                                           global_tf_vars.tf_var_mmmc_table[preset] + ']')
 
         for i in range(len(global_tf_vars.mmmc_analysis_view_table_qrc)):
             global_tf_vars.mmmc_analysis_view_table_qrc[i] = \
@@ -663,6 +691,7 @@ class mmmc_gen:
                                    )
 
         if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:
+            tf_mmmc_gen.prepare_mmmc_presets()
             tf_mmmc_gen.parsing_analysis_view_table()
             tf_mmmc_gen.make_lib_files_list_for_each_view()
             tf_mmmc_gen.make_cdb_files_list_for_each_view()

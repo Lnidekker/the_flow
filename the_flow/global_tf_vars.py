@@ -77,6 +77,10 @@ tf_var_atpg_table_exists = 1
 tf_var_power_table_exists = 1
 tf_var_files = ''
 tf_var_files_split = []
+tf_var_mmmc_syn_table_exists = 1
+tf_var_mmmc_impl_table_exists = 1
+tf_var_mmmc_atpg_table_exists = 1
+tf_var_mmmc_power_table_exists = 1
 
 # mmmc_gen variables
 mmmc_analysis_view_table_sdc_mode = {}
@@ -113,6 +117,8 @@ mmmc_ocv_ne = {}
 mmmc_ocv_ne_ = {}
 mmmc_ocv_nl = {}
 mmmc_ocv_nl_ = {}
+
+tf_var_mmmc_table = {}
 
 # Temporary files
 tf_tmp_file_steps_import = ''
