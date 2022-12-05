@@ -23,8 +23,8 @@ class phy_gen:
         """
 
         for i in range(len(self.phy_lef_table)):
-            for j in range(len(tf_var.tf_var_mmmc_table)):
-                if self.phy_lef_table[i][0] == tf_var.tf_var_mmmc_table[j]:
+            for j in range(len(global_tf_vars.tf_var_mmmc_table)):
+                if self.phy_lef_table[i][0] == global_tf_vars.tf_var_mmmc_table[j]:
                     for n in range(1, len(self.phy_lef_table[i])):
                         if common_func.tf_file_exists_check(self.phy_lef_table[i][n]) == 'True':
                             global_tf_vars.phy_lef_files = global_tf_vars.phy_lef_files + ' \\ \n    ' + \
@@ -49,8 +49,8 @@ class phy_gen:
         """
 
         for i in range(len(self.phy_verilog_table)):
-            for j in range(len(tf_var.tf_var_mmmc_table)):
-                if self.phy_verilog_table[i][0] == tf_var.tf_var_mmmc_table[j]:
+            for j in range(len(global_tf_vars.tf_var_mmmc_table)):
+                if self.phy_verilog_table[i][0] == global_tf_vars.tf_var_mmmc_table[j]:
                     for n in range(1, len(self.phy_verilog_table[i])):
                         if common_func.tf_file_exists_check(self.phy_verilog_table[i][n]) == 'True':
                             global_tf_vars.phy_verilog_files = global_tf_vars.phy_verilog_files + ' \\ \n    ' + \
@@ -75,8 +75,8 @@ class phy_gen:
         """
 
         for i in range(len(self.phy_cl_table)):
-            for j in range(len(tf_var.tf_var_mmmc_table)):
-                if self.phy_cl_table[i][0] == tf_var.tf_var_mmmc_table[j]:
+            for j in range(len(global_tf_vars.tf_var_mmmc_table)):
+                if self.phy_cl_table[i][0] == global_tf_vars.tf_var_mmmc_table[j]:
                     for n in range(1, len(self.phy_cl_table[i])):
                         if common_func.tf_dir_exists_check(self.phy_cl_table[i][n]):
                             global_tf_vars.phy_cl_dirs = global_tf_vars.phy_cl_dirs + ' \\ \n    ' + \

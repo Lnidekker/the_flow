@@ -110,6 +110,35 @@ if __name__ == "__main__":
     import mmmc_gen
     import phy_gen
 
+    def prepare_mmmc_presets():
+        n = 0
+        for k in range(len(tf_var.tf_var_mmmc_table)):
+            if tf_var.tf_var_mmmc_table[k] != '':
+                global_tf_vars.tf_var_mmmc_table[k] = tf_var.tf_var_mmmc_table[k]
+                n = n + 1
+
+        if global_tf_vars.tf_is_syn == 1 and global_tf_vars.tf_var_mmmc_syn_table_exists == 1:
+            for k in range(len(tf_var.tf_var_mmmc_syn_table)):
+                if tf_var.tf_var_mmmc_syn_table[k] != '':
+                    global_tf_vars.tf_var_mmmc_table[n + k] = tf_var.tf_var_mmmc_syn_table[k]
+
+        if global_tf_vars.tf_is_impl == 1 and global_tf_vars.tf_var_mmmc_impl_table_exists == 1:
+            for k in range(len(tf_var.tf_var_mmmc_impl_table)):
+                if tf_var.tf_var_mmmc_impl_table[k] != '':
+                    global_tf_vars.tf_var_mmmc_table[n + k] = tf_var.tf_var_mmmc_impl_table[k]
+
+        if global_tf_vars.tf_is_atpg == 1 and global_tf_vars.tf_var_mmmc_atpg_table_exists == 1:
+            for k in range(len(tf_var.tf_var_mmmc_atpg_table)):
+                if tf_var.tf_var_mmmc_atpg_table[k] != '':
+                    global_tf_vars.tf_var_mmmc_table[n + k] = tf_var.tf_var_mmmc_atpg_table[k]
+
+        if global_tf_vars.tf_is_power == 1 and global_tf_vars.tf_var_mmmc_power_table_exists == 1:
+            for k in range(len(tf_var.tf_var_mmmc_power_table)):
+                if tf_var.tf_var_mmmc_power_table[k] != '':
+                    global_tf_vars.tf_var_mmmc_table[n + k] = tf_var.tf_var_mmmc_power_table[k]
+
+    prepare_mmmc_presets()
+
     if global_tf_vars.tf_update_run_dir_in_cfg:
         for i in os.scandir(global_tf_vars.tf_run_dir_in_cfg):
             os.remove(i)

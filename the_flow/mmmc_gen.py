@@ -74,6 +74,7 @@ class mmmc_gen:
                 global_tf_vars.mmmc_analysis_view_table_name[n] = mix[0] + '_' + mix[1] + mix[2] + mix[3] + mix[4] + \
                     '_' + mix[5]
                 global_tf_vars.mmmc_analysis_view_table_lib[n] = ''
+                global_tf_vars.mmmc_analysis_view_table_lib_partitions[n] = ''
                 global_tf_vars.mmmc_analysis_view_table_cdb[n] = ''
                 global_tf_vars.mmmc_analysis_view_table_qrc[n] = ''
                 global_tf_vars.mmmc_analysis_view_table_temperature[n] = ''
@@ -85,8 +86,8 @@ class mmmc_gen:
     def make_lib_files_list_for_each_view(self):
         common_func.tf_info('(TFMmmcGen.make_lib_files_list_for_each_view) start')
         for lib in range(len(self.mmmc_lib_file_table)):
-            for preset in range(len(tf_var.tf_var_mmmc_table)):
-                if tf_var.tf_var_mmmc_table[preset] == self.mmmc_lib_file_table[lib][0]:
+            for preset in range(len(global_tf_vars.tf_var_mmmc_table)):
+                if global_tf_vars.tf_var_mmmc_table[preset] == self.mmmc_lib_file_table[lib][0]:
                     for lib_file in range(1, len(tf_var_common.mmmc_lib_file_table[lib])):
 
                         existing_flag = 0
@@ -190,8 +191,9 @@ class mmmc_gen:
                                                                 self.mmmc_lib_file_table[lib][lib_file]))
                                                         if answer == 'True':
                                                             existing_flag = 1
-                                                            global_tf_vars.mmmc_analysis_view_table_lib[m] = \
-                                                                global_tf_vars.mmmc_analysis_view_table_lib[m] + \
+                                                            global_tf_vars.tf_partition_existing = 1
+                                                            global_tf_vars.mmmc_analysis_view_table_lib_partitions[m] = \
+                                                                global_tf_vars.mmmc_analysis_view_table_lib_partitions[m] + \
                                                                 ' \\\n        ' + \
                                                                 mmmc_gen.create_lib_cdb_file_template(
                                                                     global_tf_vars.mmmc_analysis_view_table_sdc_mode[m],
@@ -205,15 +207,15 @@ class mmmc_gen:
 
                         if existing_flag == 0:
                             messages.mmmcgen_1(self.mmmc_lib_file_table[lib][lib_file], 'mmmc_lib_file_table[' +
-                                               tf_var.tf_var_mmmc_table[preset] + ']')
+                                               global_tf_vars.tf_var_mmmc_table[preset] + ']')
 
         common_func.tf_info('(TFMmmcGen.make_lib_files_list_for_each_view) finish')
 
     def make_cdb_files_list_for_each_view(self):
         common_func.tf_info('(TFMmmcGen.make_cdb_files_list_for_each_view) start')
         for cdb in range(len(self.mmmc_cdb_file_table)):
-            for preset in range(len(tf_var.tf_var_mmmc_table)):
-                if tf_var.tf_var_mmmc_table[preset] == self.mmmc_cdb_file_table[cdb][0]:
+            for preset in range(len(global_tf_vars.tf_var_mmmc_table)):
+                if global_tf_vars.tf_var_mmmc_table[preset] == self.mmmc_cdb_file_table[cdb][0]:
                     for cdb_file in range(1, len(tf_var_common.mmmc_cdb_file_table[cdb])):
                         existing_flag = 0
                         for p in range(len(self.mmmc_pvt_p_table)):
@@ -285,7 +287,7 @@ class mmmc_gen:
                                                         self.mmmc_cdb_file_table[cdb][cdb_file])
                         if existing_flag == 0:
                             messages.mmmcgen_1(self.mmmc_cdb_file_table[cdb][cdb_file], 'mmmc_cdb_file_table[' +
-                                               tf_var.tf_var_mmmc_table[preset] + ']')
+                                               global_tf_vars.tf_var_mmmc_table[preset] + ']')
 
         common_func.tf_info('(TFMmmcGen.make_cdb_files_list_for_each_view) finish')
 
@@ -293,8 +295,8 @@ class mmmc_gen:
         common_func.tf_info('(TFMmmcGen.make_qrc_files_list_for_each_view) start')
         f = 0
         for n in range(len(self.mmmc_qrc_file_table)):
-            for preset in range(len(tf_var.tf_var_mmmc_table)):
-                if tf_var.tf_var_mmmc_table[preset] == self.mmmc_qrc_file_table[n][0]:
+            for preset in range(len(global_tf_vars.tf_var_mmmc_table)):
+                if global_tf_vars.tf_var_mmmc_table[preset] == self.mmmc_qrc_file_table[n][0]:
                     existing_flag = 0
                     for i in range(len(self.mmmc_pvt_qrc_table)):
                         for j in range(len(self.mmmc_pvt_qrc_table[i])):
@@ -309,7 +311,7 @@ class mmmc_gen:
                                 f = f + 1
                     if existing_flag == 0:
                         messages.mmmcgen_1(self.mmmc_qrc_file_table[n][1], 'mmmc_qrc_file_table[' +
-                                           tf_var.tf_var_mmmc_table[preset] + ']')
+                                           global_tf_vars.tf_var_mmmc_table[preset] + ']')
 
         for i in range(len(global_tf_vars.mmmc_analysis_view_table_qrc)):
             global_tf_vars.mmmc_analysis_view_table_qrc[i] = \
@@ -395,9 +397,9 @@ class mmmc_gen:
         return t.render(n=name, lib=lib_files, cdb=cdb_files)
 
     @staticmethod
-    def create_timing_condition_template(name):
-        t = Template('create_timing_condition -name {{ n }} -library_sets \"{{ n }}\"')
-        return t.render(n=name)
+    def create_timing_condition_template(name, lib_sets):
+        t = Template('create_timing_condition -name {{ n }} -library_sets \"{{ libs }}\"')
+        return t.render(n=name, libs=lib_sets)
 
     @staticmethod
     def create_rc_corner_template(name, temperature, qrc_tech):
@@ -447,6 +449,13 @@ class mmmc_gen:
                     global_tf_vars.mmmc_analysis_view_table_lib[i],
                     global_tf_vars.mmmc_analysis_view_table_cdb[i]
                 ))
+            if global_tf_vars.tf_partition_existing == 1:
+                for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
+                    print(mmmc_gen.create_library_set_template(
+                        global_tf_vars.mmmc_analysis_view_table_name[i],
+                        global_tf_vars.mmmc_analysis_view_table_lib_partitions[i],
+                        ''
+                    ))
             print('#')
         sys.stdout = original_stdout
         #common_func.tf_remove_double_lines(mmmc_config_file)
@@ -454,10 +463,24 @@ class mmmc_gen:
         original_stdout = sys.stdout
         with open(mmmc_config_file, 'a') as f:
             sys.stdout = f
-            for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
-                print(mmmc_gen.create_timing_condition_template(
-                    global_tf_vars.mmmc_analysis_view_table_name[i]
-                ))
+            if global_tf_vars.tf_partition_existing == 0:
+                for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
+                    print(mmmc_gen.create_timing_condition_template(
+                        global_tf_vars.mmmc_analysis_view_table_name[i],
+                        global_tf_vars.mmmc_analysis_view_table_pvt_p[i] +
+                        global_tf_vars.mmmc_analysis_view_table_pvt_v[i] +
+                        global_tf_vars.mmmc_analysis_view_table_pvt_t[i]
+                    ))
+            else:
+                for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
+                    print(mmmc_gen.create_timing_condition_template(
+                        global_tf_vars.mmmc_analysis_view_table_name[i],
+                        global_tf_vars.mmmc_analysis_view_table_pvt_p[i] +
+                        global_tf_vars.mmmc_analysis_view_table_pvt_v[i] +
+                        global_tf_vars.mmmc_analysis_view_table_pvt_t[i] +
+                        ' ' +
+                        global_tf_vars.mmmc_analysis_view_table_name[i]
+                    ))
             print('##')
         sys.stdout = original_stdout
         #common_func.tf_remove_double_lines(mmmc_config_file)
@@ -482,7 +505,8 @@ class mmmc_gen:
                 print(mmmc_gen.create_delay_corner_template(
                     global_tf_vars.mmmc_analysis_view_table_name[i],
                     global_tf_vars.mmmc_analysis_view_table_name[i],
-                    global_tf_vars.mmmc_analysis_view_table_name[i]
+                    global_tf_vars.mmmc_analysis_view_table_parasitic[i] + '_' +
+                    global_tf_vars.mmmc_analysis_view_table_pvt_t[i]
                 ))
             print('####')
         sys.stdout = original_stdout
@@ -506,7 +530,7 @@ class mmmc_gen:
             for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
                 print(mmmc_gen.create_analysis_view_template(
                     global_tf_vars.mmmc_analysis_view_table_name[i],
-                    global_tf_vars.mmmc_analysis_view_table_name[i],
+                    global_tf_vars.mmmc_analysis_view_table_sdc_mode[i],
                     global_tf_vars.mmmc_analysis_view_table_name[i]
                 ))
             print('######')
@@ -606,11 +630,7 @@ class mmmc_gen:
                             global_tf_vars.mmmc_ocv_qrc[i] + '_' + \
                             global_tf_vars.mmmc_ocv_mode[i]:
                         print(mmmc_gen.create_derate_template(
-                            global_tf_vars.mmmc_ocv_p[i] +
-                            global_tf_vars.mmmc_ocv_v[i] +
-                            global_tf_vars.mmmc_ocv_t[i] +
-                            global_tf_vars.mmmc_ocv_qrc[i] + '_' +
-                            global_tf_vars.mmmc_ocv_mode[i],
+                            global_tf_vars.mmmc_analysis_view_table_name[j],
                             1 + global_tf_vars.mmmc_ocv_cd[i] / 100,
                             1 + global_tf_vars.mmmc_ocv_cl[i] / 100,
                             1 + global_tf_vars.mmmc_ocv_ce[i] / 100,
