@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Absolute path to current directory
+tf_path=""
+
+# Add core path to PYTHONPATH variable
+PYTHONPATH=$tf_path/core:$PYTHONPATH
+
+# Add core path to PATH variable
+PATH=$tf_path/core:$PATH
+
+# Source tf_complete to setup autocomplete function in terminal line
+source $tf_path/core/tf_complete
