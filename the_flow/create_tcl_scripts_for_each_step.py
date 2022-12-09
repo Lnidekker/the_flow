@@ -276,6 +276,10 @@ def run_create_tcl_scripts_for_each_step():
 
     shutil.rmtree(global_tf_vars.tf_run_dir_scripts)
     os.mkdir(global_tf_vars.tf_run_dir_scripts)
+
+    shutil.rmtree(global_tf_vars.tf_run_dir_work_tmp)
+    os.mkdir(global_tf_vars.tf_run_dir_work_tmp)
+
     if global_tf_vars.tf_is_syn == 1:
         create_tf_tmp_file_steps_import_file(global_tf_vars.tf_syn_steps_dir)
     elif global_tf_vars.tf_is_impl == 1:
