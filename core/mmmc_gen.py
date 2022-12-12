@@ -445,7 +445,9 @@ class mmmc_gen:
             sys.stdout = f
             for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
                 print(mmmc_gen.create_library_set_template(
-                    global_tf_vars.mmmc_analysis_view_table_name[i],
+                    global_tf_vars.mmmc_analysis_view_table_pvt_p[i] +
+                    global_tf_vars.mmmc_analysis_view_table_pvt_v[i] +
+                    global_tf_vars.mmmc_analysis_view_table_pvt_t[i],
                     global_tf_vars.mmmc_analysis_view_table_lib[i],
                     global_tf_vars.mmmc_analysis_view_table_cdb[i]
                 ))
@@ -458,7 +460,7 @@ class mmmc_gen:
                     ))
             print('#')
         sys.stdout = original_stdout
-        #common_func.tf_remove_double_lines(mmmc_config_file)
+        common_func.tf_remove_double_lines(mmmc_config_file)
 
         original_stdout = sys.stdout
         with open(mmmc_config_file, 'a') as f:
@@ -490,13 +492,14 @@ class mmmc_gen:
             sys.stdout = f
             for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
                 print(mmmc_gen.create_rc_corner_template(
-                    global_tf_vars.mmmc_analysis_view_table_name[i],
+                    global_tf_vars.mmmc_analysis_view_table_parasitic[i] + '_' +
+                    global_tf_vars.mmmc_analysis_view_table_pvt_t[i],
                     global_tf_vars.mmmc_analysis_view_table_temperature[i],
                     global_tf_vars.mmmc_analysis_view_table_qrc[i]
                 ))
             print('###')
         sys.stdout = original_stdout
-        #common_func.tf_remove_double_lines(mmmc_config_file)
+        common_func.tf_remove_double_lines(mmmc_config_file)
 
         original_stdout = sys.stdout
         with open(mmmc_config_file, 'a') as f:
@@ -517,12 +520,12 @@ class mmmc_gen:
             sys.stdout = f
             for i in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
                 print(mmmc_gen.create_constraint_mode_template(
-                    global_tf_vars.mmmc_analysis_view_table_name[i],
+                    global_tf_vars.mmmc_analysis_view_table_sdc_mode[i],
                     global_tf_vars.mmmc_analysis_view_table_sdc_mode_file[i]
                 ))
             print('#####')
         sys.stdout = original_stdout
-        #common_func.tf_remove_double_lines(mmmc_config_file)
+        common_func.tf_remove_double_lines(mmmc_config_file)
 
         original_stdout = sys.stdout
         with open(mmmc_config_file, 'a') as f:
