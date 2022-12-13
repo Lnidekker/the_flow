@@ -1,60 +1,25 @@
-"""
-This file contains mandatory THE FLOW tables.
-
-Be careful:
-    - Each table must have 2x2 minimum size:
-        tf_<name>_table = (
-            ['variable_1_name', 'variable_1_value_1', 'variable_1_value_2', ... , 'variable_1_value_N'],
-            ['variable_2_name', 'variable_2_value_1', 'variable_2_value_2', ... , 'variable_2_value_N'],
-            ... ,
-            ['variable_M_name', 'variable_M_value_1', 'variable_M_value_2', ... , 'variable_M_value_N']
-        )
-
-Example of directories structure and mandatory tf_*.py files:
-
-    project_home
-    +-- common_data
-    |   +-- cfg
-    |   |   +-- tf_var_common.py
-    |   +-- rtl
-    +-- soc_top
-    |   +-- data
-    |   |   +-- atpg_steps
-    |   |   |   +-- tf_atpg_step.py
-    |   |   +-- atpg_src
-    |   |   +-- cfg
-    |   |   |   +-- tf_var.py
-    |   |   +-- impl_src
-    |   |   +-- impl_steps
-    |   |   |   +-- tf_impl_step.py
-    |   |   +-- sdc
-    |   |   +-- syn_src
-    |   |   +-- syn_steps
-    |   |   |   +-- tf_syn_step.py
-    |   +-- workarea
-"""
 import os
 
 # Variables from tf_dir_structure_table describe a user directories structure.
 # Be careful, you can't add other variables into tf_dir_structure_table.
 tf_dir_structure_table = (
     # Mandatory variables
-    ['sdc', ''],             # <list of dirs> example: project_home/soc_top/data/sdc
-    ['workarea_syn', ''],    # <only one dir> example: project_home/soc_top/workarea
-    ['workarea_impl', ''],   # <only one dir> example: project_home/soc_top/workarea
-    ['workarea_atpg', ''],   # <only one dir> example: project_home/soc_top/workarea
-    ['workarea_power', ''],  # <only one dir> example: project_home/soc_top/workarea
-    ['syn_steps', ''],       # <list of dirs> example: project_home/soc_top/data/syn_steps
-    ['impl_steps', ''],      # <list of dirs> example: project_home/soc_top/data/impl_steps
-    ['atpg_steps', ''],      # <list of dirs> example: project_home/soc_top/data/atpg_steps
-    ['power_steps', ''],     # <list of dirs> example: project_home/soc_top/data/power_steps
+    ['sdc',            ''],  # <list of dirs>
+    ['workarea_syn',   ''],  # <only one dir>
+    ['workarea_impl',  ''],  # <only one dir>
+    ['workarea_atpg',  ''],  # <only one dir>
+    ['workarea_power', ''],  # <only one dir>
+    ['syn_steps',      ''],  # <list of dirs>
+    ['impl_steps',     ''],  # <list of dirs>
+    ['atpg_steps',     ''],  # <list of dirs>
+    ['power_steps',    ''],  # <list of dirs>
 
     # Optional variables
-    ['rtl', ''],       # <list of dirs> example: project_home/common_data/rtl
-    ['syn_src', ''],   # <list of dirs> example: project_home/soc_top/data/syn_src
-    ['impl_src', ''],  # <list of dirs> example: project_home/soc_top/data/impl_src
-    ['atpg_src', ''],  # <list of dirs> example: project_home/soc_top/data/atpg_src
-    ['power_src', '']  # <list of dirs> example: project_home/soc_top/data/power_src
+    ['rtl',       ''],  # <list of dirs>
+    ['syn_src',   ''],  # <list of dirs>
+    ['impl_src',  ''],  # <list of dirs>
+    ['atpg_src',  ''],  # <list of dirs>
+    ['power_src', '']   # <list of dirs>
 )
 
 # Variables from tf_var_table are used to automation step scripts.
@@ -62,12 +27,12 @@ tf_dir_structure_table = (
 # will be automatically added to each .tcl step script.
 tf_var_table = (
     # Mandatory variables
-    ['cfg_common', ''],     # Path to directory which contains tf_var_common.py file.
-    ['DESIGN_NAME', ''],    # Top module name.
-    ['EXP_NAME_SYN', ''],   # Synthesis experiment name.
-    ['EXP_NAME_IMPL', ''],  # Implementation experiment name.
-    ['EXP_NAME_ATPG', ''],  # ATPG experiment name.
-    ['EXP_NAME_POWER', '']  # Power analysis experiment name.
+    ['cfg_common', ''],     # Path to directory which contains tf_var_common.py file
+    ['DESIGN_NAME', ''],    # Design module name
+    ['EXP_NAME_SYN', ''],   # Synthesis experiment name
+    ['EXP_NAME_IMPL', ''],  # Implementation experiment name
+    ['EXP_NAME_ATPG', ''],  # ATPG experiment name
+    ['EXP_NAME_POWER', '']  # Power analysis experiment name
 
     # Optional
 )

@@ -1,15 +1,3 @@
-"""
-This file contains mandatory THE FLOW tables.
-
-Be careful:
-    - Each table must have 2x2 minimum size:
-        tf_<name>_table = (
-            ['variable_1_name', 'variable_1_value_1', 'variable_1_value_2', ... , 'variable_1_value_N'],
-            ['variable_2_name', 'variable_2_value_1', 'variable_2_value_2', ... , 'variable_2_value_N'],
-            ... ,
-            ['variable_M_name', 'variable_M_value_1', 'variable_M_value_2', ... , 'variable_M_value_N']
-        )
-"""
 import os
 
 # Variables from tf_var_common_table are used to automation step scripts.
