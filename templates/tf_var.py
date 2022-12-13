@@ -151,7 +151,6 @@ tf_step_atpg_table = (
     [1, 'step_name']
 )
 
-
 # Variables from mmmc_analysis_view_power_table are used to set analysis views for power analysis
 # during mmmc_gen execution.
 # Use the following mandatory template:
