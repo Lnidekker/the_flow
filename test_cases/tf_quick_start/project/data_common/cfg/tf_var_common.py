@@ -13,29 +13,29 @@ tf_var_common_table = (
 # Use the following mandatory template: ['<mandatory alias>', '<name_1>', '<name_2>', ... ]
 # Process mandatory aliases are ss, tt, ff.
 mmmc_pvt_p_table = (
-    ['ss', ''],
-    ['tt', ''],
-    ['ff', '']
+    ['ss', 'ss_typical_min'],
+    ['tt', 'tt_typical_max'],
+    ['ff', 'ff_typical_min']
 )
 
 # Variables from mmmc_pvt_v_table are used to set number of {{ voltage }} mmmc_gen parameter.
 # Use the following mandatory template: ['<mandatory alias>', '<name_1>', '<name_2>', ... ]
 # Voltage mandatory aliases are lv, tv, hv.
 mmmc_pvt_v_table = (
-    ['lv', ''],
-    ['tv', ''],
-    ['hv', '']
+    ['lv', '0p81v'],
+    ['tv', '0p90v'],
+    ['hv', '0p99v']
 )
 
 # Variables from mmmc_pvt_t_table are used to set number of {{ temperature }} mmmc_gen parameter.
 # Use the following mandatory template: ['<mandatory alias>', '<name_1>', '<name_2>', ... ]
 # Temperature mandatory aliases are m40, 0, 25, 85, 125.
 mmmc_pvt_t_table = (
-    ['m40', ''],
-    ['0',   ''],
-    ['25',  ''],
+    ['m40', 'm40c'],
+    ['0',   '0c'],
+    ['25',  '25c'],
     ['85',  ''],
-    ['125', '']
+    ['125', '125c']
 )
 
 # Variables from mmmc_pvt_table are used to set number of {{ process_voltage_temperature }} mmmc_gen parameter.
@@ -66,7 +66,9 @@ mmmc_pvt_qrc_table = (
 # Variables from mmmc_lib_file_table are used to configurate library_set during mmmc_gen execution.
 # Use the following mandatory template: ['<mmmc_preset name>', 'lib_file_1', 'lib_file_2', ... ]
 mmmc_lib_file_table = (
-    ['', ''],
+    ['std_lib', '../../../../src/std/lib/std_lib_hvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
+                '../../../../src/std/lib/std_lib_lvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
+                '../../../../src/std/lib/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib'],
     ['', '']
 )
 
