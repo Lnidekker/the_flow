@@ -34,41 +34,43 @@ tf_var_table = (
     ['EXP_NAME_SYN',   'syn_v0'],   # Synthesis experiment name
     ['EXP_NAME_IMPL',  'impl_v0'],  # Implementation experiment name
     ['EXP_NAME_ATPG',  'atpg_v0'],  # ATPG experiment name
-    ['EXP_NAME_POWER', 'power_v0']  # Power analysis experiment name
+    ['EXP_NAME_POWER', 'power_v0'], # Power analysis experiment name
 
     # Optional
+    ['local_var_1', 'value_1', 'value_2'],
+    ['local_var_2', 'value_1', 'value_2']
 )
 
 # Variables from tf_var_syn_table are used to automation step scripts during [-syn] flow.
 # So, you can add every optional variables you want, because all of these
 # will be automatically added to each .tcl step script during [-syn] flow.
 tf_var_syn_table = (
-    ['', ''],
-    ['', '']
+    ['syn_var_1', 'value_1', 'value_2'],
+    ['syn_var_2', 'value_1', 'value_2']
 )
 
 # Variables from tf_var_impl_table are used to automation step scripts during [-impl] flow.
 # So, you can add every optional variables you want, because all of these
 # will be automatically added to each .tcl step script during [-impl] flow.
 tf_var_impl_table = (
-    ['', ''],
-    ['', '']
+    ['impl_var_1', 'value_1', 'value_2'],
+    ['impl_var_2', 'value_1', 'value_2']
 )
 
 # Variables from tf_var_atpg_table are used to automation step scripts during [-atpg] flow.
 # So, you can add every optional variables you want, because all of these
 # will be automatically added to each .tcl step script during [-atpg] flow.
 tf_var_atpg_table = (
-    ['', ''],
-    ['', '']
+    ['atpg_var_1', 'value_1', 'value_2'],
+    ['atpg_var_2', 'value_1', 'value_2']
 )
 
 # Variables from tf_var_power_table are used to automation step scripts during [-power] flow.
 # So, you can add every optional variables you want, because all of these
 # will be automatically added to each .tcl step script during [-power] flow.
 tf_var_power_table = (
-    ['', ''],
-    ['', '']
+    ['power_var_1', 'value_1', 'value_2'],
+    ['power_var_2', 'value_1', 'value_2']
 )
 
 # tf_var_mmmc_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution.
@@ -143,22 +145,22 @@ tf_step_syn_table = (
 #   ['<constraint mode>', '<process>', '<voltage>', '<temperature>', '<extraction>', '<type of analysis>']
 # Types of analysis: s - setup; h - hold.
 mmmc_analysis_view_impl_table = (
-    ['', '', '', '', '', ''],
-    ['', '', '', '', '', '']
+    ['func scan_capture scan_shift', 'ss', 'lv', '125', 'cw', 's'],
+    ['func scan_capture scan_shift', 'ff', 'hv', '0', 'cb', 'h']
 )
 
 # tf_step_impl_table contains set of steps for implementation.
 tf_step_impl_table = (
-    [0, 'step_name'],
-    [1, 'step_name'],
-    [1, 'step_name']
+    [0, 'tf_impl_step_1'],
+    [1, 'tf_impl_step_2'],
+    [1, 'tf_impl_step_3']
 )
 
 # tf_step_atpg_table contains set of steps for ATPG.
 tf_step_atpg_table = (
-    [0, 'step_name'],
-    [1, 'step_name'],
-    [1, 'step_name']
+    [0, 'tf_atpg_step_1'],
+    [1, 'tf_atpg_step_2'],
+    [1, 'tf_atpg_step_3']
 )
 
 # Variables from mmmc_analysis_view_power_table are used to set analysis views for power analysis
@@ -167,13 +169,13 @@ tf_step_atpg_table = (
 #   ['<constraint mode>', '<process>', '<voltage>', '<temperature>', '<extraction>', '<type of analysis>']
 # Types of analysis: s - setup; h - hold.
 mmmc_analysis_view_power_table = (
-    ['', '', '', '', '', ''],
+    ['func', 'ff', 'hv', '0', 'cb', 's h'],
     ['', '', '', '', '', '']
 )
 
 # tf_step_power_table contains set of steps for power analysis
 tf_step_power_table = (
-    [0, 'step_name'],
-    [1, 'step_name'],
-    [1, 'step_name']
+    [0, 'tf_power_step_1'],
+    [1, 'tf_power_step_1'],
+    [1, 'tf_power_step_1']
 )

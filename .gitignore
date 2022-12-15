@@ -1,3 +1,6 @@
 .DS_Store
 tf_config
 syn_v0
+impl_v0
+atpg_v0
+power_v0

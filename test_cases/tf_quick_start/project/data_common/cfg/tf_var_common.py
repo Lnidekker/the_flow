@@ -5,15 +5,15 @@ import os
 # will be automatically added to each .tcl step script.
 tf_var_common_table = (
     # Optional
-    ['', ''],
-    ['', '']
+    ['global_var_1', 'value_1', 'value_2'],
+    ['global_var_1', 'value_1', 'value_2']
 )
 
 # Variables from mmmc_pvt_p_table are used to set number of {{ process }} mmmc_gen parameter.
 # Use the following mandatory template: ['<mandatory alias>', '<name_1>', '<name_2>', ... ]
 # Process mandatory aliases are ss, tt, ff.
 mmmc_pvt_p_table = (
-    ['ss', 'ss_typical_min'],
+    ['ss', 'ss_typical_max'],
     ['tt', 'tt_typical_max'],
     ['ff', 'ff_typical_min']
 )
@@ -67,21 +67,21 @@ mmmc_pvt_qrc_table = (
 # Use the following mandatory template: ['<mmmc_preset name>', 'lib_file_1', 'lib_file_2', ... ]
 mmmc_lib_file_table = (
     ['std_lib', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_hvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
-                '../../../../src/std/lib/std_lib_lvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
-                '../../../../src/std/lib/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib'
+                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_lvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
+                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib'
      ],
-    ['mem', '../../../../src/mem/lib/memory_{{ process_voltage_temperature }}.lib'
+    ['mem', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/mem/lib/memory_{{ process_voltage_temperature }}.lib'
      ],
-    ['partitions', '../../../block/lib/block_{{ constraint_mode }}_{{ process }}{{ voltage }}{{ temperature }}{{ extraction }}_{{ analysis_mode }}.lib'
+    ['partitions', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/project/block/lib/block_{{ constraint_mode }}_{{ process }}{{ voltage }}{{ temperature }}{{ extraction }}_{{ analysis_mode }}.lib'
      ]
 )
 
 # Variables from mmmc_cdb_file_table are used to configurate library_set during mmmc_gen execution.
 # Use the following mandatory template: ['<mmmc_preset name>', 'cdb_file_1', 'cdb_file_2', ... ]
 mmmc_cdb_file_table = (
-    ['std_lib', '../../../../src/std/celtic/std_lib_hvt_{{ process }}_{{ voltage }}_{{ temperature }}.cdb',
-                '../../../../src/std/celtic/std_lib_lvt_{{ process }}_{{ voltage }}_{{ temperature }}.cdb',
-                '../../../../src/std/celtic/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.cdb'
+    ['std_lib', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/celtic/std_lib_hvt_{{ process }}_{{ voltage }}_{{ temperature }}.cdb',
+                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/celtic/std_lib_lvt_{{ process }}_{{ voltage }}_{{ temperature }}.cdb',
+                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/celtic/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.cdb'
      ],
     ['', '']
 )
@@ -89,7 +89,7 @@ mmmc_cdb_file_table = (
 # Variables from mmmc_qrc_file_table are used to configurate rc_corner during mmmc_gen execution.
 # Use the following mandatory template: ['<mmmc_preset name>', 'qrcTech file']
 mmmc_qrc_file_table = (
-    ['tech', '../../../../src/process/qrcTech/{{ extraction }}/qrcTechFile'],
+    ['tech', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/process/qrcTech/{{ extraction }}/qrcTechFile'],
     ['', '']
 )
 
@@ -106,26 +106,26 @@ mmmc_ocv_table = (
 # Variables from phy_lef_table are used to configurate lef_list during phy_gen execution.
 # Use the following mandatory template: ['<mmmc_preset name>', 'lef_file_1', 'lef_file_2', ... ]
 phy_lef_table = (
-    ['tech', '../../../../src/process/techlef/tech.tlef'
+    ['tech', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/process/techlef/tech.tlef'
      ],
-    ['std_lib', '../../../../src/std/lef/std_lib_hvt.lef',
-                '../../../../src/std/lef/std_lib_lvt.lef',
-                '../../../../src/std/lef/std_lib_rvt.lef'
+    ['std_lib', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lef/std_lib_hvt.lef',
+                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lef/std_lib_lvt.lef',
+                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lef/std_lib_rvt.lef'
      ],
-    ['mem', '../../../../src/mem/lib/memory.lef'
+    ['mem', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/mem/lef/memory.lef'
      ],
-    ['partitions', '../../../block/lef/block.lef'
+    ['partitions', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/project/block/lef/block.lef'
      ]
 )
 
 # Variables from phy_verilog_table are used to configurate verilog_list during phy_gen execution.
 # Use the following mandatory template: ['<mmmc_preset name>', 'verilog_file_1', 'verilog_file_2', ... ]
 phy_verilog_table = (
-    ['std_lib', '../../../../src/std/verilog/std_lib_hvt.v',
-                '../../../../src/std/verilog/std_lib_lvt.v',
-                '../../../../src/std/verilog/std_lib_rvt.v'
+    ['std_lib', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/verilog/std_lib_hvt.v',
+                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/verilog/std_lib_lvt.v',
+                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/verilog/std_lib_rvt.v'
      ],
-    ['mem', '../../../../src/mem/lib/memory.lef'
+    ['mem', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/mem/verilog/memory.v'
      ]
 )
 
