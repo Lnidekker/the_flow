@@ -42,47 +42,54 @@ mmmc_pvt_t_table = (
 # Use the following mandatory template: ['<mandatory alias>', '<name_1>', '<name_2>', ... ]
 # pvt mandatory aliases are tttv25, tttv125, sslvm40, sslv0, sslv125, ffhvm40, ffhv0, ffhv125.
 mmmc_pvt_table = (
-    ['tttv25',  ''],
+    ['tttv25',  'tc'],
     ['tttv125', ''],
-    ['sslvm40', ''],
+    ['sslvm40', 'wcl'],
     ['sslv0',   ''],
-    ['sslv125', ''],
-    ['ffhvm40', ''],
-    ['ffhv0',   ''],
-    ['ffhv125', '']
+    ['sslv125', 'wc'],
+    ['ffhvm40', 'lt'],
+    ['ffhv0',   'bc'],
+    ['ffhv125', 'ml']
 )
 
 # Variables from mmmc_pvt_qrc_table are used to set number of {{ extraction }} mmmc_gen parameter.
 # Use the following mandatory template: ['<mandatory alias>', '<name_1>', '<name_2>', ... ]
 # Extraction mandatory aliases are cb, cw, rcb, rcw, ct.
 mmmc_pvt_qrc_table = (
-    ['cb',  ''],
-    ['cw',  ''],
-    ['rcb', ''],
-    ['rcw', ''],
-    ['ct',  '']
+    ['cb',  'cbest'],
+    ['cw',  'cworst'],
+    ['rcb', 'rcbest'],
+    ['rcw', 'rcworst'],
+    ['ct',  'typical']
 )
 
 # Variables from mmmc_lib_file_table are used to configurate library_set during mmmc_gen execution.
 # Use the following mandatory template: ['<mmmc_preset name>', 'lib_file_1', 'lib_file_2', ... ]
 mmmc_lib_file_table = (
-    ['std_lib', '../../../../src/std/lib/std_lib_hvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
+    ['std_lib', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_hvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
                 '../../../../src/std/lib/std_lib_lvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
-                '../../../../src/std/lib/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib'],
-    ['', '']
+                '../../../../src/std/lib/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib'
+     ],
+    ['mem', '../../../../src/mem/lib/memory_{{ process_voltage_temperature }}.lib'
+     ],
+    ['partitions', '../../../block/lib/block_{{ constraint_mode }}_{{ process }}{{ voltage }}{{ temperature }}{{ extraction }}_{{ analysis_mode }}.lib'
+     ]
 )
 
 # Variables from mmmc_cdb_file_table are used to configurate library_set during mmmc_gen execution.
 # Use the following mandatory template: ['<mmmc_preset name>', 'cdb_file_1', 'cdb_file_2', ... ]
 mmmc_cdb_file_table = (
-    ['', ''],
+    ['std_lib', '../../../../src/std/celtic/std_lib_hvt_{{ process }}_{{ voltage }}_{{ temperature }}.cdb',
+                '../../../../src/std/celtic/std_lib_lvt_{{ process }}_{{ voltage }}_{{ temperature }}.cdb',
+                '../../../../src/std/celtic/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.cdb'
+     ],
     ['', '']
 )
 
 # Variables from mmmc_qrc_file_table are used to configurate rc_corner during mmmc_gen execution.
 # Use the following mandatory template: ['<mmmc_preset name>', 'qrcTech file']
 mmmc_qrc_file_table = (
-    ['', ''],
+    ['tech', '../../../../src/process/qrcTech/{{ extraction }}/qrcTechFile'],
     ['', '']
 )
 
@@ -91,22 +98,35 @@ mmmc_qrc_file_table = (
 #   ['<process>', '<voltage>', '<temperature>', '<extraction>', '<type of analysis>',
 #   <cell_data>, <cell_early>, <cell_late>, <net_data>, <net_early>, <net_late>]
 mmmc_ocv_table = (
-    ['ss', '*', '*', '*', 's', 0, 0, 0, 0, 0, 0],
-    ['ff', '*', '*', '*', 'h', 0, 0, 0, 0, 0, 0]
+    ['ss', '*', '*', '*', 's', +0, -7, +0, +0, -7, +0],
+    ['ss', '*', '*', '*', 'h', -9, -9, +0, -9, -9, +0],
+    ['ff', '*', '*', '*', 'h', +0, +0, +9, +0, +0, +9]
 )
 
 # Variables from phy_lef_table are used to configurate lef_list during phy_gen execution.
 # Use the following mandatory template: ['<mmmc_preset name>', 'lef_file_1', 'lef_file_2', ... ]
 phy_lef_table = (
-    ['', ''],
-    ['', '']
+    ['tech', '../../../../src/process/techlef/tech.tlef'
+     ],
+    ['std_lib', '../../../../src/std/lef/std_lib_hvt.lef',
+                '../../../../src/std/lef/std_lib_lvt.lef',
+                '../../../../src/std/lef/std_lib_rvt.lef'
+     ],
+    ['mem', '../../../../src/mem/lib/memory.lef'
+     ],
+    ['partitions', '../../../block/lef/block.lef'
+     ]
 )
 
 # Variables from phy_verilog_table are used to configurate verilog_list during phy_gen execution.
 # Use the following mandatory template: ['<mmmc_preset name>', 'verilog_file_1', 'verilog_file_2', ... ]
 phy_verilog_table = (
-    ['', ''],
-    ['', '']
+    ['std_lib', '../../../../src/std/verilog/std_lib_hvt.v',
+                '../../../../src/std/verilog/std_lib_lvt.v',
+                '../../../../src/std/verilog/std_lib_rvt.v'
+     ],
+    ['mem', '../../../../src/mem/lib/memory.lef'
+     ]
 )
 
 # Variables from phy_cl_table are used to configurate cl_list during phy_gen execution.

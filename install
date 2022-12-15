@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 tf_config_exist=0
 tf_current_dir=$(pwd)
@@ -15,16 +15,16 @@ if [ $tf_config_exist == 0 ]; then
     echo "#!/bin/bash" >> tf_config
     echo "" >> tf_config
     echo "# Absolute path to current directory" >> tf_config
-    echo "export tf_path=$tf_current_dir" >> tf_config
+    echo "export TF_PATH=$tf_current_dir" >> tf_config
     echo "" >> tf_config
     echo "# Add core path to PYTHONPATH variable" >> tf_config
-    echo "export PYTHONPATH=\$tf_path/core:\$PYTHONPATH" >> tf_config
+    echo "export PYTHONPATH=\$TF_PATH/core:\$PYTHONPATH" >> tf_config
     echo "" >> tf_config
     echo "# Add core path to PATH variable" >> tf_config
-    echo "export PATH=\$tf_path/core:\$PATH" >> tf_config
+    echo "export PATH=\$TF_PATH/core:\$PATH" >> tf_config
     echo "" >> tf_config
     echo "# Source tf_complete to setup autocomplete function in terminal line" >> tf_config
-    echo "source \$tf_path/core/tf_complete" >> tf_config
+    echo "source \$TF_PATH/core/tf_complete" >> tf_config
     echo "" >> tf_config
 
 fi
