@@ -17,6 +17,10 @@ import check_tf_var_files
 
 if __name__ == "__main__":
 
+    '''
+    Initialization
+    '''
+
     # Set arguments value of python3 command to global_tf_vars
     global_tf_vars.tf_cfg_dir = str(sys.argv[1])
     global_tf_vars.tf_is_syn = int(sys.argv[2])
@@ -80,7 +84,22 @@ if __name__ == "__main__":
     # Check tables existing from tf_var and tf_var_common
     import check_tables
 
+    import mmmc_gen
+    import phy_gen
+
+    import create_tcl_scripts_for_each_step
+
+    import run_eda_tools
+
+    '''
+    Check input data
+    '''
+
     check_tables.check_tables()
+
+    '''
+    Create experiment directory
+    '''
 
     # Initialise global_ft_vars for run dir structure
     create_run_dir.run_dir_structure_is()
@@ -102,13 +121,19 @@ if __name__ == "__main__":
         global_tf_vars.tf_update_run_dir_input_data = 1
         global_tf_vars.tf_update_run_dir_scripts = 1
 
+    '''
+    Copy input data into experiment directory
+    '''
+
     # Copy input data to run dir
     if global_tf_vars.tf_update_run_dir_input_data == 1:
         copy_input_data.copy_input_data()
 
+    '''
+    MMMC and Phy Generators
+    '''
+
     # Create mmmc_config.tcl and mmmc_derate.tcl
-    import mmmc_gen
-    import phy_gen
 
     def prepare_mmmc_presets():
         n = 0
@@ -145,19 +170,24 @@ if __name__ == "__main__":
         mmmc_gen.mmmc_gen.run_mmmc_gen()
         phy_gen.phy_gen.run_phy_gen()
 
+    '''
+    TCL_SCR Generator
+    '''
+
     # Create .tcl file for each step
-    import create_tcl_scripts_for_each_step
 
     if global_tf_vars.tf_update_run_dir_scripts:
         create_tcl_scripts_for_each_step.run_create_tcl_scripts_for_each_step()
+
+    '''
+    Run EDA tools
+    '''
 
     # Go to work dir
     os.chdir(global_tf_vars.tf_run_dir_work)
 
     # Run to execute steps one by one
     q2.q2()
-
-    import run_eda_tools
 
     if global_tf_vars.tf_q2_flag == '1':
         run_eda_tools.run_eda_tools()
