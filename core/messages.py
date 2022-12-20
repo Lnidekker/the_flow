@@ -108,6 +108,17 @@ class messages:
         common_func.tf_exit_with_error()
 
     @staticmethod
+    def init_8(file):
+        """
+        WARNING : File couldn't be read while tf_var.py searching.
+
+        :param file: File.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_warning('[INIT-8] File ' + file + ' couldn\'t be read while tf_var.py searching.')
+
+    @staticmethod
     def phygen_1(file_name, var_name):
         """
         ERROR : File or dir * from * doesn't exist.

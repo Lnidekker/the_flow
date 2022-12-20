@@ -6,7 +6,12 @@ import common_func
 
 def tf_var_finding(path):
     for element in os.scandir(path):
-        if common_func.tf_file_exists_check(element.path) or common_func.tf_dir_exists_check(element.path):
+        try:
+            e1 = element.is_file()
+            e2 = element.name
+        except PermissionError:
+            messages.init_8(element.path)
+        else:
             if element.is_file() and element.name == 'tf_var.py':
                 if global_tf_vars.tf_var_files == '':
                     global_tf_vars.tf_var_files = element.path
