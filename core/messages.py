@@ -153,6 +153,19 @@ class messages:
         common_func.tf_exit_with_error()
 
     @staticmethod
+    def mmmcgen_2(file, pvt):
+        """
+        ERROR : Library file * doesn't exists for * pvt set.
+
+        :param file: .lib file.
+        :param pvt: Combination of pvt aliases.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_error('[MMMCGEN-2] Library file ' + file + ' doesn\'t exists for ' + pvt + ' pvt set.')
+        common_func.tf_exit_with_error()
+
+    @staticmethod
     def tclscr_1(file_name, files):
         """
         ERROR : There are several step files * with the same names.
