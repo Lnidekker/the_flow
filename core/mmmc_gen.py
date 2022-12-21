@@ -383,7 +383,7 @@ class mmmc_gen:
                         list_ = '../in/sdc/' + self.mmmc_sdc_mode_table[i][j]
                     else:
                         list_ = list_ + ' ' + '../in/sdc/' + self.mmmc_sdc_mode_table[i][j]
-                else:
+                elif self.mmmc_sdc_mode_table[i][j] != '' or self.mmmc_sdc_mode_table[i][0] != '':
                     messages.mmmcgen_1(global_tf_vars.tf_run_dir_in_sdc + '/' + self.mmmc_sdc_mode_table[i][j],
                                        'mmmc_sdc_mode_table[' + self.mmmc_sdc_mode_table[i][0] + ']')
             global_tf_vars.mmmc_analysis_view_table_sdc_mode_file_all[self.mmmc_sdc_mode_table[i][0]] = list_
