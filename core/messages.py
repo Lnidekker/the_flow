@@ -155,14 +155,14 @@ class messages:
     @staticmethod
     def mmmcgen_2(file, pvt):
         """
-        ERROR : Library file * doesn't exists for * pvt set.
+        ERROR : File * doesn't exists for * pvt set.
 
         :param file: .lib file.
         :param pvt: Combination of pvt aliases.
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[MMMCGEN-2] Library file ' + file + ' doesn\'t exists for ' + pvt + ' pvt set.')
+        common_func.tf_error('[MMMCGEN-2] File ' + file + ' doesn\'t exists for ' + pvt + ' pvt set.')
         common_func.tf_exit_with_error()
 
     @staticmethod

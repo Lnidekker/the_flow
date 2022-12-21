@@ -257,21 +257,47 @@ class mmmc_gen:
             for preset in range(len(global_tf_vars.tf_var_mmmc_table)):
                 if global_tf_vars.tf_var_mmmc_table[preset] == self.mmmc_cdb_file_table[cdb][0]:
                     for cdb_file in range(1, len(tf_var_common.mmmc_cdb_file_table[cdb])):
+
+                        temp_type_flag_1 = 0
+                        temp_type_flag_2 = 0
+
+                        if '{{ process_voltage_temperature }}' in self.mmmc_cdb_file_table[cdb][cdb_file]:
+                            temp_type_flag_2 = 1
+                        else:
+                            temp_type_flag_1 = 1
+
                         existing_flag = 0
-                        for p in range(len(self.mmmc_pvt_p_table)):
-                            for v in range(len(self.mmmc_pvt_v_table)):
-                                for t in range(len(self.mmmc_pvt_t_table)):
-                                    for m in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
-                                        if self.mmmc_pvt_p_table[p][0] == \
-                                                global_tf_vars.mmmc_analysis_view_table_pvt_p[m]:
-                                            if self.mmmc_pvt_v_table[v][0] == \
-                                                    global_tf_vars.mmmc_analysis_view_table_pvt_v[m]:
-                                                if self.mmmc_pvt_t_table[t][0] == \
-                                                        global_tf_vars.mmmc_analysis_view_table_pvt_t[m]:
-                                                    for pvt in product(self.mmmc_pvt_p_table[p],
-                                                                       self.mmmc_pvt_v_table[v],
-                                                                       self.mmmc_pvt_t_table[t]):
-                                                        answer = common_func.tf_file_exists_check(
+
+                        if temp_type_flag_1 == 1:
+                            for p in range(len(self.mmmc_pvt_p_table)):
+                                for v in range(len(self.mmmc_pvt_v_table)):
+                                    for t in range(len(self.mmmc_pvt_t_table)):
+                                        for m in range(len(global_tf_vars.mmmc_analysis_view_table_pvt_p)):
+                                            if self.mmmc_pvt_p_table[p][0] == \
+                                                    global_tf_vars.mmmc_analysis_view_table_pvt_p[m] and \
+                                                    self.mmmc_pvt_v_table[v][0] == \
+                                                    global_tf_vars.mmmc_analysis_view_table_pvt_v[m] and \
+                                                    self.mmmc_pvt_t_table[t][0] == \
+                                                    global_tf_vars.mmmc_analysis_view_table_pvt_t[m]:
+                                                existing_flag = 0
+                                                for pvt in product(self.mmmc_pvt_p_table[p],
+                                                                   self.mmmc_pvt_v_table[v],
+                                                                   self.mmmc_pvt_t_table[t]):
+                                                    answer = common_func.tf_file_exists_check(
+                                                        mmmc_gen.create_lib_cdb_file_template(
+                                                            '',
+                                                            pvt[0],
+                                                            pvt[1],
+                                                            pvt[2],
+                                                            '',
+                                                            '',
+                                                            '',
+                                                            self.mmmc_cdb_file_table[cdb][cdb_file]))
+                                                    if answer == 'True':
+                                                        existing_flag = 1
+                                                        global_tf_vars.mmmc_analysis_view_table_cdb[m] = \
+                                                            global_tf_vars.mmmc_analysis_view_table_cdb[m] + \
+                                                            ' \\\n        ' + \
                                                             mmmc_gen.create_lib_cdb_file_template(
                                                                 '',
                                                                 pvt[0],
@@ -280,39 +306,33 @@ class mmmc_gen:
                                                                 '',
                                                                 '',
                                                                 '',
-                                                                self.mmmc_cdb_file_table[cdb][cdb_file]))
-                                                        if answer == 'True':
-                                                            existing_flag = 1
-                                                            global_tf_vars.mmmc_analysis_view_table_cdb[m] = \
-                                                                global_tf_vars.mmmc_analysis_view_table_cdb[m] + \
-                                                                ' \\\n        ' + \
-                                                                mmmc_gen.create_lib_cdb_file_template(
-                                                                    '',
-                                                                    pvt[0],
-                                                                    pvt[1],
-                                                                    pvt[2],
-                                                                    '',
-                                                                    '',
-                                                                    '',
-                                                                    self.mmmc_cdb_file_table[cdb][cdb_file])
-                        if existing_flag == 0:
+                                                                self.mmmc_cdb_file_table[cdb][cdb_file])
+                                                if existing_flag == 0:
+                                                    messages.mmmcgen_2(
+                                                        self.mmmc_cdb_file_table[cdb][cdb_file],
+                                                        self.mmmc_pvt_p_table[p][0] +
+                                                        self.mmmc_pvt_v_table[v][0] +
+                                                        self.mmmc_pvt_t_table[t][0]
+                                                    )
+
+                        if temp_type_flag_2 == 1:
                             for i in range(len(self.mmmc_pvt_table)):
-                                for j in range(len(self.mmmc_pvt_table[i])):
-                                    answer = common_func.tf_file_exists_check(
-                                        mmmc_gen.create_lib_cdb_file_template(
-                                            '',
-                                            '',
-                                            '',
-                                            '',
-                                            self.mmmc_pvt_table[i][j],
-                                            '',
-                                            '',
-                                            self.mmmc_cdb_file_table[cdb][cdb_file]))
-                                    if answer == 'True':
-                                        existing_flag = 1
-                                        for view in range(len(global_tf_vars.mmmc_analysis_view_table_sdc_mode)):
-                                            if global_tf_vars.mmmc_analysis_view_table_pvt[view] == \
-                                                    self.mmmc_pvt_table[i][0]:
+                                for view in range(len(global_tf_vars.mmmc_analysis_view_table_sdc_mode)):
+                                    if global_tf_vars.mmmc_analysis_view_table_pvt[view] == self.mmmc_pvt_table[i][0]:
+                                        existing_flag = 0
+                                        for j in range(len(self.mmmc_pvt_table[i])):
+                                            answer = common_func.tf_file_exists_check(
+                                                mmmc_gen.create_lib_cdb_file_template(
+                                                    '',
+                                                    '',
+                                                    '',
+                                                    '',
+                                                    self.mmmc_pvt_table[i][j],
+                                                    '',
+                                                    '',
+                                                    self.mmmc_cdb_file_table[cdb][cdb_file]))
+                                            if answer == 'True':
+                                                existing_flag = 1
                                                 global_tf_vars.mmmc_analysis_view_table_cdb[view] = \
                                                     global_tf_vars.mmmc_analysis_view_table_cdb[view] + \
                                                     ' \\\n        ' + \
@@ -325,6 +345,12 @@ class mmmc_gen:
                                                         '',
                                                         '',
                                                         self.mmmc_cdb_file_table[cdb][cdb_file])
+                                        if existing_flag == 0:
+                                            messages.mmmcgen_2(
+                                                self.mmmc_cdb_file_table[cdb][cdb_file],
+                                                self.mmmc_pvt_table[i][0]
+                                            )
+
                         if existing_flag == 0:
                             messages.mmmcgen_1(self.mmmc_cdb_file_table[cdb][cdb_file], 'mmmc_cdb_file_table[' +
                                                global_tf_vars.tf_var_mmmc_table[preset] + ']')
