@@ -102,23 +102,23 @@ else
       fi
     elif [[ ${argument_value[$j]} == "-update_run_dir" ]] ; then
       tf_update_run_dir=1
-      if [[ $tf_ui_mode != "terminal" ]] ; then
-        echo -e "\e[31mTF_ERROR   : Please, use option [-ui_mode terminal] before [-update_run_dir].\e[0m"
-        exit
-      else
-        for ((n = 1 ; n <= $# ; n++))
-        do
-          if [[ ${argument_value[$n]} == "all" ]] ; then
-            tf_update_all=1
-          elif [[ ${argument_value[$n]} == "cfg" ]] ; then
-            tf_update_cfg=1
-          elif [[ ${argument_value[$n]} == "step_scripts" ]] ; then
-            tf_update_step_scripts=1
-          elif [[ ${argument_value[$n]} == "input_data" ]] ; then
-            tf_update_input_data=1
-          fi
-        done
-      fi
+      #if [[ $tf_ui_mode != "terminal" ]] ; then
+      #  echo -e "\e[31mTF_ERROR   : Please, use option [-ui_mode terminal] before [-update_run_dir].\e[0m"
+      #  exit
+      #else
+      for ((n = 1 ; n <= $# ; n++))
+      do
+        if [[ ${argument_value[$n]} == "all" ]] ; then
+          tf_update_all=1
+        elif [[ ${argument_value[$n]} == "cfg" ]] ; then
+          tf_update_cfg=1
+        elif [[ ${argument_value[$n]} == "step_scripts" ]] ; then
+          tf_update_step_scripts=1
+        elif [[ ${argument_value[$n]} == "input_data" ]] ; then
+          tf_update_input_data=1
+        fi
+      done
+      #fi
     elif [[ ${argument_value[$j]} == "-from_step" ]] ; then
       tf_from_step=1
       if [[ $tf_ui_mode != "terminal" ]] ; then
@@ -183,6 +183,10 @@ if [[ $tf_update_run_dir == 1 ]] ; then
       echo -e "\e[31mTF_ERROR   : You cannot use [all] and other options at the same time.\e[0m"
       exit
     fi
+  fi
+  if [[ $tf_ui_mode != "terminal" ]] ; then
+    echo -e "\e[31mTF_ERROR   : You cannot use [-update_run_dir] option without [-ui_mode terminal].\e[0m"
+    exit
   fi
 fi
 
