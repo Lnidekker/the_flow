@@ -166,6 +166,23 @@ class messages:
         common_func.tf_exit_with_error()
 
     @staticmethod
+    def mmmcgen_3(alias, table):
+        """
+        ERROR : Alias * from table * are used twice. Please, remove repeating aliases.
+
+        :param alias: Alias from table.
+        :param table: Table name.
+        :return: Text message into terminal window.
+        """
+
+        common_func.tf_error('[MMMCGEN-3] Alias "' +
+                             alias +
+                             '" from table "' +
+                             table +
+                             '" are used twice. Please, remove repeating aliases.')
+        common_func.tf_exit_with_error()
+
+    @staticmethod
     def tclscr_1(file_name, files):
         """
         ERROR : There are several step files * with the same names.

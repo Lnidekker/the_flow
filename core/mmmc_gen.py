@@ -38,6 +38,14 @@ class mmmc_gen:
         self.mmmc_ocv_table = mmmc_ocv_table_
 
     @staticmethod
+    def check_pvtq_table_for_repeating_aliases(table, table_name):
+        for i in range(len(table)):
+            for j in range(len(table[i])):
+                for k in range(len(table[i])):
+                    if table[i][j] == table[i][k] and j != k:
+                        messages.mmmcgen_3(table[i][j], table_name)
+
+    @staticmethod
     def create_lib_cdb_file_template(sdc_mode, pvt_p, pvt_v, pvt_t, pvt, qrc, mode, template_body):
         t = Template(template_body)
         return t.render(constraint_mode=sdc_mode,
@@ -756,6 +764,13 @@ class mmmc_gen:
                                    )
 
         if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:
+
+            tf_mmmc_gen.check_pvtq_table_for_repeating_aliases(tf_var_common.mmmc_pvt_p_table, 'mmmc_pvt_p_table')
+            tf_mmmc_gen.check_pvtq_table_for_repeating_aliases(tf_var_common.mmmc_pvt_v_table, 'mmmc_pvt_v_table')
+            tf_mmmc_gen.check_pvtq_table_for_repeating_aliases(tf_var_common.mmmc_pvt_t_table, 'mmmc_pvt_t_table')
+            tf_mmmc_gen.check_pvtq_table_for_repeating_aliases(tf_var_common.mmmc_pvt_table, 'mmmc_pvt_table')
+            tf_mmmc_gen.check_pvtq_table_for_repeating_aliases(tf_var_common.mmmc_pvt_qrc_table, 'mmmc_pvt_qrc_table')
+
             tf_mmmc_gen.parsing_analysis_view_table()
             tf_mmmc_gen.make_lib_files_list_for_each_view()
             tf_mmmc_gen.make_cdb_files_list_for_each_view()
