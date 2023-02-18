@@ -9,11 +9,11 @@ import sys
 import os
 import glob
 import shutil
-import common_func
+from common_func import CommonFunc
 import global_tf_vars
 import tf_var
 import tf_var_common
-from messages import messages
+from messages import Messages
 
 
 def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
@@ -25,7 +25,7 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
     :param step_body: Step body.
     :return: .tcl file.
     """
-    common_func.tf_info('(TFPrepareData.make_tcl_scripts_for_each_steps) start')
+    CommonFunc.tf_info('(TFPrepareData.make_tcl_scripts_for_each_steps) start')
 
     original_stdout = sys.stdout
     tf_step_tcl_file = global_tf_vars.tf_run_dir_scripts + '/' + step_name + '.tcl'
@@ -146,7 +146,7 @@ def create_tcl_scripts_for_each_step(step_name, previous_step_name, step_body):
         print('exit')
         sys.stdout = original_stdout
 
-    common_func.tf_info('(TFPrepareData.make_tcl_scripts_for_each_steps) finish')
+    CommonFunc.tf_info('(TFPrepareData.make_tcl_scripts_for_each_steps) finish')
 
 
 def create_tf_tmp_file_steps_import_file(steps_dir):
@@ -244,7 +244,7 @@ def check_steps():
             if step_file_list[i] == step_file_list[j]:
                 flag = flag + 1
             if flag > 1:
-                messages.tclscr_1(step_file_list[i], step_dirs_list[i] + '/' + step_file_list[i] + ' and ' +
+                Messages.tclscr_1(step_file_list[i], step_dirs_list[i] + '/' + step_file_list[i] + ' and ' +
                                   step_dirs_list[j] + '/' + step_file_list[j] + '.')
 
     for s in range(len(step_table)):
@@ -267,7 +267,7 @@ def check_steps():
             files = ''
             for i in range(len(file_counter)):
                 files = files + ', ' + file_counter[i]
-            messages.tclscr_2(step_table[s][1], files, str(name_counter))
+            Messages.tclscr_2(step_table[s][1], files, str(name_counter))
 
 
 def run_create_tcl_scripts_for_each_step():

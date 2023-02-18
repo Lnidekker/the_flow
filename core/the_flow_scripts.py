@@ -4,16 +4,16 @@ This file contains all usual use cases of THE FLOW.
 import sys
 import os
 import shutil
-import prepare_tf_vars
+from prepare_tf_vars import PrepareTfVars
 import create_run_dir
 import copy_input_data
 import global_tf_vars
-import common_func
-import q1
-import q2
-from messages import messages
+from common_func import CommonFunc
+from questions import Questions
+from messages import Messages
 import check_tf_var_files
-
+from questions import Questions
+from run_eda_tools import RunEDATools
 
 if __name__ == "__main__":
 
@@ -62,9 +62,9 @@ if __name__ == "__main__":
     try:
         tf_var.tf_var_table
     except AttributeError:
-        messages.init_5('tf_var_table', 'tf_var')
+        Messages.init_5('tf_var_table', 'tf_var')
 
-    tf = prepare_tf_vars.prepare_tf_vars('', tf_var.tf_var_table)
+    tf = PrepareTfVars('', tf_var.tf_var_table)
     tf.parsing_tf_var_table()
 
     # Add global_tf_vars.tf_cfg_common_dir value to PYTHONPATH to see tf_var_common.py file
@@ -76,16 +76,16 @@ if __name__ == "__main__":
     try:
         tf_var.tf_dir_structure_table
     except AttributeError:
-        messages.init_5('tf_dir_structure_table', 'tf_var')
+        Messages.init_5('tf_dir_structure_table', 'tf_var')
 
-    tf = prepare_tf_vars.prepare_tf_vars(tf_var.tf_dir_structure_table, tf_var.tf_var_table)
+    tf = PrepareTfVars(tf_var.tf_dir_structure_table, tf_var.tf_var_table)
     tf.parsing_tf_dir_structure_table()
 
     # Check tables existing from tf_var and tf_var_common
     import check_tables
 
-    import mmmc_gen
-    import phy_gen
+    from mmmc_gen import MmmcGen
+    from phy_gen import PhyGen
 
     import create_tcl_scripts_for_each_step
 
@@ -106,13 +106,14 @@ if __name__ == "__main__":
 
     # Set global_tf_vars to create_run_dir.create_run_dir
     if os.path.isdir(global_tf_vars.tf_run_dir):
-        q1.q1()
+        q = Questions()
+        q.q1()
 
     # Delete run dir
     if os.path.isdir(global_tf_vars.tf_run_dir) and global_tf_vars.tf_remove_run_dir == 1:
         os.system('chmod 750 -R ' + global_tf_vars.tf_run_dir)
         shutil.rmtree(global_tf_vars.tf_run_dir)
-        common_func.tf_info('Directory ' + global_tf_vars.tf_run_dir + ' has been deleted.')
+        CommonFunc.tf_info('Directory ' + global_tf_vars.tf_run_dir + ' has been deleted.')
 
     # Create run dir
     if not os.path.isdir(global_tf_vars.tf_run_dir):
@@ -167,8 +168,8 @@ if __name__ == "__main__":
     if global_tf_vars.tf_update_run_dir_in_cfg:
         for i in os.scandir(global_tf_vars.tf_run_dir_in_cfg):
             os.remove(i)
-        mmmc_gen.mmmc_gen.run_mmmc_gen()
-        phy_gen.phy_gen.run_phy_gen()
+        MmmcGen.run_mmmc_gen()
+        PhyGen.run_phy_gen()
 
     '''
     TCL_SCR Generator
@@ -187,9 +188,43 @@ if __name__ == "__main__":
     os.chdir(global_tf_vars.tf_run_dir_work)
 
     # Run to execute steps one by one
-    q2.q2()
+
+    Questions.q2()
 
     if global_tf_vars.tf_q2_flag == '1':
-        run_eda_tools.run_eda_tools()
+        if global_tf_vars.tf_is_syn == 1:
+            run = RunEDATools(global_tf_vars.tf_from_step,
+                              global_tf_vars.tf_from_step_name,
+                              global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_q3_flag,
+                              global_tf_vars.tf_use_xterm,
+                              tf_var.tf_step_syn_table,
+                              'syn')
+        if global_tf_vars.tf_is_impl == 1:
+            run = RunEDATools(global_tf_vars.tf_from_step,
+                              global_tf_vars.tf_from_step_name,
+                              global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_q3_flag,
+                              global_tf_vars.tf_use_xterm,
+                              tf_var.tf_step_impl_table,
+                              'impl')
+        if global_tf_vars.tf_is_atpg == 1:
+            run = RunEDATools(global_tf_vars.tf_from_step,
+                              global_tf_vars.tf_from_step_name,
+                              global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_q3_flag,
+                              global_tf_vars.tf_use_xterm,
+                              tf_var.tf_step_atpg_table,
+                              'atpg')
+        if global_tf_vars.tf_is_power == 1:
+            run = RunEDATools(global_tf_vars.tf_from_step,
+                              global_tf_vars.tf_from_step_name,
+                              global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_q3_flag,
+                              global_tf_vars.tf_use_xterm,
+                              tf_var.tf_step_power_table,
+                              'power')
+        run.run()
+
     elif global_tf_vars.tf_q2_flag == '2':
         exit('Normal exit.')

@@ -1,7 +1,6 @@
 import os
 import global_tf_vars
-from messages import messages
-import common_func
+from messages import Messages
 
 
 def tf_var_finding(path):
@@ -10,7 +9,7 @@ def tf_var_finding(path):
             e1 = element.is_file()
             e2 = element.name
         except PermissionError:
-            messages.init_8(element.path)
+            Messages.init_8(element.path)
         else:
             if element.is_file() and element.name == 'tf_var.py':
                 if global_tf_vars.tf_var_files == '':
@@ -28,6 +27,6 @@ def run_check_tf_var_files():
     global_tf_vars.tf_var_files_split = global_tf_vars.tf_var_files.split()
 
     if len(global_tf_vars.tf_var_files_split) > 1:
-        messages.init_7(global_tf_vars.tf_var_files_split)
+        Messages.init_7(global_tf_vars.tf_var_files_split)
     else:
         global_tf_vars.tf_cfg_dir = global_tf_vars.tf_var_files.replace('/tf_var.py', '')

@@ -4,13 +4,12 @@ Type of messages:
     [INIT-*]   - initialization part of THE FLOW
     [PHYGEN-*] - phy_gen messages
 """
-import common_func
+from common_func import CommonFunc
 
 
-class messages:
+class Messages(CommonFunc):
 
-    @staticmethod
-    def init_1(dir_name, var_name):
+    def init_1(self, dir_name, var_name):
         """
         ERROR : Directory * in * doesn't exist.
 
@@ -19,15 +18,10 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[INIT-1] Directory "' +
-                             dir_name +
-                             '" in ' +
-                             var_name +
-                             ' doesn\'t exist.')
-        common_func.tf_exit_with_error()
+        self.tf_error('[INIT-1] Directory "' + dir_name + '" in ' + var_name + ' doesn\'t exist.')
+        self.tf_exit_with_error()
 
-    @staticmethod
-    def init_2(dir_name, var_name):
+    def init_2(self, dir_name, var_name):
         """
         WARNING : Directory * in * doesn't exist.
 
@@ -36,14 +30,9 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_warning('[INIT-2] Directory "' +
-                               dir_name +
-                               '" in ' +
-                               var_name +
-                               ' doesn\'t exist.')
+        self.tf_warning('[INIT-2] Directory "' + dir_name + '" in ' + var_name + ' doesn\'t exist.')
 
-    @staticmethod
-    def init_3(var_name):
+    def init_3(self, var_name):
         """
         ERROR : * variable name is invalid. Please, use variable names from template file.
 
@@ -51,13 +40,11 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[INIT-3] ' +
-                             var_name +
-                             ' variable name is invalid. Please, use variable names from template file.')
-        common_func.tf_exit_with_error()
+        self.tf_error('[INIT-3] ' + var_name +
+                      ' variable name is invalid. Please, use variable names from template file.')
+        self.tf_exit_with_error()
 
-    @staticmethod
-    def init_4(var_name):
+    def init_4(self, var_name):
         """
         ERROR : * doesn't define.
 
@@ -65,13 +52,10 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[INIT-4] ' +
-                             var_name +
-                             ' doesn\'t define.')
-        common_func.tf_exit_with_error()
+        self.tf_error('[INIT-4] ' + var_name + ' doesn\'t define.')
+        self.tf_exit_with_error()
 
-    @staticmethod
-    def init_5(table_name, file_name):
+    def init_5(self, table_name, file_name):
         """
         ERROR : *_table from * doesn't exist.
 
@@ -80,11 +64,10 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[INIT-5] ' + table_name + ' table from ' + file_name + ' doesn\'t exist.')
-        common_func.tf_exit_with_error()
+        self.tf_error('[INIT-5] ' + table_name + ' table from ' + file_name + ' doesn\'t exist.')
+        self.tf_exit_with_error()
 
-    @staticmethod
-    def init_6(table_name, file_name):
+    def init_6(self, table_name, file_name):
         """
         WARNING : *_table from * doesn't exist.
 
@@ -93,10 +76,9 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_warning('[INIT-6] ' + table_name + ' table from ' + file_name + ' doesn\'t exist.')
+        self.tf_warning('[INIT-6] ' + table_name + ' table from ' + file_name + ' doesn\'t exist.')
 
-    @staticmethod
-    def init_7(files):
+    def init_7(self, files):
         """
         ERROR : There are several tf_var.py files.
 
@@ -104,11 +86,10 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[INIT-7] There are several tf_var.py files. These files are: ' + str(files))
-        common_func.tf_exit_with_error()
+        self.tf_error('[INIT-7] There are several tf_var.py files. These files are: ' + str(files))
+        self.tf_exit_with_error()
 
-    @staticmethod
-    def init_8(file):
+    def init_8(self, file):
         """
         WARNING : File couldn't be read while tf_var.py searching.
 
@@ -116,10 +97,9 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_warning('[INIT-8] File ' + file + ' couldn\'t be read while tf_var.py searching.')
+        self.tf_warning('[INIT-8] File ' + file + ' couldn\'t be read while tf_var.py searching.')
 
-    @staticmethod
-    def phygen_1(file_name, var_name):
+    def phygen_1(self, file_name, var_name):
         """
         ERROR : File or dir * from * doesn't exist.
 
@@ -128,15 +108,10 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[PHYGEN-1] File or dir ' +
-                             file_name +
-                             ' from ' +
-                             var_name +
-                             ' doesn\'t exist.')
-        common_func.tf_exit_with_error()
+        self.tf_error('[PHYGEN-1] File or dir ' + file_name + ' from ' + var_name + ' doesn\'t exist.')
+        self.tf_exit_with_error()
 
-    @staticmethod
-    def mmmcgen_1(file_name, var_name):
+    def mmmcgen_1(self, file_name, var_name):
         """
         ERROR : Files * from * doesn't exist.
 
@@ -145,15 +120,10 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[MMMCGEN-1] File ' +
-                             file_name +
-                             ' from ' +
-                             var_name +
-                             ' doesn\'t exist.')
-        common_func.tf_exit_with_error()
+        self.tf_error('[MMMCGEN-1] File ' + file_name + ' from ' + var_name + ' doesn\'t exist.')
+        self.tf_exit_with_error()
 
-    @staticmethod
-    def mmmcgen_2(file, pvt):
+    def mmmcgen_2(self, file, pvt):
         """
         ERROR : File * doesn't exists for * pvt set.
 
@@ -162,11 +132,10 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[MMMCGEN-2] File ' + file + ' doesn\'t exists for ' + pvt + ' pvt set.')
-        common_func.tf_exit_with_error()
+        self.tf_error('[MMMCGEN-2] File ' + file + ' doesn\'t exists for ' + pvt + ' pvt set.')
+        self.tf_exit_with_error()
 
-    @staticmethod
-    def mmmcgen_3(alias, table):
+    def mmmcgen_3(self, alias, table):
         """
         ERROR : Alias * from table * are used twice. Please, remove repeating aliases.
 
@@ -175,15 +144,11 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[MMMCGEN-3] Alias "' +
-                             alias +
-                             '" from table "' +
-                             table +
-                             '" are used twice. Please, remove repeating aliases.')
-        common_func.tf_exit_with_error()
+        self.tf_error('[MMMCGEN-3] Alias "' + alias + '" from table "' + table +
+                      '" are used twice. Please, remove repeating aliases.')
+        self.tf_exit_with_error()
 
-    @staticmethod
-    def tclscr_1(file_name, files):
+    def tclscr_1(self, file_name, files):
         """
         ERROR : There are several step files * with the same names.
 
@@ -192,12 +157,10 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[TCLSCR-1] There are several step files with ' + file_name +
-                             ' name. This files are ' + files)
-        common_func.tf_exit_with_error()
+        self.tf_error('[TCLSCR-1] There are several step files with ' + file_name + ' name. This files are ' + files)
+        self.tf_exit_with_error()
 
-    @staticmethod
-    def tclscr_2(step_name, files, number):
+    def tclscr_2(self, step_name, files, number):
         """
         ERROR : There are several steps with the same names.
 
@@ -207,6 +170,6 @@ class messages:
         :return: Text message into terminal window.
         """
 
-        common_func.tf_error('[TCLSCR-2] There are ' + number + ' steps with \"' + step_name +
-                             '\" name. These steps from following files: ' + files)
-        common_func.tf_exit_with_error()
+        self.tf_error('[TCLSCR-2] There are ' + number + ' steps with \"' + step_name +
+                      '\" name. These steps from following files: ' + files)
+        self.tf_exit_with_error()
