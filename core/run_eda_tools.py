@@ -72,7 +72,7 @@ class RunEDATools(Questions):
                     runtime = time.time() - t
                     self.tf_info('finish to execute ' + self.tf_step_table[j][1] +
                                  ' step. runtime: ' + str(runtime // 60) + ' min')
-                elif self.tf_file_exists_check('../db/' + self.tf_step_table[j - 1][1] + '.db') == 'True':
+                elif self.tf_dir_exists_check('../db/' + self.tf_step_table[j - 1][1] + '.db'):
                     self.tf_info('start to execute ' + self.tf_step_table[j][1] + ' step')
                     t = time.time()
                     if self.tf_use_xterm == 1:
