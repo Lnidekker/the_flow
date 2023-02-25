@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
     import create_tcl_scripts_for_each_step
 
-    import run_eda_tools
+    from run_eda_tools import RunEDATools
 
     '''
     Check input data
@@ -190,6 +190,39 @@ if __name__ == "__main__":
     q2.q2()
 
     if global_tf_vars.tf_q2_flag == '1':
-        run_eda_tools.run_eda_tools()
+        if global_tf_vars.tf_is_syn == 1:
+            run = RunEDATools(global_tf_vars.tf_from_step,
+                              global_tf_vars.tf_from_step_name,
+                              global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_q3_flag,
+                              global_tf_vars.tf_use_xterm,
+                              tf_var.tf_step_syn_table,
+                              'syn')
+        if global_tf_vars.tf_is_impl == 1:
+            run = RunEDATools(global_tf_vars.tf_from_step,
+                              global_tf_vars.tf_from_step_name,
+                              global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_q3_flag,
+                              global_tf_vars.tf_use_xterm,
+                              tf_var.tf_step_impl_table,
+                              'impl')
+        if global_tf_vars.tf_is_atpg == 1:
+            run = RunEDATools(global_tf_vars.tf_from_step,
+                              global_tf_vars.tf_from_step_name,
+                              global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_q3_flag,
+                              global_tf_vars.tf_use_xterm,
+                              tf_var.tf_step_atpg_table,
+                              'atpg')
+        if global_tf_vars.tf_is_power == 1:
+            run = RunEDATools(global_tf_vars.tf_from_step,
+                              global_tf_vars.tf_from_step_name,
+                              global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_q3_flag,
+                              global_tf_vars.tf_use_xterm,
+                              tf_var.tf_step_power_table,
+                              'power')
+        run.run()
+
     elif global_tf_vars.tf_q2_flag == '2':
         exit('Normal exit.')

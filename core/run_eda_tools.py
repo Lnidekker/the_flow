@@ -1,227 +1,89 @@
 import os
 import time
-import global_tf_vars
 import common_func
-import tf_var
 import q3
-import shutil
+from jinja2 import Template
 
 
-def run_eda_tools():
+class RunEDATools:
 
-    if global_tf_vars.tf_is_syn == 1:
+    def __init__(self,
+                 tf_from_step,
+                 tf_from_step_name,
+                 tf_run_dir_db,
+                 tf_q3_flag,
+                 tf_use_xterm,
+                 tf_step_table,
+                 flow_name):
+        self.tf_from_step = tf_from_step
+        self.tf_from_step_name = tf_from_step_name
+        self.tf_run_dir_db = tf_run_dir_db
+        self.tf_q3_flag = tf_q3_flag
+        self.tf_use_xterm = tf_use_xterm
+        self.tf_step_table = tf_step_table
+        self.flow_name = flow_name
 
-        if global_tf_vars.tf_from_step == 1:
+    def eda_tool_run_command(self, step_name):
+        if self.flow_name == 'syn':
+            t = Template(
+                'genus -f ../scripts/{{ step_name }}.tcl -log ../logs/{{ step_name }}.log -overwrite')
+            return t.render(step_name=step_name)
+        if self.flow_name == 'impl':
+            t = Template(
+                'innovus -stylus -file ../scripts/{{ step_name }}.tcl -log ../logs/{{ step_name }}.log -overwrite')
+            return t.render(step_name=step_name)
+        if self.flow_name == 'atpg':
+            t = Template(
+                'modus -f ../scripts/{{ step_name }}.tcl -log ../logs/{{ step_name }}.log')
+            return t.render(step_name=step_name)
+        if self.flow_name == 'power':
+            t = Template(
+                'voltus -stylus -file ../scripts/{{ step_name }}.tcl -log ../logs/{{ step_name }}.log -overwrite')
+            return t.render(step_name=step_name)
+
+    def run(self):
+
+        if self.tf_from_step == 1:
             flag = 0
-            for i in range(0, len(tf_var.tf_step_syn_table)):
-                if tf_var.tf_step_syn_table[i][1] == global_tf_vars.tf_from_step_name:
+            for i in range(0, len(self.tf_step_table)):
+                if self.tf_step_table[i][1] == self.tf_from_step_name:
                     flag = 1
             if flag == 0:
-                common_func.tf_error('Step name "' + global_tf_vars.tf_from_step_name +
+                common_func.tf_error('Step name "' + self.tf_from_step_name +
                                      '" from [-from_step] option doesn\'t exist.')
                 common_func.tf_exit_with_error()
 
-        for j in range(0, len(tf_var.tf_step_syn_table)):
-            global_tf_vars.tf_go_to_next_step = 0
-            if common_func.tf_dir_exists_check(global_tf_vars.tf_run_dir_db + '/' +
-                                               tf_var.tf_step_syn_table[j][1] + '.db'):
-                q3.q3(tf_var.tf_step_syn_table[j][1])
-                if global_tf_vars.tf_q3_flag == '1':
-                    global_tf_vars.tf_go_to_next_step = 1
-                elif global_tf_vars.tf_q3_flag == '2':
-                    for k in range(j, len(tf_var.tf_step_syn_table)):
-                        if common_func.tf_dir_exists_check(
-                                global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_syn_table[k][1] + '.db'):
-                            os.remove(global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_syn_table[k][1] + '.db')
-            if global_tf_vars.tf_go_to_next_step == 0:
-                if tf_var.tf_step_syn_table[j][0] == 0:
-                    common_func.tf_info('start to execute ' + tf_var.tf_step_syn_table[j][1] + ' step')
+        for j in range(0, len(self.tf_step_table)):
+            tf_go_to_next_step = 0
+            if common_func.tf_dir_exists_check(self.tf_run_dir_db + '/' + self.tf_step_table[j][1] + '.db'):
+                q3.q3(self.tf_step_table[j][1])
+                if self.tf_q3_flag == '1':
+                    tf_go_to_next_step = 1
+                elif self.tf_q3_flag == '2':
+                    for k in range(j, len(self.tf_step_table)):
+                        if common_func.tf_dir_exists_check(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db'):
+                            os.remove(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db')
+            if tf_go_to_next_step == 0:
+                if self.tf_step_table[j][0] == 0:
+                    common_func.tf_info('start to execute ' + self.tf_step_table[j][1] + ' step')
                     t = time.time()
-                    if global_tf_vars.tf_use_xterm == 1:
-                        os.system(common_func.tf_run_eda_with_xterm('genus -f ../scripts/' +
-                                                                    tf_var.tf_step_syn_table[j][1] +
-                                                                    '.tcl -log ../logs/' +
-                                                                    tf_var.tf_step_syn_table[j][1] +
-                                                                    '.log -overwrite'))
+                    if self.tf_use_xterm == 1:
+                        os.system(common_func.tf_run_eda_with_xterm(self.eda_tool_run_command(self.tf_step_table[j][1])))
                     else:
-                        os.system('genus -f ../scripts/' +
-                                  tf_var.tf_step_syn_table[j][1] +
-                                  '.tcl -log ../logs/' +
-                                  tf_var.tf_step_syn_table[j][1] +
-                                  '.log -overwrite')
+                        os.system(self.eda_tool_run_command(self.tf_step_table[j][1]))
                     runtime = time.time() - t
-                    common_func.tf_info('finish to execute ' + tf_var.tf_step_syn_table[j][1] +
+                    common_func.tf_info('finish to execute ' + self.tf_step_table[j][1] +
                                         ' step. runtime: ' + str(runtime // 60) + ' min')
-                elif common_func.tf_file_exists_check('../db/' + tf_var.tf_step_syn_table[j - 1][1] + '.db') == \
-                        'True':
-                    common_func.tf_info('start to execute ' + tf_var.tf_step_syn_table[j][1] + ' step')
+                elif common_func.tf_file_exists_check('../db/' + self.tf_step_table[j - 1][1] + '.db') == 'True':
+                    common_func.tf_info('start to execute ' + self.tf_step_table[j][1] + ' step')
                     t = time.time()
-                    if global_tf_vars.tf_use_xterm == 1:
-                        os.system(common_func.tf_run_eda_with_xterm('genus -f ../scripts/' +
-                                                                    tf_var.tf_step_syn_table[j][1] +
-                                                                    '.tcl -log ../logs/' +
-                                                                    tf_var.tf_step_syn_table[j][1] +
-                                                                    '.log -overwrite'))
+                    if self.tf_use_xterm == 1:
+                        os.system(common_func.tf_run_eda_with_xterm(self.eda_tool_run_command(self.tf_step_table[j][1])))
                     else:
-                        os.system('genus -f ../scripts/' +
-                                  tf_var.tf_step_syn_table[j][1] +
-                                  '.tcl -log ../logs/' +
-                                  tf_var.tf_step_syn_table[j][1] +
-                                  '.log -overwrite')
+                        os.system(self.eda_tool_run_command(self.tf_step_table[j][1]))
                     runtime = time.time() - t
-                    common_func.tf_info('finish to execute ' + tf_var.tf_step_syn_table[j][1] +
+                    common_func.tf_info('finish to execute ' + self.tf_step_table[j][1] +
                                         ' step. runtime: ' + str(runtime // 60) + ' min')
                 else:
                     common_func.tf_error('previous step db doesn\'t exist')
-                    exit('exit with error')
-
-    elif global_tf_vars.tf_is_impl == 1:
-
-        if global_tf_vars.tf_from_step == 1:
-            flag = 0
-            for i in range(0, len(tf_var.tf_step_impl_table)):
-                if tf_var.tf_step_impl_table[i][1] == global_tf_vars.tf_from_step_name:
-                    flag = 1
-            if flag == 0:
-                common_func.tf_error('Step name "' + global_tf_vars.tf_from_step_name +
-                                     '" from [-from_step] option doesn\'t exist.')
-                common_func.tf_exit_with_error()
-
-        for j in range(0, len(tf_var.tf_step_impl_table)):
-            global_tf_vars.tf_go_to_next_step = 0
-            if common_func.tf_dir_exists_check(global_tf_vars.tf_run_dir_db + '/' +
-                                               tf_var.tf_step_impl_table[j][1] + '.db'):
-                q3.q3(tf_var.tf_step_impl_table[j][1])
-                if global_tf_vars.tf_q3_flag == '1':
-                    global_tf_vars.tf_go_to_next_step = 1
-                elif global_tf_vars.tf_q3_flag == '2':
-                    for k in range(j, len(tf_var.tf_step_impl_table)):
-                        if common_func.tf_dir_exists_check(
-                                global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_impl_table[k][1] + '.db'):
-                            shutil.rmtree(global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_impl_table[k][1] + '.db')
-            if global_tf_vars.tf_go_to_next_step == 0:
-                if tf_var.tf_step_impl_table[j][0] == 0:
-                    common_func.tf_info('start to execute ' + tf_var.tf_step_impl_table[j][1] + ' step')
-                    t = time.time()
-                    if global_tf_vars.tf_use_xterm == 1:
-                        os.system(common_func.tf_run_eda_with_xterm('innovus -stylus -file ../scripts/' +
-                                                                    tf_var.tf_step_impl_table[j][1] +
-                                                                    '.tcl -log ../logs/' +
-                                                                    tf_var.tf_step_impl_table[j][1] +
-                                                                    '.log -overwrite'))
-                    else:
-                        os.system('innovus -stylus -file ../scripts/' +
-                                  tf_var.tf_step_impl_table[j][1] +
-                                  '.tcl -log ../logs/' +
-                                  tf_var.tf_step_impl_table[j][1] +
-                                  '.log -overwrite')
-                    runtime = time.time() - t
-                    common_func.tf_info('finish to execute ' + tf_var.tf_step_impl_table[j][1] +
-                                        ' step. runtime: ' + str(runtime // 60) + ' min')
-                elif os.path.isdir('../db/' + tf_var.tf_step_impl_table[j - 1][1] + '.db'):
-                    common_func.tf_info('start to execute ' + tf_var.tf_step_impl_table[j][1] + ' step')
-                    t = time.time()
-                    if global_tf_vars.tf_use_xterm == 1:
-                        os.system(common_func.tf_run_eda_with_xterm('innovus -stylus -file ../scripts/' +
-                                                                    tf_var.tf_step_impl_table[j][1] +
-                                                                    '.tcl -log ../logs/' +
-                                                                    tf_var.tf_step_impl_table[j][1] +
-                                                                    '.log -overwrite'))
-                    else:
-                        os.system('innovus -stylus -file ../scripts/' +
-                                  tf_var.tf_step_impl_table[j][1] +
-                                  '.tcl -log ../logs/' +
-                                  tf_var.tf_step_impl_table[j][1] +
-                                  '.log -overwrite')
-                    runtime = time.time() - t
-                    common_func.tf_info('finish to execute ' + tf_var.tf_step_impl_table[j][1] +
-                                        ' step. runtime: ' + str(runtime // 60) + ' min')
-                else:
-                    common_func.tf_error('previous step db doesn\'t exist')
-                    exit('exit with error')
-
-    elif global_tf_vars.tf_is_atpg == 1:
-
-        for j in range(0, len(tf_var.tf_step_atpg_table)):
-            common_func.tf_info('start to execute ' + tf_var.tf_step_atpg_table[j][1] + ' step')
-            t = time.time()
-            if global_tf_vars.tf_use_xterm == 1:
-                os.system(common_func.tf_run_eda_with_xterm('modus -f ../scripts/' +
-                                                            tf_var.tf_step_atpg_table[j][1] +
-                                                            '.tcl -log ../logs/' +
-                                                            tf_var.tf_step_atpg_table[j][1] +
-                                                            '.log'))
-            else:
-                os.system('modus -f ../scripts/' +
-                          tf_var.tf_step_atpg_table[j][1] +
-                          '.tcl -log ../logs/' +
-                          tf_var.tf_step_atpg_table[j][1] +
-                          '.log')
-            runtime = time.time() - t
-            common_func.tf_info('finish to execute ' + tf_var.tf_step_atpg_table[j][1] +
-                                ' step. runtime: ' + str(runtime // 60) + ' min')
-
-    elif global_tf_vars.tf_is_power == 1:
-
-        if global_tf_vars.tf_from_step == 1:
-            flag = 0
-            for i in range(0, len(tf_var.tf_step_power_table)):
-                if tf_var.tf_step_power_table[i][1] == global_tf_vars.tf_from_step_name:
-                    flag = 1
-            if flag == 0:
-                common_func.tf_error('Step name "' + global_tf_vars.tf_from_step_name +
-                                     '" from [-from_step] option doesn\'t exist.')
-                common_func.tf_exit_with_error()
-
-        for j in range(0, len(tf_var.tf_step_power_table)):
-            global_tf_vars.tf_go_to_next_step = 0
-            if common_func.tf_dir_exists_check(global_tf_vars.tf_run_dir_db + '/' +
-                                               tf_var.tf_step_power_table[j][1] + '.db'):
-                q3.q3(tf_var.tf_step_power_table[j][1])
-                if global_tf_vars.tf_q3_flag == '1':
-                    global_tf_vars.tf_go_to_next_step = 1
-                elif global_tf_vars.tf_q3_flag == '2':
-                    for k in range(j, len(tf_var.tf_step_power_table)):
-                        if common_func.tf_dir_exists_check(
-                                global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_power_table[k][1] + '.db'):
-                            shutil.rmtree(global_tf_vars.tf_run_dir_db + '/' + tf_var.tf_step_power_table[k][1] + '.db')
-            if global_tf_vars.tf_go_to_next_step == 0:
-                if tf_var.tf_step_power_table[j][0] == 0:
-                    common_func.tf_info('start to execute ' + tf_var.tf_step_power_table[j][1] + ' step')
-                    t = time.time()
-                    if global_tf_vars.tf_use_xterm == 1:
-                        os.system(common_func.tf_run_eda_with_xterm('voltus -stylus -file ../scripts/' +
-                                                                    tf_var.tf_step_power_table[j][1] +
-                                                                    '.tcl -log ../logs/' +
-                                                                    tf_var.tf_step_power_table[j][1] +
-                                                                    '.log -overwrite'))
-                    else:
-                        os.system('voltus -stylus -file ../scripts/' +
-                                  tf_var.tf_step_power_table[j][1] +
-                                  '.tcl -log ../logs/' +
-                                  tf_var.tf_step_power_table[j][1] +
-                                  '.log -overwrite')
-                    runtime = time.time() - t
-                    common_func.tf_info('finish to execute ' + tf_var.tf_step_power_table[j][1] +
-                                        ' step. runtime: ' + str(runtime // 60) + ' min')
-                elif os.path.isdir('../db/' + tf_var.tf_step_power_table[j - 1][1] + '.db'):
-                    common_func.tf_info('start to execute ' + tf_var.tf_step_power_table[j][1] + ' step')
-                    t = time.time()
-                    if global_tf_vars.tf_use_xterm == 1:
-                        os.system(common_func.tf_run_eda_with_xterm('voltus -stylus -file ../scripts/' +
-                                                                    tf_var.tf_step_power_table[j][1] +
-                                                                    '.tcl -log ../logs/' +
-                                                                    tf_var.tf_step_power_table[j][1] +
-                                                                    '.log -overwrite'))
-                    else:
-                        os.system('voltus -stylus -file ../scripts/' +
-                                  tf_var.tf_step_power_table[j][1] +
-                                  '.tcl -log ../logs/' +
-                                  tf_var.tf_step_power_table[j][1] +
-                                  '.log -overwrite')
-                    runtime = time.time() - t
-                    common_func.tf_info('finish to execute ' + tf_var.tf_step_power_table[j][1] +
-                                        ' step. runtime: ' + str(runtime // 60) + ' min')
-                else:
-                    common_func.tf_error('previous step db doesn\'t exist')
-                    exit('exit with error')
+                    common_func.tf_exit_with_error()
