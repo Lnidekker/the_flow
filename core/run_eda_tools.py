@@ -74,7 +74,7 @@ class RunEDATools:
                     runtime = time.time() - t
                     common_func.tf_info('finish to execute ' + self.tf_step_table[j][1] +
                                         ' step. runtime: ' + str(runtime // 60) + ' min')
-                elif common_func.tf_file_exists_check('../db/' + self.tf_step_table[j - 1][1] + '.db') == 'True':
+                elif common_func.tf_dir_exists_check('../db/' + self.tf_step_table[j - 1][1] + '.db') == 'True':
                     common_func.tf_info('start to execute ' + self.tf_step_table[j][1] + ' step')
                     t = time.time()
                     if self.tf_use_xterm == 1:
