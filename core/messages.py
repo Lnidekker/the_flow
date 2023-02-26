@@ -123,16 +123,19 @@ class Messages(CommonFunc):
         self.tf_error('[MMMCGEN-1] File ' + file_name + ' from ' + var_name + ' doesn\'t exist.')
         self.tf_exit_with_error()
 
-    def mmmcgen_2(self, file, pvt):
+    def mmmcgen_2(self, file, pvt, preset):
         """
         ERROR : File * doesn't exists for * pvt set.
 
         :param file: .lib file.
         :param pvt: Combination of pvt aliases.
+        :param preset: MMMC preset name.
         :return: Text message into terminal window.
         """
 
-        self.tf_error('[MMMCGEN-2] File ' + file + ' doesn\'t exists for ' + pvt + ' pvt set.')
+        self.tf_error('[MMMCGEN-2] File ' + file + ' doesn\'t exist.\n' +
+                      '             pvt set     : ' + pvt + '\n' +
+                      '             mmmc preset : ' + preset)
         self.tf_exit_with_error()
 
     def mmmcgen_3(self, alias, table):

@@ -154,7 +154,8 @@ class MmmcGen(Messages):
                                                         self.mmmc_lib_file_table[lib][lib_file],
                                                         self.mmmc_pvt_p_table[p][0] +
                                                         self.mmmc_pvt_v_table[v][0] +
-                                                        self.mmmc_pvt_t_table[t][0]
+                                                        self.mmmc_pvt_t_table[t][0],
+                                                        self.mmmc_lib_file_table[lib][0]
                                                     )
 
                         if temp_type_flag_2 == 1:
@@ -190,7 +191,8 @@ class MmmcGen(Messages):
                                         if existing_flag == 0:
                                             self.mmmcgen_2(
                                                 self.mmmc_lib_file_table[lib][lib_file],
-                                                self.mmmc_pvt_table[i][0]
+                                                self.mmmc_pvt_table[i][0],
+                                                self.mmmc_lib_file_table[lib][0]
                                             )
 
                         if temp_type_flag_3 == 1:
@@ -248,7 +250,8 @@ class MmmcGen(Messages):
                                                             self.mmmc_pvt_t_table[t][0] +
                                                             self.mmmc_pvt_qrc_table[c][0] +
                                                             '_' +
-                                                            global_tf_vars.mmmc_analysis_view_table_mode[m]
+                                                            global_tf_vars.mmmc_analysis_view_table_mode[m],
+                                                            self.mmmc_lib_file_table[lib][0]
                                                         )
 
                         if existing_flag == 0:
@@ -318,7 +321,8 @@ class MmmcGen(Messages):
                                                         self.mmmc_cdb_file_table[cdb][cdb_file],
                                                         self.mmmc_pvt_p_table[p][0] +
                                                         self.mmmc_pvt_v_table[v][0] +
-                                                        self.mmmc_pvt_t_table[t][0]
+                                                        self.mmmc_pvt_t_table[t][0],
+                                                        self.mmmc_lib_file_table[cdb][0]
                                                     )
 
                         if temp_type_flag_2 == 1:
@@ -354,7 +358,8 @@ class MmmcGen(Messages):
                                         if existing_flag == 0:
                                             self.mmmcgen_2(
                                                 self.mmmc_cdb_file_table[cdb][cdb_file],
-                                                self.mmmc_pvt_table[i][0]
+                                                self.mmmc_pvt_table[i][0],
+                                                self.mmmc_lib_file_table[cdb][0]
                                             )
 
                         if existing_flag == 0:
