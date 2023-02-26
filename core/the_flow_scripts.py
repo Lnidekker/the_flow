@@ -87,7 +87,7 @@ if __name__ == "__main__":
     from mmmc_gen import MmmcGen
     from phy_gen import PhyGen
 
-    import create_tcl_scripts_for_each_step
+    from tcl_scr_gen import TclScrGen
 
     import run_eda_tools
 
@@ -175,10 +175,126 @@ if __name__ == "__main__":
     TCL_SCR Generator
     '''
 
+    global_tf_vars.tf_tmp_file_steps_import = global_tf_vars.tf_run_dir_work_tmp + '/tf_tmp_file_steps_import.py'
+    global_tf_vars.tf_tmp_step_table = global_tf_vars.tf_run_dir_work_tmp + '/tf_tmp_step_table.py'
+
     # Create .tcl file for each step
 
     if global_tf_vars.tf_update_run_dir_scripts:
-        create_tcl_scripts_for_each_step.run_create_tcl_scripts_for_each_step()
+
+        if global_tf_vars.tf_is_syn:
+            if global_tf_vars.tf_var_syn_table_exists:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_syn_steps_dir,
+                                            tf_var.tf_step_syn_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'syn',
+                                            tf_var.tf_var_table,
+                                            tf_var.tf_var_syn_table,
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table)
+            else:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_syn_steps_dir,
+                                            tf_var.tf_step_syn_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'syn',
+                                            tf_var.tf_var_table,
+                                            '',
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table)
+
+        if global_tf_vars.tf_is_impl:
+            if global_tf_vars.tf_var_impl_table_exists:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_impl_steps_dir,
+                                            tf_var.tf_step_impl_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'impl',
+                                            tf_var.tf_var_table,
+                                            tf_var.tf_var_impl_table,
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table)
+            else:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_impl_steps_dir,
+                                            tf_var.tf_step_impl_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'impl',
+                                            tf_var.tf_var_table,
+                                            '',
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table)
+
+        if global_tf_vars.tf_is_atpg:
+            if global_tf_vars.tf_var_atpg_table_exists:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_atpg_steps_dir,
+                                            tf_var.tf_step_atpg_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'atpg',
+                                            tf_var.tf_var_table,
+                                            tf_var.tf_var_atpg_table,
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table)
+            else:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_atpg_steps_dir,
+                                            tf_var.tf_step_atpg_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'atpg',
+                                            tf_var.tf_var_table,
+                                            '',
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table)
+
+        if global_tf_vars.tf_is_power:
+            if global_tf_vars.tf_var_power_table_exists:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_power_steps_dir,
+                                            tf_var.tf_step_power_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'power',
+                                            tf_var.tf_var_table,
+                                            tf_var.tf_var_power_table,
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table)
+            else:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_power_steps_dir,
+                                            tf_var.tf_step_power_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'power',
+                                            tf_var.tf_var_table,
+                                            '',
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table)
+
+        run_tcl_scr_gen.run()
 
     '''
     Run EDA tools
