@@ -70,8 +70,11 @@ class RunEDATools(Questions):
                     else:
                         os.system(self.eda_tool_run_command(self.tf_step_table[j][1]))
                     runtime = time.time() - t
+                    runtime_h = str(int(runtime // 3600))
+                    runtime_m = str(int((runtime % 3600) // 60))
+                    runtime_s = str(int((runtime % 60)))
                     self.tf_info('finish to execute ' + self.tf_step_table[j][1] +
-                                 ' step. runtime: ' + str(runtime // 60) + ' min')
+                                 ' step. runtime: ' + runtime_h + ':' + runtime_m + ':' + runtime_s)
                 elif self.tf_dir_exists_check('../db/' + self.tf_step_table[j - 1][1] + '.db'):
                     self.tf_info('start to execute ' + self.tf_step_table[j][1] + ' step')
                     t = time.time()
@@ -81,8 +84,11 @@ class RunEDATools(Questions):
                     else:
                         os.system(self.eda_tool_run_command(self.tf_step_table[j][1]))
                     runtime = time.time() - t
+                    runtime_h = str(int(runtime // 3600))
+                    runtime_m = str(int((runtime % 3600) // 60))
+                    runtime_s = str(int((runtime % 60)))
                     self.tf_info('finish to execute ' + self.tf_step_table[j][1] +
-                                 ' step. runtime: ' + str(runtime // 60) + ' min')
+                                 ' step. runtime: ' + runtime_h + ':' + runtime_m + ':' + runtime_s)
                 else:
                     self.tf_error('previous step db doesn\'t exist')
                     self.tf_exit_with_error()
