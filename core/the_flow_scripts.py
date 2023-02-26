@@ -195,7 +195,8 @@ if __name__ == "__main__":
                                             tf_var.tf_var_syn_table,
                                             tf_var_common.tf_var_common_table,
                                             tf_var.tf_var_mmmc_table,
-                                            tf_var.mmmc_sdc_mode_table)
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
             else:
                 run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_syn_steps_dir,
                                             tf_var.tf_step_syn_table,
@@ -208,7 +209,8 @@ if __name__ == "__main__":
                                             '',
                                             tf_var_common.tf_var_common_table,
                                             tf_var.tf_var_mmmc_table,
-                                            tf_var.mmmc_sdc_mode_table)
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
 
         if global_tf_vars.tf_is_impl:
             if global_tf_vars.tf_var_impl_table_exists:
@@ -223,7 +225,8 @@ if __name__ == "__main__":
                                             tf_var.tf_var_impl_table,
                                             tf_var_common.tf_var_common_table,
                                             tf_var.tf_var_mmmc_table,
-                                            tf_var.mmmc_sdc_mode_table)
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
             else:
                 run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_impl_steps_dir,
                                             tf_var.tf_step_impl_table,
@@ -236,7 +239,8 @@ if __name__ == "__main__":
                                             '',
                                             tf_var_common.tf_var_common_table,
                                             tf_var.tf_var_mmmc_table,
-                                            tf_var.mmmc_sdc_mode_table)
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
 
         if global_tf_vars.tf_is_atpg:
             if global_tf_vars.tf_var_atpg_table_exists:
@@ -251,7 +255,8 @@ if __name__ == "__main__":
                                             tf_var.tf_var_atpg_table,
                                             tf_var_common.tf_var_common_table,
                                             tf_var.tf_var_mmmc_table,
-                                            tf_var.mmmc_sdc_mode_table)
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
             else:
                 run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_atpg_steps_dir,
                                             tf_var.tf_step_atpg_table,
@@ -264,7 +269,8 @@ if __name__ == "__main__":
                                             '',
                                             tf_var_common.tf_var_common_table,
                                             tf_var.tf_var_mmmc_table,
-                                            tf_var.mmmc_sdc_mode_table)
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
 
         if global_tf_vars.tf_is_power:
             if global_tf_vars.tf_var_power_table_exists:
@@ -279,7 +285,8 @@ if __name__ == "__main__":
                                             tf_var.tf_var_power_table,
                                             tf_var_common.tf_var_common_table,
                                             tf_var.tf_var_mmmc_table,
-                                            tf_var.mmmc_sdc_mode_table)
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
             else:
                 run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_power_steps_dir,
                                             tf_var.tf_step_power_table,
@@ -292,7 +299,8 @@ if __name__ == "__main__":
                                             '',
                                             tf_var_common.tf_var_common_table,
                                             tf_var.tf_var_mmmc_table,
-                                            tf_var.mmmc_sdc_mode_table)
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
 
         run_tcl_scr_gen.run()
 

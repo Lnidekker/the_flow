@@ -16,7 +16,8 @@ class TclScrGen(Messages):
                  tf_var_flow_table,
                  tf_var_common_table,
                  tf_var_mmmc_table,
-                 mmmc_sdc_mode_table
+                 mmmc_sdc_mode_table,
+                 tf_run_dir_in_cfg
                  ):
         self.step_dir = step_dir
         self.step_table = step_table
@@ -30,6 +31,7 @@ class TclScrGen(Messages):
         self.tf_var_common_table = tf_var_common_table
         self.tf_var_mmmc_table = tf_var_mmmc_table
         self.mmmc_sdc_mode_table = mmmc_sdc_mode_table
+        self.tf_run_dir_in_cfg = tf_run_dir_in_cfg
 
     def check_steps(self):
 
@@ -131,13 +133,44 @@ class TclScrGen(Messages):
         with open(tf_step_tcl_file, 'a') as f:
 
             sys.stdout = f
-            print('# Flow type')
-            print('set FLOW \"' + self.flow_name + '\"')
-            print('')
-
             print('# Steps')
             print('set STEP_NAME \"' + step_name + '\"')
             print('set PREVIOUS_STEP_NAME \"' + previous_step_name + '\"')
+            print('')
+
+            print('source ../in/cfg/vars_config.tcl')
+            print('')
+
+            if self.flow_name == 'syn' or self.flow_name == 'impl' or self.flow_name == 'power':
+                print('if {$PREVIOUS_STEP_NAME != \"\"} {read_db ../db/$PREVIOUS_STEP_NAME.db}')
+            print('')
+            print('# STEP START')
+            print(step_body)
+            print('# STEP FINISH')
+            print('')
+            if self.flow_name == 'syn':
+                print('write_db -all_root_attributes ../db/' + step_name + '.db')
+            elif self.flow_name == 'impl':
+                print('write_db -lib -sdc -def ../db/' + step_name + '.db')
+            elif self.flow_name == 'power':
+                print('write_db ../db/' + step_name + '.db')
+            print('')
+            print('exit')
+            sys.stdout = original_stdout
+
+        self.tf_info('(TFPrepareData.make_tcl_scripts_for_each_steps) finish')
+
+    def create_vars_config(self):
+
+        original_stdout = sys.stdout
+
+        tf_vars_config_tcl_file = self.tf_run_dir_in_cfg + '/vars_config.tcl'
+
+        with open(tf_vars_config_tcl_file, 'a') as f:
+            sys.stdout = f
+
+            print('# Flow type')
+            print('set FLOW \"' + self.flow_name + '\"')
             print('')
 
             print('# Variables from tf_var.tf_var_table')
@@ -198,24 +231,8 @@ class TclScrGen(Messages):
             print('set MMMC_SDC_MODES \"' + list_ + '\"')
             print('')
 
-            if self.flow_name == 'syn' or self.flow_name == 'impl' or self.flow_name == 'power':
-                print('if {$PREVIOUS_STEP_NAME != \"\"} {read_db ../db/$PREVIOUS_STEP_NAME.db}')
-            print('')
-            print('# STEP START')
-            print(step_body)
-            print('# STEP FINISH')
-            print('')
-            if self.flow_name == 'syn':
-                print('write_db -all_root_attributes ../db/' + step_name + '.db')
-            elif self.flow_name == 'impl':
-                print('write_db -lib -sdc -def ../db/' + step_name + '.db')
-            elif self.flow_name == 'power':
-                print('write_db ../db/' + step_name + '.db')
-            print('')
-            print('exit')
             sys.stdout = original_stdout
 
-        self.tf_info('(TFPrepareData.make_tcl_scripts_for_each_steps) finish')
 
     def run(self):
 
@@ -234,6 +251,8 @@ class TclScrGen(Messages):
 
         self.create_tf_tmp_step_table_file()
         import tf_tmp_step_table
+
+        self.create_vars_config()
 
         for i in range(len(tf_tmp_step_table.tf_tmp_step_table)):  # Create tcl scr for all steps
             if tf_tmp_step_table.tf_tmp_step_table[i][0] == 0:
