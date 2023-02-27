@@ -231,8 +231,7 @@ class TclScrGen(Messages):
             print('set MMMC_SDC_MODES \"' + list_ + '\"')
             print('')
 
-            sys.stdout = original_stdout
-
+        sys.stdout = original_stdout
 
     def run(self):
 

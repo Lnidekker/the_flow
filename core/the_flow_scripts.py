@@ -17,6 +17,8 @@ from run_eda_tools import RunEDATools
 
 if __name__ == "__main__":
 
+    m = Messages()
+
     '''
     Initialization
     '''
@@ -62,7 +64,7 @@ if __name__ == "__main__":
     try:
         tf_var.tf_var_table
     except AttributeError:
-        Messages.init_5('tf_var_table', 'tf_var')
+        m.init_5('tf_var_table', 'tf_var')
 
     tf = PrepareTfVars('', tf_var.tf_var_table)
     tf.parsing_tf_var_table()
@@ -76,7 +78,7 @@ if __name__ == "__main__":
     try:
         tf_var.tf_dir_structure_table
     except AttributeError:
-        Messages.init_5('tf_dir_structure_table', 'tf_var')
+        m.init_5('tf_dir_structure_table', 'tf_var')
 
     tf = PrepareTfVars(tf_var.tf_dir_structure_table, tf_var.tf_var_table)
     tf.parsing_tf_dir_structure_table()
