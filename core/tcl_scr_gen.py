@@ -156,7 +156,8 @@ class TclScrGen(Messages):
                 print('write_db ../db/' + step_name + '.db')
             print('')
             print('exit')
-            sys.stdout = original_stdout
+
+        sys.stdout = original_stdout
 
         self.tf_info('(TFPrepareData.make_tcl_scripts_for_each_steps) finish')
 
@@ -165,6 +166,9 @@ class TclScrGen(Messages):
         original_stdout = sys.stdout
 
         tf_vars_config_tcl_file = self.tf_run_dir_in_cfg + '/vars_config.tcl'
+
+        if self.tf_file_exists_check(tf_vars_config_tcl_file) == 'True':
+            os.remove(tf_vars_config_tcl_file)
 
         with open(tf_vars_config_tcl_file, 'a') as f:
             sys.stdout = f
