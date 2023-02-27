@@ -1,5 +1,6 @@
 import os
 import time
+import global_tf_vars
 from questions import Questions
 from jinja2 import Template
 
@@ -55,9 +56,9 @@ class RunEDATools(Questions):
             tf_go_to_next_step = 0
             if self.tf_dir_exists_check(self.tf_run_dir_db + '/' + self.tf_step_table[j][1] + '.db'):
                 self.q3(self.tf_step_table[j][1])
-                if self.tf_q3_flag == '1':
+                if global_tf_vars.tf_q3_flag == '1':
                     tf_go_to_next_step = 1
-                elif self.tf_q3_flag == '2':
+                elif global_tf_vars.tf_q3_flag == '2':
                     for k in range(j, len(self.tf_step_table)):
                         if self.tf_dir_exists_check(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db'):
                             os.remove(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db')
