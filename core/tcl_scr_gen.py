@@ -177,6 +177,18 @@ class TclScrGen(Messages):
             print('set FLOW \"' + self.flow_name + '\"')
             print('')
 
+            print('# Variables from tf_var_common.tf_var_common_table')
+            for i in range(len(self.tf_var_common_table)):
+                list_ = ''
+                for j in range(1, len(self.tf_var_common_table[i])):
+                    if list_ == '':
+                        list_ = self.tf_var_common_table[i][j]
+                    else:
+                        list_ = list_ + ' ' + self.tf_var_common_table[i][j]
+                if self.tf_var_common_table[i][0] != '':
+                    print('set ' + self.tf_var_common_table[i][0] + ' \"' + list_ + '\"')
+            print('')
+
             print('# Variables from tf_var.tf_var_table')
             for i in range(len(self.tf_var_table)):
                 list_ = ''
@@ -190,7 +202,6 @@ class TclScrGen(Messages):
             print('')
 
             print('# Variables from tf_var.tf_var_' + self.flow_name + '_table')
-
             if self.tf_var_flow_table != '':
                 for i in range(len(self.tf_var_flow_table)):
                     list_ = ''
@@ -201,18 +212,6 @@ class TclScrGen(Messages):
                             list_ = list_ + ' ' + self.tf_var_flow_table[i][j]
                     if self.tf_var_flow_table[i][0] != '':
                         print('set ' + self.tf_var_flow_table[i][0] + ' \"' + list_ + '\"')
-            print('')
-
-            print('# Variables from tf_var_common.tf_var_common_table')
-            for i in range(len(self.tf_var_common_table)):
-                list_ = ''
-                for j in range(1, len(self.tf_var_common_table[i])):
-                    if list_ == '':
-                        list_ = self.tf_var_common_table[i][j]
-                    else:
-                        list_ = list_ + ' ' + self.tf_var_common_table[i][j]
-                if self.tf_var_common_table[i][0] != '':
-                    print('set ' + self.tf_var_common_table[i][0] + ' \"' + list_ + '\"')
             print('')
 
             print('# MMMC presets from tf_var.tf_var_mmmc_table')
