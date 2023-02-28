@@ -71,11 +71,17 @@ class RunEDATools(Questions):
                     else:
                         os.system(self.eda_tool_run_command(self.tf_step_table[j][1]))
                     runtime = time.time() - t
-                    runtime_h = str(int(runtime // 3600))
-                    runtime_m = str(int((runtime % 3600) // 60))
-                    runtime_s = str(int((runtime % 60)))
+                    runtime_h = int(runtime // 3600)
+                    if 0 <= runtime_h < 10:
+                        runtime_h_sort = '0' + str(runtime_h)
+                    runtime_m = int((runtime % 3600) // 60)
+                    if 0 <= runtime_m < 10:
+                        runtime_m_sort = '0' + str(runtime_m)
+                    runtime_s = int((runtime % 60))
+                    if 0 <= runtime_s < 10:
+                        runtime_s_sort = '0' + str(runtime_s)
                     self.tf_info('finish to execute ' + self.tf_step_table[j][1] +
-                                 ' step. runtime: ' + runtime_h + ':' + runtime_m + ':' + runtime_s)
+                                 ' step. runtime: ' + runtime_h_sort + ':' + runtime_m_sort + ':' + runtime_s_sort)
                 elif self.tf_dir_exists_check('../db/' + self.tf_step_table[j - 1][1] + '.db'):
                     self.tf_info('start to execute ' + self.tf_step_table[j][1] + ' step')
                     t = time.time()
@@ -85,11 +91,17 @@ class RunEDATools(Questions):
                     else:
                         os.system(self.eda_tool_run_command(self.tf_step_table[j][1]))
                     runtime = time.time() - t
-                    runtime_h = str(int(runtime // 3600))
-                    runtime_m = str(int((runtime % 3600) // 60))
-                    runtime_s = str(int((runtime % 60)))
+                    runtime_h = int(runtime // 3600)
+                    if 0 <= runtime_h < 10:
+                        runtime_h_sort = '0' + str(runtime_h)
+                    runtime_m = int((runtime % 3600) // 60)
+                    if 0 <= runtime_m < 10:
+                        runtime_m_sort = '0' + str(runtime_m)
+                    runtime_s = int((runtime % 60))
+                    if 0 <= runtime_s < 10:
+                        runtime_s_sort = '0' + str(runtime_s)
                     self.tf_info('finish to execute ' + self.tf_step_table[j][1] +
-                                 ' step. runtime: ' + runtime_h + ':' + runtime_m + ':' + runtime_s)
+                                 ' step. runtime: ' + runtime_h_sort + ':' + runtime_m_sort + ':' + runtime_s_sort)
                 else:
                     self.tf_error('previous step db doesn\'t exist')
                     self.tf_exit_with_error()
