@@ -1,4 +1,5 @@
 import os
+import shutil
 import time
 import global_tf_vars
 from questions import Questions
@@ -91,7 +92,13 @@ class RunEDATools(Questions):
                 elif global_tf_vars.tf_q3_flag == '2':
                     for k in range(j, len(self.tf_step_table)):
                         if self.tf_dir_exists_check(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db'):
-                            os.remove(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db')
+                            try:
+                                os.remove(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db')
+                            except IsADirectoryError:
+                                shutil.rmtree(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db')
+                            else:
+                                os.remove(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db')
+
                             os.remove(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.log')
                             
             if tf_go_to_next_step == 0:
