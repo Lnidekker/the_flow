@@ -52,12 +52,18 @@ class RunEDATools(Questions):
         runtime_h = int(runtime // 3600)
         if 0 <= runtime_h < 10:
             runtime_h_sort = '0' + str(runtime_h)
+        else:
+            runtime_h_sort = str(runtime_h)
         runtime_m = int((runtime % 3600) // 60)
         if 0 <= runtime_m < 10:
             runtime_m_sort = '0' + str(runtime_m)
+        else:
+            runtime_m_sort = str(runtime_m)
         runtime_s = int((runtime % 60))
         if 0 <= runtime_s < 10:
             runtime_s_sort = '0' + str(runtime_s)
+        else:
+            runtime_s_sort = str(runtime_s)
         self.tf_info('finish to execute ' + step +
                      ' step. runtime: ' + runtime_h_sort + ':' + runtime_m_sort + ':' + runtime_s_sort)
 
