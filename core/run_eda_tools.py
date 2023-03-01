@@ -98,11 +98,13 @@ class RunEDATools(Questions):
                                 shutil.rmtree(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db')
                             else:
                                 os.remove(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db')
-
+                        if self.tf_dir_exists_check(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.log'):
                             os.remove(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.log')
+                        if self.tf_dir_exists_check(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.logv'):
                             os.remove(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.logv')
+                        if self.tf_dir_exists_check(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.cmd'):
                             os.remove(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.cmd')
-                            
+
             if tf_go_to_next_step == 0:
                 if self.tf_step_table[j][0] == 0:
                     self.execute_step(self.tf_step_table[j][1])
