@@ -11,6 +11,7 @@ class RunEDATools(Questions):
                  tf_from_step,
                  tf_from_step_name,
                  tf_run_dir_db,
+                 tf_run_dir_logs,
                  tf_q3_flag,
                  tf_use_xterm,
                  tf_step_table,
@@ -18,6 +19,7 @@ class RunEDATools(Questions):
         self.tf_from_step = tf_from_step
         self.tf_from_step_name = tf_from_step_name
         self.tf_run_dir_db = tf_run_dir_db
+        self.tf_run_dir_logs = tf_run_dir_logs
         self.tf_q3_flag = tf_q3_flag
         self.tf_use_xterm = tf_use_xterm
         self.tf_step_table = tf_step_table
@@ -90,6 +92,7 @@ class RunEDATools(Questions):
                     for k in range(j, len(self.tf_step_table)):
                         if self.tf_dir_exists_check(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db'):
                             os.remove(self.tf_run_dir_db + '/' + self.tf_step_table[k][1] + '.db')
+                            os.remove(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.log')
                             
             if tf_go_to_next_step == 0:
                 if self.tf_step_table[j][0] == 0:
