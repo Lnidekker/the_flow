@@ -16,7 +16,9 @@ class RunEDATools(Questions):
                  tf_q3_flag,
                  tf_use_xterm,
                  tf_step_table,
-                 flow_name):
+                 flow_name,
+                 tf_to_step,
+                 tf_to_step_name):
         self.tf_from_step = tf_from_step
         self.tf_from_step_name = tf_from_step_name
         self.tf_run_dir_db = tf_run_dir_db
@@ -25,6 +27,8 @@ class RunEDATools(Questions):
         self.tf_use_xterm = tf_use_xterm
         self.tf_step_table = tf_step_table
         self.flow_name = flow_name
+        self.tf_to_step = tf_to_step
+        self.tf_to_step_name = tf_to_step_name
 
     def eda_tool_run_command(self, step_name):
         if self.flow_name == 'syn':
@@ -72,6 +76,8 @@ class RunEDATools(Questions):
 
     def run(self):
 
+        tf_stop_on_step = 0
+
         if self.tf_from_step == 1:
             flag = 0
             for i in range(0, len(self.tf_step_table)):
@@ -103,7 +109,10 @@ class RunEDATools(Questions):
                         if self.tf_dir_exists_check(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.cmd'):
                             os.remove(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.cmd')
 
-            if tf_go_to_next_step == 0:
+            if self.tf_to_step == 1 and self.tf_to_step_name == self.tf_step_table[j][1]:
+                tf_stop_on_step = 1
+
+            if tf_go_to_next_step == 0 and tf_stop_on_step == 0:
                 if self.tf_step_table[j][0] == 0:
                     self.execute_step(self.tf_step_table[j][1])
                 elif self.tf_dir_exists_check('../db/' + self.tf_step_table[j - 1][1] + '.db'):

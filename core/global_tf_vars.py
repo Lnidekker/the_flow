@@ -55,6 +55,8 @@ tf_update_input_data = 0
 tf_from_step = 0
 tf_from_step_name = ''
 tf_start_dir = ''
+tf_to_step = 0
+tf_to_step_name = ''
 
 # Variables to navigate THE FLOW script
 tf_remove_run_dir = 0

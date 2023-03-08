@@ -3,7 +3,7 @@
 tf_help_message="
 Description: start THE FLOW execution.
 
-Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-from_step <str>] [-help]
+Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-from_step <str>] [-to_step <str>] [-help]
 
     -path <str> :
         absolute path to directory which consists tf_var.py file
@@ -38,8 +38,14 @@ Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interac
         start THE FLOW execution from chosen step which db already exists (the same like TF-Q3 = 2)
 
         Note:
-            - this option used only with [-ui_mode terminal]
+            - this option is used only with [-ui_mode terminal]
             - if [-ui_mode terminal] option used without [-from_step] steps with existing db are passed (the same like TF-Q3 = 1)
+
+    -to_step <str> :
+        finish THE FLOW execution when chosen step will done
+
+        Note:
+            - this option is used only with [-ui_mode terminal]
 
     -help :
         show help message in terminal window
@@ -62,6 +68,8 @@ tf_update_step_scripts=0
 tf_update_input_data=0
 tf_from_step=0
 tf_from_step_name=""
+tf_to_step=0
+tf_to_step_name=""
 tf_start_dir=$(pwd)
 
 for i in "$@"
@@ -127,6 +135,14 @@ else
       else
         tf_from_step_name=${argument_value[$j + 1]}
       fi
+    elif [[ ${argument_value[$j]} == "-to_step" ]] ; then
+      tf_to_step=1
+      if [[ $tf_ui_mode != "terminal" ]] ; then
+        echo -e "\e[31mTF_ERROR   : Please, use option [-ui_mode terminal] before [-to_step].\e[0m"
+        exit
+      else
+        tf_to_step_name=${argument_value[$j + 1]}
+      fi
     elif [[ ${argument_value[$j]} == "-help" ]] ; then
       echo "$tf_help_message"
     else
@@ -137,7 +153,8 @@ else
             ${argument_value[$j]} != "cfg" &&
             ${argument_value[$j]} != "step_scripts" &&
             ${argument_value[$j]} != "input_data" &&
-            ${argument_value[$j]} != "$tf_from_step_name"
+            ${argument_value[$j]} != "$tf_from_step_name" &&
+            ${argument_value[$j]} != "$tf_to_step_name"
             ]] ; then
         echo -e "\e[31mTF_ERROR   : Unknown option is [${argument_value[$j]}]. Please, run [the_flow -help] and read description.\e[0m"
         exit
@@ -204,4 +221,6 @@ python3 "$(which the_flow)"_scripts.py \
         $tf_update_input_data \
         $tf_from_step \
         "$tf_from_step_name" \
-        "$tf_start_dir"
+        "$tf_start_dir" \
+        $tf_to_step \
+        "$tf_to_step_name"
