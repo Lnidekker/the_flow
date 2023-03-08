@@ -109,9 +109,6 @@ class RunEDATools(Questions):
                         if self.tf_dir_exists_check(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.cmd'):
                             os.remove(self.tf_run_dir_logs + '/' + self.tf_step_table[k][1] + '.cmd')
 
-            if self.tf_to_step == 1 and self.tf_to_step_name == self.tf_step_table[j][1]:
-                tf_stop_on_step = 1
-
             if tf_go_to_next_step == 0 and tf_stop_on_step == 0:
                 if self.tf_step_table[j][0] == 0:
                     self.execute_step(self.tf_step_table[j][1])
@@ -120,3 +117,6 @@ class RunEDATools(Questions):
                 else:
                     self.tf_error('previous step db doesn\'t exist')
                     self.tf_exit_with_error()
+
+                if self.tf_to_step == 1 and self.tf_to_step_name == self.tf_step_table[j][1]:
+                    tf_stop_on_step = 1
