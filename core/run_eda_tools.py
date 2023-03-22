@@ -109,6 +109,8 @@ class RunEDATools(Questions):
                 self.tf_error('Step name "' + self.tf_only_step_name + '" from [-step] option doesn\'t exist.')
                 self.tf_exit_with_error()
 
+            self.tf_from_step = self.tf_only_step
+            self.tf_to_step = self.tf_only_step
             self.tf_from_step_name = self.tf_only_step_name
             self.tf_to_step_name = self.tf_only_step_name
 
