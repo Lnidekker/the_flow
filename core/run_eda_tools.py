@@ -18,7 +18,9 @@ class RunEDATools(Questions):
                  tf_step_table,
                  flow_name,
                  tf_to_step,
-                 tf_to_step_name):
+                 tf_to_step_name,
+                 tf_only_step,
+                 tf_only_step_name):
         self.tf_from_step = tf_from_step
         self.tf_from_step_name = tf_from_step_name
         self.tf_run_dir_db = tf_run_dir_db
@@ -29,6 +31,8 @@ class RunEDATools(Questions):
         self.flow_name = flow_name
         self.tf_to_step = tf_to_step
         self.tf_to_step_name = tf_to_step_name
+        self.tf_only_step = tf_only_step
+        self.tf_only_step_name = tf_only_step_name
 
     def eda_tool_run_command(self, step_name):
         if self.flow_name == 'syn':
@@ -86,6 +90,27 @@ class RunEDATools(Questions):
             if flag == 0:
                 self.tf_error('Step name "' + self.tf_from_step_name + '" from [-from_step] option doesn\'t exist.')
                 self.tf_exit_with_error()
+
+        if self.tf_to_step == 1:
+            flag = 0
+            for i in range(0, len(self.tf_step_table)):
+                if self.tf_step_table[i][1] == self.tf_to_step_name:
+                    flag = 1
+            if flag == 0:
+                self.tf_error('Step name "' + self.tf_to_step_name + '" from [-to_step] option doesn\'t exist.')
+                self.tf_exit_with_error()
+
+        if self.tf_only_step == 1:
+            flag = 0
+            for i in range(0, len(self.tf_step_table)):
+                if self.tf_step_table[i][1] == self.tf_only_step_name:
+                    flag = 1
+            if flag == 0:
+                self.tf_error('Step name "' + self.tf_only_step_name + '" from [-step] option doesn\'t exist.')
+                self.tf_exit_with_error()
+
+            self.tf_from_step_name = self.tf_only_step_name
+            self.tf_to_step_name = self.tf_only_step_name
 
         for j in range(0, len(self.tf_step_table)):
 

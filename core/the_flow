@@ -3,7 +3,7 @@
 tf_help_message="
 Description: start THE FLOW execution.
 
-Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-from_step <str>] [-to_step <str>] [-help]
+Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-from_step <str>] [-to_step <str>] [-step <str>] [-help]
 
     -path <str> :
         absolute path to directory which consists tf_var.py file
@@ -47,6 +47,12 @@ Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interac
         Note:
             - this option is used only with [-ui_mode terminal]
 
+    -step <str> :
+        execute only one step
+
+        Note:
+            - this option is used only with [-ui_mode terminal]
+
     -help :
         show help message in terminal window
 "
@@ -70,6 +76,9 @@ tf_from_step=0
 tf_from_step_name=""
 tf_to_step=0
 tf_to_step_name=""
+tf_only_step=0
+tf_only_step_name=""
+
 tf_start_dir=$(pwd)
 
 for i in "$@"
@@ -143,6 +152,14 @@ else
       else
         tf_to_step_name=${argument_value[$j + 1]}
       fi
+    elif [[ ${argument_value[$j]} == "-step" ]] ; then
+      tf_only_step=1
+      if [[ $tf_ui_mode != "terminal" ]] ; then
+        echo -e "\e[31mTF_ERROR   : Please, use option [-ui_mode terminal] before [-step].\e[0m"
+        exit
+      else
+        tf_only_step_name=${argument_value[$j + 1]}
+      fi
     elif [[ ${argument_value[$j]} == "-help" ]] ; then
       echo "$tf_help_message"
     else
@@ -154,7 +171,8 @@ else
             ${argument_value[$j]} != "step_scripts" &&
             ${argument_value[$j]} != "input_data" &&
             ${argument_value[$j]} != "$tf_from_step_name" &&
-            ${argument_value[$j]} != "$tf_to_step_name"
+            ${argument_value[$j]} != "$tf_to_step_name" &&
+            ${argument_value[$j]} != "$tf_only_step_name"
             ]] ; then
         echo -e "\e[31mTF_ERROR   : Unknown option is [${argument_value[$j]}]. Please, run [the_flow -help] and read description.\e[0m"
         exit
@@ -207,6 +225,16 @@ if [[ $tf_update_run_dir == 1 ]] ; then
   fi
 fi
 
+if [[ $tf_only_step == 1 && $tf_from_step == 1 ]] ; then
+  echo -e "\e[31mTF_ERROR   : You cannot use [-step] and [-from_step] options at the same time.\e[0m"
+  exit
+fi
+
+if [[ $tf_only_step == 1 && $tf_to_step == 1 ]] ; then
+  echo -e "\e[31mTF_ERROR   : You cannot use [-step] and [-to_step] options at the same time.\e[0m"
+  exit
+fi
+
 python3 "$(which the_flow)"_scripts.py \
         "$tf_path" \
         $tf_is_syn \
@@ -223,4 +251,6 @@ python3 "$(which the_flow)"_scripts.py \
         "$tf_from_step_name" \
         "$tf_start_dir" \
         $tf_to_step \
-        "$tf_to_step_name"
+        "$tf_to_step_name" \
+        $tf_only_step \
+        "$tf_only_step_name"

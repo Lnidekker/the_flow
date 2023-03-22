@@ -40,6 +40,8 @@ if __name__ == "__main__":
     global_tf_vars.tf_start_dir = str(sys.argv[14])
     global_tf_vars.tf_to_step = int(sys.argv[15])
     global_tf_vars.tf_to_step_name = str(sys.argv[16])
+    global_tf_vars.tf_only_step = int(sys.argv[17])
+    global_tf_vars.tf_only_step_name = str(sys.argv[18])
 
     if global_tf_vars.tf_ux_ui_mode == 'interactive':
         global_tf_vars.tf_q1_answer = 0
@@ -330,7 +332,10 @@ if __name__ == "__main__":
                               tf_var.tf_step_syn_table,
                               'syn',
                               global_tf_vars.tf_to_step,
-                              global_tf_vars.tf_to_step_name)
+                              global_tf_vars.tf_to_step_name,
+                              global_tf_vars.tf_only_step,
+                              global_tf_vars.tf_only_step_name
+                              )
         if global_tf_vars.tf_is_impl == 1:
             run = RunEDATools(global_tf_vars.tf_from_step,
                               global_tf_vars.tf_from_step_name,
@@ -341,7 +346,9 @@ if __name__ == "__main__":
                               tf_var.tf_step_impl_table,
                               'impl',
                               global_tf_vars.tf_to_step,
-                              global_tf_vars.tf_to_step_name
+                              global_tf_vars.tf_to_step_name,
+                              global_tf_vars.tf_only_step,
+                              global_tf_vars.tf_only_step_name
                               )
         if global_tf_vars.tf_is_atpg == 1:
             run = RunEDATools(global_tf_vars.tf_from_step,
@@ -353,7 +360,9 @@ if __name__ == "__main__":
                               tf_var.tf_step_atpg_table,
                               'atpg',
                               global_tf_vars.tf_to_step,
-                              global_tf_vars.tf_to_step_name
+                              global_tf_vars.tf_to_step_name,
+                              global_tf_vars.tf_only_step,
+                              global_tf_vars.tf_only_step_name
                               )
         if global_tf_vars.tf_is_power == 1:
             run = RunEDATools(global_tf_vars.tf_from_step,
@@ -365,7 +374,9 @@ if __name__ == "__main__":
                               tf_var.tf_step_power_table,
                               'power',
                               global_tf_vars.tf_to_step,
-                              global_tf_vars.tf_to_step_name
+                              global_tf_vars.tf_to_step_name,
+                              global_tf_vars.tf_only_step,
+                              global_tf_vars.tf_only_step_name
                               )
         run.run()
 

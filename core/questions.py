@@ -65,7 +65,7 @@ class Questions(CommonFunc):
                 '(1/2): '
             )
         elif global_tf_vars.tf_q3_answer == 1:
-            if step_name == global_tf_vars.tf_from_step_name:
+            if step_name == global_tf_vars.tf_from_step_name or step_name == global_tf_vars.tf_only_step_name:
                 global_tf_vars.tf_q3_flag = '2'
             else:
                 self.tf_info('Database of step ' + step_name + ' already exists.')
