@@ -19,7 +19,7 @@ Run directory structure:
 """
 import os
 import global_tf_vars
-import common_func
+from common_func import CommonFunc
 
 
 def run_dir_structure_is():
@@ -72,4 +72,4 @@ def create_run_dir():
             global_tf_vars.tf_run_dir_work_tmp:
 
         os.mkdir(i)
-        common_func.tf_info('Directory ' + i + ' has been created.')
+        CommonFunc.tf_info('Directory ' + i + ' has been created.')

@@ -5,12 +5,11 @@ import sys
 from jinja2 import Template
 import tf_var
 import tf_var_common
-import common_func
 import global_tf_vars
-from messages import messages
+from messages import Messages
 
 
-class phy_gen:
+class PhyGen(Messages):
 
     def __init__(self, phy_lef_table_, phy_verilog_table_, phy_cl_table_):
         self.phy_lef_table = phy_lef_table_
@@ -26,11 +25,11 @@ class phy_gen:
             for j in range(len(global_tf_vars.tf_var_mmmc_table)):
                 if self.phy_lef_table[i][0] == global_tf_vars.tf_var_mmmc_table[j]:
                     for n in range(1, len(self.phy_lef_table[i])):
-                        if common_func.tf_file_exists_check(self.phy_lef_table[i][n]) == 'True':
+                        if self.tf_file_exists_check(self.phy_lef_table[i][n]) == 'True':
                             global_tf_vars.phy_lef_files = global_tf_vars.phy_lef_files + ' \\ \n    ' + \
                                                            self.phy_lef_table[i][n]
-                        elif common_func.tf_file_exists_check(self.phy_lef_table[i][n]) == 'False':
-                            messages.phygen_1(self.phy_lef_table[i][n], 'phy_lef_table')
+                        elif self.tf_file_exists_check(self.phy_lef_table[i][n]) == 'False':
+                            self.phygen_1(self.phy_lef_table[i][n], 'phy_lef_table')
 
     @staticmethod
     def create_lef_list_template(phy_lef_files):
@@ -52,11 +51,11 @@ class phy_gen:
             for j in range(len(global_tf_vars.tf_var_mmmc_table)):
                 if self.phy_verilog_table[i][0] == global_tf_vars.tf_var_mmmc_table[j]:
                     for n in range(1, len(self.phy_verilog_table[i])):
-                        if common_func.tf_file_exists_check(self.phy_verilog_table[i][n]) == 'True':
+                        if self.tf_file_exists_check(self.phy_verilog_table[i][n]) == 'True':
                             global_tf_vars.phy_verilog_files = global_tf_vars.phy_verilog_files + ' \\ \n    ' + \
                                                            self.phy_verilog_table[i][n]
-                        elif common_func.tf_file_exists_check(self.phy_verilog_table[i][n]) == 'False':
-                            messages.phygen_1(self.phy_verilog_table[i][n], 'phy_verilog_table')
+                        elif self.tf_file_exists_check(self.phy_verilog_table[i][n]) == 'False':
+                            self.phygen_1(self.phy_verilog_table[i][n], 'phy_verilog_table')
 
     @staticmethod
     def create_verilog_list_template(phy_verilog_files):
@@ -78,11 +77,11 @@ class phy_gen:
             for j in range(len(global_tf_vars.tf_var_mmmc_table)):
                 if self.phy_cl_table[i][0] == global_tf_vars.tf_var_mmmc_table[j]:
                     for n in range(1, len(self.phy_cl_table[i])):
-                        if common_func.tf_dir_exists_check(self.phy_cl_table[i][n]):
+                        if self.tf_dir_exists_check(self.phy_cl_table[i][n]):
                             global_tf_vars.phy_cl_dirs = global_tf_vars.phy_cl_dirs + ' \\ \n    ' + \
                                                            self.phy_cl_table[i][n]
                         else:
-                            messages.phygen_1(self.phy_cl_table[i][n], 'phy_cl_table')
+                            self.phygen_1(self.phy_cl_table[i][n], 'phy_cl_table')
 
     @staticmethod
     def create_cl_list_template(phy_cl_dirs):
@@ -105,17 +104,17 @@ class phy_gen:
         phy_config_file = global_tf_vars.tf_run_dir_in_cfg + '/phy_config.tcl'
         with open(phy_config_file, 'a') as f:
             sys.stdout = f
-            print(phy_gen.create_lef_list_template(global_tf_vars.phy_lef_files))
+            print(PhyGen.create_lef_list_template(global_tf_vars.phy_lef_files))
             print('')
-            print(phy_gen.create_verilog_list_template(global_tf_vars.phy_verilog_files))
+            print(PhyGen.create_verilog_list_template(global_tf_vars.phy_verilog_files))
             print('')
-            print(phy_gen.create_cl_list_template(global_tf_vars.phy_cl_dirs))
+            print(PhyGen.create_cl_list_template(global_tf_vars.phy_cl_dirs))
         sys.stdout = original_stdout
 
     @staticmethod
     def run_phy_gen():
 
-        tf_phy_gen = phy_gen(tf_var_common.phy_lef_table, tf_var_common.phy_verilog_table, tf_var_common.phy_cl_table)
+        tf_phy_gen = PhyGen(tf_var_common.phy_lef_table, tf_var_common.phy_verilog_table, tf_var_common.phy_cl_table)
         tf_phy_gen.make_lef_list()
         tf_phy_gen.make_verilog_list()
         tf_phy_gen.make_cl_list()

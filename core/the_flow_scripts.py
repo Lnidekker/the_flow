@@ -4,18 +4,20 @@ This file contains all usual use cases of THE FLOW.
 import sys
 import os
 import shutil
-import prepare_tf_vars
+from prepare_tf_vars import PrepareTfVars
 import create_run_dir
 import copy_input_data
 import global_tf_vars
-import common_func
-import q1
-import q2
-from messages import messages
+from common_func import CommonFunc
+from questions import Questions
+from messages import Messages
 import check_tf_var_files
-
+from questions import Questions
+from run_eda_tools import RunEDATools
 
 if __name__ == "__main__":
+
+    m = Messages()
 
     '''
     Initialization
@@ -36,6 +38,10 @@ if __name__ == "__main__":
     global_tf_vars.tf_from_step = int(sys.argv[12])
     global_tf_vars.tf_from_step_name = str(sys.argv[13])
     global_tf_vars.tf_start_dir = str(sys.argv[14])
+    global_tf_vars.tf_to_step = int(sys.argv[15])
+    global_tf_vars.tf_to_step_name = str(sys.argv[16])
+    global_tf_vars.tf_only_step = int(sys.argv[17])
+    global_tf_vars.tf_only_step_name = str(sys.argv[18])
 
     if global_tf_vars.tf_ux_ui_mode == 'interactive':
         global_tf_vars.tf_q1_answer = 0
@@ -62,9 +68,9 @@ if __name__ == "__main__":
     try:
         tf_var.tf_var_table
     except AttributeError:
-        messages.init_5('tf_var_table', 'tf_var')
+        m.init_5('tf_var_table', 'tf_var')
 
-    tf = prepare_tf_vars.prepare_tf_vars('', tf_var.tf_var_table)
+    tf = PrepareTfVars('', tf_var.tf_var_table)
     tf.parsing_tf_var_table()
 
     # Add global_tf_vars.tf_cfg_common_dir value to PYTHONPATH to see tf_var_common.py file
@@ -76,18 +82,18 @@ if __name__ == "__main__":
     try:
         tf_var.tf_dir_structure_table
     except AttributeError:
-        messages.init_5('tf_dir_structure_table', 'tf_var')
+        m.init_5('tf_dir_structure_table', 'tf_var')
 
-    tf = prepare_tf_vars.prepare_tf_vars(tf_var.tf_dir_structure_table, tf_var.tf_var_table)
+    tf = PrepareTfVars(tf_var.tf_dir_structure_table, tf_var.tf_var_table)
     tf.parsing_tf_dir_structure_table()
 
     # Check tables existing from tf_var and tf_var_common
     import check_tables
 
-    import mmmc_gen
-    import phy_gen
+    from mmmc_gen import MmmcGen
+    from phy_gen import PhyGen
 
-    import create_tcl_scripts_for_each_step
+    from tcl_scr_gen import TclScrGen
 
     from run_eda_tools import RunEDATools
 
@@ -106,13 +112,14 @@ if __name__ == "__main__":
 
     # Set global_tf_vars to create_run_dir.create_run_dir
     if os.path.isdir(global_tf_vars.tf_run_dir):
-        q1.q1()
+        q = Questions()
+        q.q1()
 
     # Delete run dir
     if os.path.isdir(global_tf_vars.tf_run_dir) and global_tf_vars.tf_remove_run_dir == 1:
         os.system('chmod 750 -R ' + global_tf_vars.tf_run_dir)
         shutil.rmtree(global_tf_vars.tf_run_dir)
-        common_func.tf_info('Directory ' + global_tf_vars.tf_run_dir + ' has been deleted.')
+        CommonFunc.tf_info('Directory ' + global_tf_vars.tf_run_dir + ' has been deleted.')
 
     # Create run dir
     if not os.path.isdir(global_tf_vars.tf_run_dir):
@@ -167,17 +174,141 @@ if __name__ == "__main__":
     if global_tf_vars.tf_update_run_dir_in_cfg:
         for i in os.scandir(global_tf_vars.tf_run_dir_in_cfg):
             os.remove(i)
-        mmmc_gen.mmmc_gen.run_mmmc_gen()
-        phy_gen.phy_gen.run_phy_gen()
+        MmmcGen.run_mmmc_gen()
+        PhyGen.run_phy_gen()
 
     '''
     TCL_SCR Generator
     '''
 
+    global_tf_vars.tf_tmp_file_steps_import = global_tf_vars.tf_run_dir_work_tmp + '/tf_tmp_file_steps_import.py'
+    global_tf_vars.tf_tmp_step_table = global_tf_vars.tf_run_dir_work_tmp + '/tf_tmp_step_table.py'
+
     # Create .tcl file for each step
 
     if global_tf_vars.tf_update_run_dir_scripts:
-        create_tcl_scripts_for_each_step.run_create_tcl_scripts_for_each_step()
+
+        if global_tf_vars.tf_is_syn:
+            if global_tf_vars.tf_var_syn_table_exists:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_syn_steps_dir,
+                                            tf_var.tf_step_syn_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'syn',
+                                            tf_var.tf_var_table,
+                                            tf_var.tf_var_syn_table,
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
+            else:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_syn_steps_dir,
+                                            tf_var.tf_step_syn_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'syn',
+                                            tf_var.tf_var_table,
+                                            '',
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
+
+        if global_tf_vars.tf_is_impl:
+            if global_tf_vars.tf_var_impl_table_exists:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_impl_steps_dir,
+                                            tf_var.tf_step_impl_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'impl',
+                                            tf_var.tf_var_table,
+                                            tf_var.tf_var_impl_table,
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
+            else:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_impl_steps_dir,
+                                            tf_var.tf_step_impl_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'impl',
+                                            tf_var.tf_var_table,
+                                            '',
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
+
+        if global_tf_vars.tf_is_atpg:
+            if global_tf_vars.tf_var_atpg_table_exists:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_atpg_steps_dir,
+                                            tf_var.tf_step_atpg_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'atpg',
+                                            tf_var.tf_var_table,
+                                            tf_var.tf_var_atpg_table,
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
+            else:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_atpg_steps_dir,
+                                            tf_var.tf_step_atpg_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'atpg',
+                                            tf_var.tf_var_table,
+                                            '',
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
+
+        if global_tf_vars.tf_is_power:
+            if global_tf_vars.tf_var_power_table_exists:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_power_steps_dir,
+                                            tf_var.tf_step_power_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'power',
+                                            tf_var.tf_var_table,
+                                            tf_var.tf_var_power_table,
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
+            else:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_power_steps_dir,
+                                            tf_var.tf_step_power_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'power',
+                                            tf_var.tf_var_table,
+                                            '',
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
+
+        run_tcl_scr_gen.run()
 
     '''
     Run EDA tools
@@ -187,41 +318,66 @@ if __name__ == "__main__":
     os.chdir(global_tf_vars.tf_run_dir_work)
 
     # Run to execute steps one by one
-    q2.q2()
+
+    Questions.q2()
 
     if global_tf_vars.tf_q2_flag == '1':
         if global_tf_vars.tf_is_syn == 1:
             run = RunEDATools(global_tf_vars.tf_from_step,
                               global_tf_vars.tf_from_step_name,
                               global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_run_dir_logs,
                               global_tf_vars.tf_q3_flag,
                               global_tf_vars.tf_use_xterm,
                               tf_var.tf_step_syn_table,
-                              'syn')
+                              'syn',
+                              global_tf_vars.tf_to_step,
+                              global_tf_vars.tf_to_step_name,
+                              global_tf_vars.tf_only_step,
+                              global_tf_vars.tf_only_step_name
+                              )
         if global_tf_vars.tf_is_impl == 1:
             run = RunEDATools(global_tf_vars.tf_from_step,
                               global_tf_vars.tf_from_step_name,
                               global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_run_dir_logs,
                               global_tf_vars.tf_q3_flag,
                               global_tf_vars.tf_use_xterm,
                               tf_var.tf_step_impl_table,
-                              'impl')
+                              'impl',
+                              global_tf_vars.tf_to_step,
+                              global_tf_vars.tf_to_step_name,
+                              global_tf_vars.tf_only_step,
+                              global_tf_vars.tf_only_step_name
+                              )
         if global_tf_vars.tf_is_atpg == 1:
             run = RunEDATools(global_tf_vars.tf_from_step,
                               global_tf_vars.tf_from_step_name,
                               global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_run_dir_logs,
                               global_tf_vars.tf_q3_flag,
                               global_tf_vars.tf_use_xterm,
                               tf_var.tf_step_atpg_table,
-                              'atpg')
+                              'atpg',
+                              global_tf_vars.tf_to_step,
+                              global_tf_vars.tf_to_step_name,
+                              global_tf_vars.tf_only_step,
+                              global_tf_vars.tf_only_step_name
+                              )
         if global_tf_vars.tf_is_power == 1:
             run = RunEDATools(global_tf_vars.tf_from_step,
                               global_tf_vars.tf_from_step_name,
                               global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_run_dir_logs,
                               global_tf_vars.tf_q3_flag,
                               global_tf_vars.tf_use_xterm,
                               tf_var.tf_step_power_table,
-                              'power')
+                              'power',
+                              global_tf_vars.tf_to_step,
+                              global_tf_vars.tf_to_step_name,
+                              global_tf_vars.tf_only_step,
+                              global_tf_vars.tf_only_step_name
+                              )
         run.run()
 
     elif global_tf_vars.tf_q2_flag == '2':
