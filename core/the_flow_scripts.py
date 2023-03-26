@@ -95,7 +95,7 @@ if __name__ == "__main__":
 
     from tcl_scr_gen import TclScrGen
 
-    import run_eda_tools
+    from run_eda_tools import RunEDATools
 
     '''
     Check input data

@@ -52,6 +52,7 @@ class RunEDATools(Questions):
                 'voltus -stylus -file ../scripts/{{ step_name }}.tcl -log ../logs/{{ step_name }}.log -overwrite')
             return t.render(step_name=step_name)
 
+
     def execute_step(self, step):
         self.tf_info('start to execute ' + step + ' step')
         t = time.time()
