@@ -3,7 +3,7 @@
 tf_help_message="
 Description: start THE FLOW execution.
 
-Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-from_step <str>] [-to_step <str>] [-step <str>] [-help]
+Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-formal] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-from_step <str>] [-to_step <str>] [-step <str>] [-help]
 
     -path <str> :
         absolute path to directory which consists tf_var.py file
@@ -19,6 +19,9 @@ Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interac
 
     -power :
         execute power analysis flow
+
+    -formal :
+        execute formal verification flow
 
     -ui_mode [interactive] [terminal] :
         interactive - (default) turn on THE FLOW ui functional
@@ -78,6 +81,7 @@ tf_to_step=0
 tf_to_step_name=""
 tf_only_step=0
 tf_only_step_name=""
+tf_is_folmal=0
 
 tf_start_dir=$(pwd)
 
@@ -108,6 +112,8 @@ else
       tf_is_atpg=1
     elif [[ ${argument_value[$j]} == "-power" ]] ; then
       tf_is_power=1
+    elif [[ ${argument_value[$j]} == "-formal" ]] ; then
+      tf_is_folmal=1
     elif [[ ${argument_value[$j]} == "-ui_mode" ]] ; then
       if [[ ${argument_value[$j + 1]} == "interactive" ]] ; then
         tf_ui_mode="interactive"
@@ -253,4 +259,5 @@ python3 "$(which the_flow)"_scripts.py \
         $tf_to_step \
         "$tf_to_step_name" \
         $tf_only_step \
-        "$tf_only_step_name"
+        "$tf_only_step_name" \
+        $tf_is_folmal

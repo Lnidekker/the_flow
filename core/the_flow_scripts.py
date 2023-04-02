@@ -42,6 +42,7 @@ if __name__ == "__main__":
     global_tf_vars.tf_to_step_name = str(sys.argv[16])
     global_tf_vars.tf_only_step = int(sys.argv[17])
     global_tf_vars.tf_only_step_name = str(sys.argv[18])
+    global_tf_vars.tf_is_formal = int(sys.argv[19])
 
     if global_tf_vars.tf_ux_ui_mode == 'interactive':
         global_tf_vars.tf_q1_answer = 0
@@ -168,6 +169,11 @@ if __name__ == "__main__":
             for k in range(len(tf_var.tf_var_mmmc_power_table)):
                 if tf_var.tf_var_mmmc_power_table[k] != '':
                     global_tf_vars.tf_var_mmmc_table[n + k] = tf_var.tf_var_mmmc_power_table[k]
+
+        if global_tf_vars.tf_is_formal == 1 and global_tf_vars.tf_var_mmmc_formal_table_exists == 1:
+            for k in range(len(tf_var.tf_var_mmmc_formal_table)):
+                if tf_var.tf_var_mmmc_formal_table[k] != '':
+                    global_tf_vars.tf_var_mmmc_table[n + k] = tf_var.tf_var_mmmc_formal_table[k]
 
     prepare_mmmc_presets()
 
@@ -307,6 +313,35 @@ if __name__ == "__main__":
                                             tf_var.tf_var_mmmc_table,
                                             tf_var.mmmc_sdc_mode_table,
                                             global_tf_vars.tf_run_dir_in_cfg)
+        if global_tf_vars.tf_is_formal:
+            if global_tf_vars.tf_var_formal_table_exists:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_formal_steps_dir,
+                                            tf_var.tf_step_formal_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'formal',
+                                            tf_var.tf_var_table,
+                                            tf_var.tf_var_formal_table,
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
+            else:
+                run_tcl_scr_gen = TclScrGen(global_tf_vars.tf_formal_steps_dir,
+                                            tf_var.tf_step_formal_table,
+                                            global_tf_vars.tf_run_dir_scripts,
+                                            global_tf_vars.tf_run_dir_work_tmp,
+                                            global_tf_vars.tf_tmp_file_steps_import,
+                                            global_tf_vars.tf_tmp_step_table,
+                                            'formal',
+                                            tf_var.tf_var_table,
+                                            '',
+                                            tf_var_common.tf_var_common_table,
+                                            tf_var.tf_var_mmmc_table,
+                                            tf_var.mmmc_sdc_mode_table,
+                                            global_tf_vars.tf_run_dir_in_cfg)
 
         run_tcl_scr_gen.run()
 
@@ -378,6 +413,21 @@ if __name__ == "__main__":
                               global_tf_vars.tf_only_step,
                               global_tf_vars.tf_only_step_name
                               )
+        if global_tf_vars.tf_is_formal == 1:
+            run = RunEDATools(global_tf_vars.tf_from_step,
+                              global_tf_vars.tf_from_step_name,
+                              global_tf_vars.tf_run_dir_db,
+                              global_tf_vars.tf_run_dir_logs,
+                              global_tf_vars.tf_q3_flag,
+                              global_tf_vars.tf_use_xterm,
+                              tf_var.tf_step_formal_table,
+                              'formal',
+                              global_tf_vars.tf_to_step,
+                              global_tf_vars.tf_to_step_name,
+                              global_tf_vars.tf_only_step,
+                              global_tf_vars.tf_only_step_name
+                              )
+
         run.run()
 
     elif global_tf_vars.tf_q2_flag == '2':

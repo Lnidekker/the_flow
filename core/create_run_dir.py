@@ -35,6 +35,8 @@ def run_dir_structure_is():
         global_tf_vars.tf_run_dir = global_tf_vars.tf_workarea_atpg_dir + '/' + global_tf_vars.tf_exp_name_atpg
     elif global_tf_vars.tf_is_power == 1:
         global_tf_vars.tf_run_dir = global_tf_vars.tf_workarea_power_dir + '/' + global_tf_vars.tf_exp_name_power
+    elif global_tf_vars.tf_is_formal == 1:
+        global_tf_vars.tf_run_dir = global_tf_vars.tf_workarea_formal_dir + '/' + global_tf_vars.tf_exp_name_formal
 
     global_tf_vars.tf_run_dir_db = global_tf_vars.tf_run_dir + '/db'
     global_tf_vars.tf_run_dir_in = global_tf_vars.tf_run_dir + '/in'
