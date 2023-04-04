@@ -9,15 +9,18 @@ tf_workarea_syn_dir = ''
 tf_workarea_impl_dir = ''
 tf_workarea_atpg_dir = ''
 tf_workarea_power_dir = ''
+tf_workarea_formal_dir = ''
 tf_syn_steps_dir = {}
 tf_impl_steps_dir = {}
 tf_atpg_steps_dir = {}
 tf_power_steps_dir = {}
+tf_formal_steps_dir = {}
 tf_rtl_dir = {}
 tf_syn_src_dir = {}
 tf_impl_src_dir = {}
 tf_atpg_src_dir = {}
 tf_power_src_dir = {}
+tf_formal_src_dir = {}
 
 # Variables from tf_var_table
 tf_design_name = ''
@@ -25,6 +28,7 @@ tf_exp_name_syn = ''
 tf_exp_name_impl = ''
 tf_exp_name_atpg = ''
 tf_exp_name_power = ''
+tf_exp_name_formal = ''
 
 # Run dir structure
 tf_run_dir = ''
@@ -59,6 +63,7 @@ tf_to_step = 0
 tf_to_step_name = ''
 tf_only_step = 0
 tf_only_step_name = ''
+tf_is_formal = 0
 
 # Variables to navigate THE FLOW script
 tf_remove_run_dir = 0
@@ -79,12 +84,14 @@ tf_var_syn_table_exists = 1
 tf_var_impl_table_exists = 1
 tf_var_atpg_table_exists = 1
 tf_var_power_table_exists = 1
+tf_var_formal_table_exists = 1
 tf_var_files = ''
 tf_var_files_split = []
 tf_var_mmmc_syn_table_exists = 1
 tf_var_mmmc_impl_table_exists = 1
 tf_var_mmmc_atpg_table_exists = 1
 tf_var_mmmc_power_table_exists = 1
+tf_var_mmmc_formal_table_exists = 1
 
 # mmmc_gen variables
 mmmc_analysis_view_table_sdc_mode = {}

@@ -121,6 +121,12 @@ def check_tables():
         global_tf_vars.tf_var_mmmc_power_table_exists = 0
 
     try:
+        tf_var.tf_var_mmmc_formal_table
+    except AttributeError:
+        m.init_6('tf_var_mmmc_formal_table', 'tf_var.py')
+        global_tf_vars.tf_var_mmmc_formal_table_exists = 0
+
+    try:
         tf_var.mmmc_analysis_view_syn_table
     except AttributeError:
         if global_tf_vars.tf_is_syn == 1:
@@ -182,6 +188,14 @@ def check_tables():
             m.init_6('tf_step_power_table', 'tf_var.py')
 
     try:
+        tf_var.tf_step_formal_table
+    except AttributeError:
+        if global_tf_vars.tf_is_formal == 1:
+            m.init_5('tf_step_formal_table', 'tf_var.py')
+        else:
+            m.init_6('tf_step_formal_table', 'tf_var.py')
+
+    try:
         tf_var_common.phy_lef_table
     except AttributeError:
         if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:
@@ -228,3 +242,9 @@ def check_tables():
     except AttributeError:
         m.init_6('tf_var_power_table', 'tf_var.py')
         global_tf_vars.tf_var_power_table_exists = 0
+
+    try:
+        tf_var.tf_var_formal_table
+    except AttributeError:
+        m.init_6('tf_var_formal_table', 'tf_var.py')
+        global_tf_vars.tf_var_formal_table_exists = 0

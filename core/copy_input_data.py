@@ -53,4 +53,10 @@ def copy_input_data():
                 shutil.copytree(j, global_tf_vars.tf_run_dir_in_src, dirs_exist_ok=True)
                 CommonFunc.tf_info('Directory ' + j + ' has been copied to ' + global_tf_vars.tf_run_dir_in_src)
 
+    if global_tf_vars.tf_is_formal == 1:
+        for i in range(len(global_tf_vars.tf_formal_src_dir)):
+            for j in glob.glob(global_tf_vars.tf_formal_src_dir[i], recursive=True):
+                shutil.copytree(j, global_tf_vars.tf_run_dir_in_src, dirs_exist_ok=True)
+                CommonFunc.tf_info('Directory ' + j + ' has been copied to ' + global_tf_vars.tf_run_dir_in_src)
+
     os.system('chmod 750 -R ' + global_tf_vars.tf_run_dir)

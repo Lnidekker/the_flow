@@ -4,22 +4,25 @@ import os
 # Be careful, you can't add other variables into tf_dir_structure_table.
 tf_dir_structure_table = (
     # Mandatory variables
-    ['sdc',            ''],  # <list of dirs>
-    ['workarea_syn',   ''],  # <only one dir>
-    ['workarea_impl',  ''],  # <only one dir>
-    ['workarea_atpg',  ''],  # <only one dir>
-    ['workarea_power', ''],  # <only one dir>
-    ['syn_steps',      ''],  # <list of dirs>
-    ['impl_steps',     ''],  # <list of dirs>
-    ['atpg_steps',     ''],  # <list of dirs>
-    ['power_steps',    ''],  # <list of dirs>
+    ['sdc',             ''],  # <list of dirs>
+    ['workarea_syn',    ''],  # <only one dir>
+    ['workarea_impl',   ''],  # <only one dir>
+    ['workarea_atpg',   ''],  # <only one dir>
+    ['workarea_power',  ''],  # <only one dir>
+    ['workarea_formal', ''],  # <only one dir>
+    ['syn_steps',       ''],  # <list of dirs>
+    ['impl_steps',      ''],  # <list of dirs>
+    ['atpg_steps',      ''],  # <list of dirs>
+    ['power_steps',     ''],  # <list of dirs>
+    ['formal_steps',    ''],  # <list of dirs>
 
     # Optional variables
-    ['rtl',       ''],  # <list of dirs>
-    ['syn_src',   ''],  # <list of dirs>
-    ['impl_src',  ''],  # <list of dirs>
-    ['atpg_src',  ''],  # <list of dirs>
-    ['power_src', '']   # <list of dirs>
+    ['rtl',        ''],  # <list of dirs>
+    ['syn_src',    ''],  # <list of dirs>
+    ['impl_src',   ''],  # <list of dirs>
+    ['atpg_src',   ''],  # <list of dirs>
+    ['power_src',  ''],  # <list of dirs>
+    ['formal_src', ''],  # <list of dirs>
 )
 
 # Variables from tf_var_table are used to automation step scripts.
@@ -27,12 +30,13 @@ tf_dir_structure_table = (
 # will be automatically added to each .tcl step script.
 tf_var_table = (
     # Mandatory variables
-    ['cfg_common', ''],     # Path to directory which contains tf_var_common.py file
-    ['DESIGN_NAME', ''],    # Design module name
-    ['EXP_NAME_SYN', ''],   # Synthesis experiment name
-    ['EXP_NAME_IMPL', ''],  # Implementation experiment name
-    ['EXP_NAME_ATPG', ''],  # ATPG experiment name
-    ['EXP_NAME_POWER', '']  # Power analysis experiment name
+    ['cfg_common',      ''],  # Path to directory which contains tf_var_common.py file
+    ['DESIGN_NAME',     ''],  # Design module name
+    ['EXP_NAME_SYN',    ''],  # Synthesis experiment name
+    ['EXP_NAME_IMPL',   ''],  # Implementation experiment name
+    ['EXP_NAME_ATPG',   ''],  # ATPG experiment name
+    ['EXP_NAME_POWER',  ''],  # Power analysis experiment name
+    ['EXP_NAME_FORMAL', ''],  # Formal verification experiment name
 
     # Optional
 )
@@ -69,6 +73,14 @@ tf_var_power_table = (
     ['', '']
 )
 
+# Variables from tf_var_formal_table are used to automation step scripts during [-formal] flow.
+# So, you can add every optional variables you want, because all of these
+# will be automatically added to each .tcl step script during [-formal] flow.
+tf_var_formal_table = (
+    ['', ''],
+    ['', '']
+)
+
 # tf_var_mmmc_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution.
 tf_var_mmmc_table = (
     '',
@@ -82,23 +94,30 @@ tf_var_mmmc_syn_table = (
     ''
 )
 
-# tf_var_mmmc_syn_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution
+# tf_var_mmmc_impl_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution
 # only for [-impl] flow.
 tf_var_mmmc_impl_table = (
     '',
     ''
 )
 
-# tf_var_mmmc_syn_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution
+# tf_var_mmmc_atpg_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution
 # only for [-atpg] flow.
 tf_var_mmmc_atpg_table = (
     '',
     ''
 )
 
-# tf_var_mmmc_syn_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution
+# tf_var_mmmc_power_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution
 # only for [-power] flow.
 tf_var_mmmc_power_table = (
+    '',
+    ''
+)
+
+# tf_var_mmmc_formal_table contains number of mmmc_preset which are used during mmmc_gen and phy_gen execution
+# only for [-formal] flow.
+tf_var_mmmc_formal_table = (
     '',
     ''
 )
@@ -163,6 +182,13 @@ mmmc_analysis_view_power_table = (
 
 # tf_step_power_table contains set of steps for power analysis
 tf_step_power_table = (
+    [0, 'step_name'],
+    [1, 'step_name'],
+    [1, 'step_name']
+)
+
+# tf_step_formal_table contains set of steps for formal verification
+tf_step_formal_table = (
     [0, 'step_name'],
     [1, 'step_name'],
     [1, 'step_name']
