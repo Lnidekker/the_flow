@@ -3,7 +3,6 @@ Physical data generator.
 """
 import sys
 from jinja2 import Template
-import tf_var
 import tf_var_common
 import global_tf_vars
 from messages import Messages

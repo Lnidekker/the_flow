@@ -68,11 +68,10 @@ if __name__ == "__main__":
     os.system('mkdir -p ' + global_tf_vars.tf_tmpdir_name)
     sys.path.append(global_tf_vars.tf_tmpdir_name)
 
-    if global_tf_vars.tf_config != '':
-        os.system('cp ' + global_tf_vars.tf_config + ' ' + global_tf_vars.tf_tmpdir_name + '/tf_var_tmp.py')
+    if global_tf_vars.tf_config == '':
+        check_tf_var_files.run_check_tf_var_files()
 
-    # if global_tf_vars.tf_cfg_dir == '':
-    #    check_tf_var_files.run_check_tf_var_files()
+    os.system('cp ' + global_tf_vars.tf_config + ' ' + global_tf_vars.tf_tmpdir_name + '/tf_var_tmp.py')
 
     # Add global_tf_vars.tf_cfg_dir value to PYTHONPATH to see tf_var.py file
     # and import tf_var_table variable
