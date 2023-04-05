@@ -445,6 +445,6 @@ if __name__ == "__main__":
         run.run()
 
     elif global_tf_vars.tf_q2_flag == '2':
-        exit('Normal exit.')
+        CommonFunc.tf_exit_normal()
 
     CommonFunc.tf_exit_normal()
