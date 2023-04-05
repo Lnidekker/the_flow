@@ -46,6 +46,7 @@ tf_run_dir_work = ''
 tf_run_dir_work_tmp = ''
 
 # Variables which contains arguments value of python3 command
+tf_config = ''
 tf_is_syn = 0
 tf_is_impl = 0
 tf_is_atpg = 0
@@ -64,6 +65,7 @@ tf_to_step_name = ''
 tf_only_step = 0
 tf_only_step_name = ''
 tf_is_formal = 0
+tf_tmpdir = ''
 
 # Variables to navigate THE FLOW script
 tf_remove_run_dir = 0
@@ -136,6 +138,7 @@ tf_partition_existing = 0
 # Temporary files
 tf_tmp_file_steps_import = ''
 tf_tmp_step_table = {}
+tf_tmpdir_name = ''
 
 # phy_gen variables
 phy_lef_files = ''

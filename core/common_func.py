@@ -1,7 +1,8 @@
 from jinja2 import Template
-from os import close, path
+from os import close, path, system
 from shutil import move
 from tempfile import mkstemp
+import global_tf_vars
 
 
 class CommonFunc:
@@ -126,4 +127,14 @@ class CommonFunc:
         This function is used to exit from THE FLOW execution with some message.
         """
 
+        system('rm -r ' + global_tf_vars.tf_tmpdir_name)
         exit('\033[31mExit with error.\033[0m')
+
+    @staticmethod
+    def tf_exit_normal():
+        """
+        This function is used to exit from THE FLOW execution with some message.
+        """
+
+        system('rm -r ' + global_tf_vars.tf_tmpdir_name)
+        exit('\033[33mNormal exit.\033[0m')
