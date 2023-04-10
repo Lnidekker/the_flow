@@ -3,10 +3,10 @@
 tf_help_message="
 Description: start THE FLOW execution.
 
-Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-from_step <str>] [-to_step <str>] [-step <str>] [-help]
+Usage: the_flow [-config <str>] [-syn] [-impl] [-atpg] [-power] [-formal] [-ui_mode [interactive] [terminal]] [-update_run_dir [all] [cfg] [step_scripts] [input_data]] [-from_step <str>] [-to_step <str>] [-step <str>] [-help]
 
-    -path <str> :
-        absolute path to directory which consists tf_var.py file
+    -config <str> :
+        path to config file which is usually named tf_var.py or tf_var_<flow_name>.py
 
     -syn :
         execute synthesis flow
@@ -19,6 +19,9 @@ Usage: the_flow [-path <str>] [-syn] [-impl] [-atpg] [-power] [-ui_mode [interac
 
     -power :
         execute power analysis flow
+
+    -formal :
+        execute formal verification flow
 
     -ui_mode [interactive] [terminal] :
         interactive - (default) turn on THE FLOW ui functional
@@ -61,7 +64,7 @@ argument_flag=0
 argument_number=""
 argument_value=()
 
-tf_path=""
+tf_config=""
 tf_is_syn=0
 tf_is_impl=0
 tf_is_atpg=0
@@ -78,6 +81,7 @@ tf_to_step=0
 tf_to_step_name=""
 tf_only_step=0
 tf_only_step_name=""
+tf_is_formal=0
 
 tf_start_dir=$(pwd)
 
@@ -93,12 +97,12 @@ if [[ $argument_number == "" ]] ; then
 else
   for ((j = 1 ; j <= $# ; j++))
   do
-    if [[ ${argument_value[$j]} == "-path" ]] ; then
-      if [ ! -d "${argument_value[$j + 1]}" ] ; then
-        echo -e "\e[31mTF_ERROR   : Directory ${argument_value[$j + 1]} doesn't exist. Please, check [-path <str>] option value and rerun.\e[0m"
+    if [[ ${argument_value[$j]} == "-config" ]] ; then
+      if [ ! -f "${argument_value[$j + 1]}" ] ; then
+        echo -e "\e[31mTF_ERROR   : File ${argument_value[$j + 1]} doesn't exist. Please, check [-config <str>] option value and rerun.\e[0m"
         exit
       else
-        tf_path=${argument_value[$j + 1]}
+        tf_config=${argument_value[$j + 1]}
       fi
     elif [[ ${argument_value[$j]} == "-syn" ]] ; then
       tf_is_syn=1
@@ -108,6 +112,8 @@ else
       tf_is_atpg=1
     elif [[ ${argument_value[$j]} == "-power" ]] ; then
       tf_is_power=1
+    elif [[ ${argument_value[$j]} == "-formal" ]] ; then
+      tf_is_formal=1
     elif [[ ${argument_value[$j]} == "-ui_mode" ]] ; then
       if [[ ${argument_value[$j + 1]} == "interactive" ]] ; then
         tf_ui_mode="interactive"
@@ -165,7 +171,7 @@ else
     else
       if [[ ${argument_value[$j]} != "interactive" &&
             ${argument_value[$j]} != "terminal" &&
-            ${argument_value[$j]} != "$tf_path" &&
+            ${argument_value[$j]} != "$tf_config" &&
             ${argument_value[$j]} != "all" &&
             ${argument_value[$j]} != "cfg" &&
             ${argument_value[$j]} != "step_scripts" &&
@@ -189,8 +195,8 @@ fi
 if [[ $tf_is_syn == 1 && $tf_is_impl == 1 ]] ; then
   echo -e "\e[31mTF_ERROR   : Can't use [-syn] and [-impl] options the same time. This functional will be added in future major release.\e[0m"
   exit
-elif [[ $tf_is_syn == 0 &&  $tf_is_impl == 0 && $tf_is_atpg == 0 && $tf_is_power == 0 ]] ; then
-  echo -e "\e[31mTF_ERROR   : Choose one of mandatory option [-syn], [-impl], [-atpg] or [-power].\e[0m"
+elif [[ $tf_is_syn == 0 &&  $tf_is_impl == 0 && $tf_is_atpg == 0 && $tf_is_power == 0 && $tf_is_formal == 0 ]] ; then
+  echo -e "\e[31mTF_ERROR   : Choose one of mandatory option [-syn], [-impl], [-atpg], [-power] or [-formal].\e[0m"
   exit
 fi
 
@@ -236,7 +242,7 @@ if [[ $tf_only_step == 1 && $tf_to_step == 1 ]] ; then
 fi
 
 python3 "$(which the_flow)"_scripts.py \
-        "$tf_path" \
+        "$tf_config" \
         $tf_is_syn \
         $tf_is_impl \
         $tf_is_atpg \
@@ -253,4 +259,6 @@ python3 "$(which the_flow)"_scripts.py \
         $tf_to_step \
         "$tf_to_step_name" \
         $tf_only_step \
-        "$tf_only_step_name"
+        "$tf_only_step_name" \
+        $tf_is_formal \
+        $TF_TMPDIR

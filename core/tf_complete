@@ -3,7 +3,7 @@
 tf_complete(){
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    subcommands_1="-path -syn -impl -atpg -power -ui_mode -update_run_dir -from_step -to_step -step -help"
+    subcommands_1="-config -syn -impl -atpg -power -formal -ui_mode -update_run_dir -from_step -to_step -step -help"
     subcommands_ui_mode="interactive terminal"
     subcommands_update_run_dir="all cfg step_scripts input_data"
 
@@ -11,7 +11,7 @@ tf_complete(){
 
     subcmd_1="${COMP_WORDS[COMP_CWORD-1]}"
     case "${subcmd_1}" in
-    -path)
+    -config)
       COMPREPLY=()
       ;;
     -syn)
@@ -24,6 +24,9 @@ tf_complete(){
       COMPREPLY=( $(compgen -W "${subcommands_1}" -- ${cur}) )
       ;;
     -power)
+      COMPREPLY=( $(compgen -W "${subcommands_1}" -- ${cur}) )
+      ;;
+    -formal)
       COMPREPLY=( $(compgen -W "${subcommands_1}" -- ${cur}) )
       ;;
     -ui_mode)

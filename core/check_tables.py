@@ -1,5 +1,5 @@
 import tf_var_common
-import tf_var
+import tf_var_tmp
 from messages import Messages
 import global_tf_vars
 
@@ -81,7 +81,7 @@ def check_tables():
             m.init_6('mmmc_ocv_table', 'tf_var_common.py')
 
     try:
-        tf_var.mmmc_sdc_mode_table
+        tf_var_tmp.mmmc_sdc_mode_table
     except AttributeError:
         if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:
             m.init_5('mmmc_sdc_mode_table', 'tf_var.py')
@@ -89,7 +89,7 @@ def check_tables():
             m.init_6('mmmc_sdc_mode_table', 'tf_var.py')
 
     try:
-        tf_var.tf_var_mmmc_table
+        tf_var_tmp.tf_var_mmmc_table
     except AttributeError:
         if global_tf_vars.tf_is_syn == 1 or global_tf_vars.tf_is_impl == 1 or global_tf_vars.tf_is_power == 1:
             m.init_5('tf_var_mmmc_table', 'tf_var.py')
@@ -97,31 +97,37 @@ def check_tables():
             m.init_6('tf_var_mmmc_table', 'tf_var.py')
 
     try:
-        tf_var.tf_var_mmmc_syn_table
+        tf_var_tmp.tf_var_mmmc_syn_table
     except AttributeError:
         m.init_6('tf_var_mmmc_syn_table', 'tf_var.py')
         global_tf_vars.tf_var_mmmc_syn_table_exists = 0
 
     try:
-        tf_var.tf_var_mmmc_impl_table
+        tf_var_tmp.tf_var_mmmc_impl_table
     except AttributeError:
         m.init_6('tf_var_mmmc_impl_table', 'tf_var.py')
         global_tf_vars.tf_var_mmmc_impl_table_exists = 0
 
     try:
-        tf_var.tf_var_mmmc_atpg_table
+        tf_var_tmp.tf_var_mmmc_atpg_table
     except AttributeError:
         m.init_6('tf_var_mmmc_atpg_table', 'tf_var.py')
         global_tf_vars.tf_var_mmmc_atpg_table_exists = 0
 
     try:
-        tf_var.tf_var_mmmc_power_table
+        tf_var_tmp.tf_var_mmmc_power_table
     except AttributeError:
         m.init_6('tf_var_mmmc_power_table', 'tf_var.py')
         global_tf_vars.tf_var_mmmc_power_table_exists = 0
 
     try:
-        tf_var.mmmc_analysis_view_syn_table
+        tf_var_tmp.tf_var_mmmc_formal_table
+    except AttributeError:
+        m.init_6('tf_var_mmmc_formal_table', 'tf_var.py')
+        global_tf_vars.tf_var_mmmc_formal_table_exists = 0
+
+    try:
+        tf_var_tmp.mmmc_analysis_view_syn_table
     except AttributeError:
         if global_tf_vars.tf_is_syn == 1:
             m.init_5('mmmc_analysis_view_syn_table', 'tf_var.py')
@@ -129,7 +135,7 @@ def check_tables():
             m.init_6('mmmc_analysis_view_syn_table', 'tf_var.py')
 
     try:
-        tf_var.mmmc_analysis_view_impl_table
+        tf_var_tmp.mmmc_analysis_view_impl_table
     except AttributeError:
         if global_tf_vars.tf_is_impl == 1:
             m.init_5('mmmc_analysis_view_impl_table', 'tf_var.py')
@@ -137,7 +143,7 @@ def check_tables():
             m.init_6('mmmc_analysis_view_impl_table', 'tf_var.py')
 
     try:
-        tf_var.mmmc_analysis_view_power_table
+        tf_var_tmp.mmmc_analysis_view_power_table
     except AttributeError:
         if global_tf_vars.tf_is_power == 1:
             m.init_5('mmmc_analysis_view_power_table', 'tf_var.py')
@@ -150,7 +156,7 @@ def check_tables():
         m.init_5('tf_var_common_table', 'tf_var_common.py')
 
     try:
-        tf_var.tf_step_syn_table
+        tf_var_tmp.tf_step_syn_table
     except AttributeError:
         if global_tf_vars.tf_is_syn == 1:
             m.init_5('tf_step_syn_table', 'tf_var.py')
@@ -158,7 +164,7 @@ def check_tables():
             m.init_6('tf_step_syn_table', 'tf_var.py')
 
     try:
-        tf_var.tf_step_impl_table
+        tf_var_tmp.tf_step_impl_table
     except AttributeError:
         if global_tf_vars.tf_is_impl == 1:
             m.init_5('tf_step_impl_table', 'tf_var.py')
@@ -166,7 +172,7 @@ def check_tables():
             m.init_6('tf_step_impl_table', 'tf_var.py')
 
     try:
-        tf_var.tf_step_atpg_table
+        tf_var_tmp.tf_step_atpg_table
     except AttributeError:
         if global_tf_vars.tf_is_atpg == 1:
             m.init_5('tf_step_atpg_table', 'tf_var.py')
@@ -174,12 +180,20 @@ def check_tables():
             m.init_6('tf_step_atpg_table', 'tf_var.py')
 
     try:
-        tf_var.tf_step_power_table
+        tf_var_tmp.tf_step_power_table
     except AttributeError:
         if global_tf_vars.tf_is_power == 1:
             m.init_5('tf_step_power_table', 'tf_var.py')
         else:
             m.init_6('tf_step_power_table', 'tf_var.py')
+
+    try:
+        tf_var_tmp.tf_step_formal_table
+    except AttributeError:
+        if global_tf_vars.tf_is_formal == 1:
+            m.init_5('tf_step_formal_table', 'tf_var.py')
+        else:
+            m.init_6('tf_step_formal_table', 'tf_var.py')
 
     try:
         tf_var_common.phy_lef_table
@@ -206,25 +220,31 @@ def check_tables():
             m.init_6('phy_cl_table', 'tf_var_common.py')
 
     try:
-        tf_var.tf_var_syn_table
+        tf_var_tmp.tf_var_syn_table
     except AttributeError:
         m.init_6('tf_var_syn_table', 'tf_var.py')
         global_tf_vars.tf_var_syn_table_exists = 0
 
     try:
-        tf_var.tf_var_impl_table
+        tf_var_tmp.tf_var_impl_table
     except AttributeError:
         m.init_6('tf_var_impl_table', 'tf_var.py')
         global_tf_vars.tf_var_impl_table_exists = 0
 
     try:
-        tf_var.tf_var_atpg_table
+        tf_var_tmp.tf_var_atpg_table
     except AttributeError:
         m.init_6('tf_var_atpg_table', 'tf_var.py')
         global_tf_vars.tf_var_atpg_table_exists = 0
 
     try:
-        tf_var.tf_var_power_table
+        tf_var_tmp.tf_var_power_table
     except AttributeError:
         m.init_6('tf_var_power_table', 'tf_var.py')
         global_tf_vars.tf_var_power_table_exists = 0
+
+    try:
+        tf_var_tmp.tf_var_formal_table
+    except AttributeError:
+        m.init_6('tf_var_formal_table', 'tf_var.py')
+        global_tf_vars.tf_var_formal_table_exists = 0

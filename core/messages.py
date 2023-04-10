@@ -86,7 +86,9 @@ class Messages(CommonFunc):
         :return: Text message into terminal window.
         """
 
-        self.tf_error('[INIT-7] There are several tf_var.py files. These files are: ' + str(files))
+        self.tf_error('[INIT-7] There are several tf_var.py files. These files are: ' + str(files) + '\n' +
+                      '             Please, use only one tf_var.py config file or number of tf_var_<flow_name>.py '
+                      'separate files for each flow.')
         self.tf_exit_with_error()
 
     def init_8(self, file):

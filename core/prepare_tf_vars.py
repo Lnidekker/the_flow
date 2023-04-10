@@ -55,6 +55,13 @@ class PrepareTfVars(Messages):
                 elif global_tf_vars.tf_is_power == 1:
                     self.init_1(global_tf_vars.tf_workarea_power_dir, 'tf_dir_structure_table[workarea_power]')
 
+            elif self.tf_dir_structure_table[i][0] == 'workarea_formal':
+                global_tf_vars.tf_workarea_formal_dir = self.tf_dir_structure_table[i][1]
+                if os.path.isdir(global_tf_vars.tf_workarea_formal_dir):
+                    self.tf_info('tf_workarea_formal_dir variable is ' + global_tf_vars.tf_workarea_formal_dir)
+                elif global_tf_vars.tf_is_formal == 1:
+                    self.init_1(global_tf_vars.tf_workarea_formal_dir, 'tf_dir_structure_table[workarea_formal]')
+
             elif self.tf_dir_structure_table[i][0] == 'syn_steps':
                 for j in range(1, len(self.tf_dir_structure_table[i])):
                     global_tf_vars.tf_syn_steps_dir[j-1] = self.tf_dir_structure_table[i][j]
@@ -90,6 +97,15 @@ class PrepareTfVars(Messages):
                                      global_tf_vars.tf_power_steps_dir[j-1])
                     elif global_tf_vars.tf_is_power == 1:
                         self.init_1(global_tf_vars.tf_power_steps_dir[j-1], 'tf_dir_structure_table[power_steps]')
+
+            elif self.tf_dir_structure_table[i][0] == 'formal_steps':
+                for j in range(1, len(self.tf_dir_structure_table[i])):
+                    global_tf_vars.tf_formal_steps_dir[j-1] = self.tf_dir_structure_table[i][j]
+                    if os.path.isdir(global_tf_vars.tf_formal_steps_dir[j-1]):
+                        self.tf_info('tf_formal_steps_dir[' + str(j-1) + '] variable is ' +
+                                     global_tf_vars.tf_formal_steps_dir[j-1])
+                    elif global_tf_vars.tf_is_formal == 1:
+                        self.init_1(global_tf_vars.tf_formal_steps_dir[j-1], 'tf_dir_structure_table[formal_steps]')
 
             elif self.tf_dir_structure_table[i][0] == 'rtl':
                 for j in range(1, len(self.tf_dir_structure_table[i])):
@@ -136,6 +152,15 @@ class PrepareTfVars(Messages):
                     elif global_tf_vars.tf_is_power == 1:
                         self.init_2(global_tf_vars.tf_power_src_dir[j-1], 'tf_dir_structure_table[power_src]')
 
+            elif self.tf_dir_structure_table[i][0] == 'formal_src':
+                for j in range(1, len(self.tf_dir_structure_table[i])):
+                    global_tf_vars.tf_formal_src_dir[j-1] = self.tf_dir_structure_table[i][j]
+                    if os.path.isdir(global_tf_vars.tf_formal_src_dir[j-1]):
+                        self.tf_info('tf_formal_src_dir[' + str(j-1) + '] variable is ' +
+                                     global_tf_vars.tf_formal_src_dir[j-1])
+                    elif global_tf_vars.tf_is_formal == 1:
+                        self.init_2(global_tf_vars.tf_formal_src_dir[j-1], 'tf_dir_structure_table[formal_src]')
+
             else:
                 self.init_3(self.tf_dir_structure_table[i][0])
 
@@ -155,6 +180,9 @@ class PrepareTfVars(Messages):
         if global_tf_vars.tf_workarea_power_dir == '' and global_tf_vars.tf_is_power == 1:
             self.init_4('tf_dir_structure_table[workarea_power]')
 
+        if global_tf_vars.tf_workarea_formal_dir == '' and global_tf_vars.tf_is_formal == 1:
+            self.init_4('tf_dir_structure_table[workarea_formal]')
+
         if global_tf_vars.tf_syn_steps_dir == {} and global_tf_vars.tf_is_syn == 1:
             self.init_4('tf_dir_structure_table[syn_steps]')
 
@@ -166,6 +194,9 @@ class PrepareTfVars(Messages):
 
         if global_tf_vars.tf_power_steps_dir == {} and global_tf_vars.tf_is_power == 1:
             self.init_4('tf_dir_structure_table[power_steps]')
+
+        if global_tf_vars.tf_formal_steps_dir == {} and global_tf_vars.tf_is_formal == 1:
+            self.init_4('tf_dir_structure_table[formal_steps]')
 
     def parsing_tf_var_table(self):
         """
@@ -188,6 +219,9 @@ class PrepareTfVars(Messages):
             elif self.tf_var_table[i][0] == 'EXP_NAME_POWER' and global_tf_vars.tf_is_power == 1:
                 global_tf_vars.tf_exp_name_power = self.tf_var_table[i][1]
                 self.tf_info('Power analysis experiment name is ' + global_tf_vars.tf_exp_name_power + '.')
+            elif self.tf_var_table[i][0] == 'EXP_NAME_FORMAL' and global_tf_vars.tf_is_formal == 1:
+                global_tf_vars.tf_exp_name_formal = self.tf_var_table[i][1]
+                self.tf_info('Formal verification experiment name is ' + global_tf_vars.tf_exp_name_formal + '.')
             elif self.tf_var_table[i][0] == 'cfg_common':
                 global_tf_vars.tf_cfg_common_dir = self.tf_var_table[i][1]
                 if os.path.isdir(global_tf_vars.tf_cfg_common_dir):
@@ -212,3 +246,6 @@ class PrepareTfVars(Messages):
 
         if global_tf_vars.tf_is_power == 1 and global_tf_vars.tf_exp_name_power == '':
             self.init_4('tf_var_table[EXP_NAME_POWER]')
+
+        if global_tf_vars.tf_is_formal == 1 and global_tf_vars.tf_exp_name_formal == '':
+            self.init_4('tf_var_table[EXP_NAME_FORMAL]')
