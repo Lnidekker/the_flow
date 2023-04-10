@@ -26,5 +26,11 @@ if [ $tf_config_exist == 0 ]; then
     echo "# Source tf_complete to setup autocomplete function in terminal line" >> tf_config
     echo "source \$TF_PATH/core/tf_complete" >> tf_config
     echo "" >> tf_config
+    echo "# Set directory for THE FLOW temporary files" >> tf_config
+    echo "if [[ \$TMPDIR == \"\" ]] ; then" >> tf_config
+    echo "  export TF_TMPDIR=\"/tmp\"" >> tf_config
+    echo "else" >> tf_config
+    echo "  export TF_TMPDIR=\$TMPDIR" >> tf_config
+    echo "fi" >> tf_config
 
 fi
