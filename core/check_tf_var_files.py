@@ -32,7 +32,7 @@ def run_check_tf_var_files():
     if global_tf_vars.tf_is_syn:
         tf_var_finding(global_tf_vars.tf_start_dir, 'tf_var_syn.py')
     if global_tf_vars.tf_is_impl:
-        tf_var_finding(global_tf_vars.tf_start_dir, 'tf_var.py')
+        tf_var_finding(global_tf_vars.tf_start_dir, 'tf_var_impl.py')
     if global_tf_vars.tf_is_atpg:
         tf_var_finding(global_tf_vars.tf_start_dir, 'tf_var_atpg.py')
     if global_tf_vars.tf_is_power:
