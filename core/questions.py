@@ -30,7 +30,7 @@ class Questions(CommonFunc):
             elif global_tf_vars.tf_q1_flag == '5':
                 empty_flag = 0
             elif global_tf_vars.tf_q1_flag == '6':
-                exit('Normal exit.')
+                self.tf_exit_normal()
         elif global_tf_vars.tf_q1_answer == 1:
             if global_tf_vars.tf_update_all == 1:
                 global_tf_vars.tf_remove_run_dir = 1
@@ -41,7 +41,7 @@ class Questions(CommonFunc):
             if global_tf_vars.tf_update_input_data == 1:
                 global_tf_vars.tf_update_run_dir_input_data = 1
         else:
-            exit('Unknown tf_ux_ui_mode value')
+            self.tf_exit_with_error()
 
     @staticmethod
     def q2():
