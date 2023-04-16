@@ -127,7 +127,7 @@ class CommonFunc:
         This function is used to exit from THE FLOW execution with some message.
         """
 
-        system('rm -r ' + global_tf_vars.tf_tmpdir_name)
+        system('rm -rf ' + global_tf_vars.tf_tmpdir_name)
         exit('\033[31mExit with error.\033[0m')
 
     @staticmethod
@@ -136,5 +136,5 @@ class CommonFunc:
         This function is used to exit from THE FLOW execution with some message.
         """
 
-        system('rm -r ' + global_tf_vars.tf_tmpdir_name)
+        system('rm -rf ' + global_tf_vars.tf_tmpdir_name)
         exit('\033[33mNormal exit.\033[0m')
