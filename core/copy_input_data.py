@@ -59,4 +59,4 @@ def copy_input_data():
                 shutil.copytree(j, global_tf_vars.tf_run_dir_in_src, dirs_exist_ok=True)
                 CommonFunc.tf_info('Directory ' + j + ' has been copied to ' + global_tf_vars.tf_run_dir_in_src)
 
-    os.system('chmod 750 -R ' + global_tf_vars.tf_run_dir)
+    os.system('chmod 755 -R ' + global_tf_vars.tf_run_dir)
