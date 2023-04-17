@@ -101,6 +101,17 @@ class Messages(CommonFunc):
 
         self.tf_warning('[INIT-8] File ' + file + ' couldn\'t be read while tf_var.py searching.')
 
+    def init_9(self):
+        """
+        ERROR : Config file hasn't been found. Please, check tf_var.py or tf_var_<flow_name>.py files or use [-config] option.
+
+        :return: Text message into terminal window.
+        """
+
+        self.tf_error('[INIT-9] Config file hasn\'t been found. '
+                      'Please, check tf_var.py or tf_var_<flow_name>.py files or use [-config] option.')
+        self.tf_exit_with_error()
+
     def phygen_1(self, file_name, var_name):
         """
         ERROR : File or dir * from * doesn't exist.

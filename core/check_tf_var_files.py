@@ -46,3 +46,6 @@ def run_check_tf_var_files():
         m.init_7(global_tf_vars.tf_var_files_split)
     else:
         global_tf_vars.tf_config = global_tf_vars.tf_var_files
+
+    if global_tf_vars.tf_config == '':
+        m.init_9()
