@@ -1,4 +1,4 @@
-import os
+import os, re
 import global_tf_vars
 from messages import Messages
 
@@ -19,7 +19,7 @@ def tf_var_finding(path, file_name):
                     global_tf_vars.tf_var_files = element.path
                 else:
                     global_tf_vars.tf_var_files = global_tf_vars.tf_var_files + ' ' + element.path
-            elif element.is_dir():
+            elif element.is_dir() and not re.search(r'/\.', element.path + '/' + element.name):
                 tf_var_finding(element.path, file_name)
 
 
@@ -46,3 +46,6 @@ def run_check_tf_var_files():
         m.init_7(global_tf_vars.tf_var_files_split)
     else:
         global_tf_vars.tf_config = global_tf_vars.tf_var_files
+
+    if global_tf_vars.tf_config == '':
+        m.init_9()
