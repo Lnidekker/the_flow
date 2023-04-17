@@ -108,7 +108,7 @@ class Messages(CommonFunc):
         :return: Text message into terminal window.
         """
 
-        self.tf_error('[INIT-9] Config file hasn\'t been found.'
+        self.tf_error('[INIT-9] Config file hasn\'t been found. '
                       'Please, check tf_var.py or tf_var_<flow_name>.py files or use [-config] option.')
         self.tf_exit_with_error()
 
