@@ -138,7 +138,7 @@ class MmmcGen(Messages):
                                                         existing_flag = 1
                                                         global_tf_vars.mmmc_analysis_view_table_lib[m] = \
                                                             global_tf_vars.mmmc_analysis_view_table_lib[m] + \
-                                                            ' \\\n        ' + \
+                                                            ' perehod_na_novuy_stroku ' + \
                                                             self.create_lib_cdb_file_template(
                                                                 '',
                                                                 pvt_pvt[0],
@@ -178,7 +178,7 @@ class MmmcGen(Messages):
                                                 existing_flag = 1
                                                 global_tf_vars.mmmc_analysis_view_table_lib[view] = \
                                                     global_tf_vars.mmmc_analysis_view_table_lib[
-                                                        view] + ' \\\n        ' + \
+                                                        view] + ' perehod_na_novuy_stroku ' + \
                                                     self.create_lib_cdb_file_template(
                                                         '',
                                                         '',
@@ -230,7 +230,7 @@ class MmmcGen(Messages):
                                                             global_tf_vars.tf_partition_existing = 1
                                                             global_tf_vars.mmmc_analysis_view_table_lib_partitions[m] = \
                                                                 global_tf_vars.mmmc_analysis_view_table_lib_partitions[m] + \
-                                                                ' \\\n        ' + \
+                                                                ' perehod_na_novuy_stroku ' + \
                                                                 self.create_lib_cdb_file_template(
                                                                     global_tf_vars.mmmc_analysis_view_table_sdc_mode[m],
                                                                     pvt_pvt[0],
@@ -306,7 +306,7 @@ class MmmcGen(Messages):
                                                         existing_flag = 1
                                                         global_tf_vars.mmmc_analysis_view_table_cdb[m] = \
                                                             global_tf_vars.mmmc_analysis_view_table_cdb[m] + \
-                                                            ' \\\n        ' + \
+                                                            ' perehod_na_novuy_stroku ' + \
                                                             self.create_lib_cdb_file_template(
                                                                 '',
                                                                 pvt[0],
@@ -345,7 +345,7 @@ class MmmcGen(Messages):
                                                 existing_flag = 1
                                                 global_tf_vars.mmmc_analysis_view_table_cdb[view] = \
                                                     global_tf_vars.mmmc_analysis_view_table_cdb[view] + \
-                                                    ' \\\n        ' + \
+                                                    ' perehod_na_novuy_stroku ' + \
                                                     self.create_lib_cdb_file_template(
                                                         '',
                                                         '',
@@ -626,6 +626,7 @@ class MmmcGen(Messages):
         with open(mmmc_config_file, 'r') as f:
             data = f.read()
             data = data.replace('#', '')
+            data = data.replace('perehod_na_novuy_stroku', '\\\n       ')
             data = data.replace('-name', '\\\n    -name')
             data = data.replace('-timing', '\\\n    -timing')
             data = data.replace('-library_sets', '\\\n    -library_sets')
