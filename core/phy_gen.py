@@ -10,10 +10,11 @@ from messages import Messages
 
 class PhyGen(Messages):
 
-    def __init__(self, phy_lef_table_, phy_verilog_table_, phy_cl_table_):
+    def __init__(self, phy_lef_table_, phy_verilog_table_, phy_cl_table_, phy_gds_table_):
         self.phy_lef_table = phy_lef_table_
         self.phy_verilog_table = phy_verilog_table_
         self.phy_cl_table = phy_cl_table_
+        self.phy_gds_table = phy_gds_table_
 
     def make_lef_list(self):
         """
@@ -93,6 +94,32 @@ class PhyGen(Messages):
         t = Template('set cl_list "{{ n }}"')
         return t.render(n=phy_cl_dirs)
 
+    def make_gds_list(self):
+        """
+        Define global_tf_vars.phy_gds_files variable.
+        """
+
+        for i in range(len(self.phy_gds_table)):
+            for j in range(len(global_tf_vars.tf_var_mmmc_table)):
+                if self.phy_gds_table[i][0] == global_tf_vars.tf_var_mmmc_table[j]:
+                    for n in range(1, len(self.phy_gds_table[i])):
+                        if self.tf_file_exists_check(self.phy_gds_table[i][n]) == 'True':
+                            global_tf_vars.phy_gds_files = global_tf_vars.phy_gds_files + ' \\ \n    ' + \
+                                                           self.phy_gds_table[i][n]
+                        elif self.tf_file_exists_check(self.phy_gds_table[i][n]) == 'False':
+                            self.phygen_1(self.phy_gds_table[i][n], 'phy_gds_table')
+
+    @staticmethod
+    def create_gds_list_template(phy_gds_files):
+        """
+        Template for .tcl script.
+
+        :param phy_gds_files: global_tf_vars.phy_gds_files variable.
+        :return: set gds_list "{{ phy_gds_files }}"
+        """
+        t = Template('set gds_list "{{ n }}"')
+        return t.render(n=phy_gds_files)
+
     @staticmethod
     def make_phy_config_file():
         """
@@ -108,13 +135,17 @@ class PhyGen(Messages):
             print(PhyGen.create_verilog_list_template(global_tf_vars.phy_verilog_files))
             print('')
             print(PhyGen.create_cl_list_template(global_tf_vars.phy_cl_dirs))
+            print('')
+            print(PhyGen.create_gds_list_template(global_tf_vars.phy_gds_files))
         sys.stdout = original_stdout
 
     @staticmethod
     def run_phy_gen():
 
-        tf_phy_gen = PhyGen(tf_var_common.phy_lef_table, tf_var_common.phy_verilog_table, tf_var_common.phy_cl_table)
+        tf_phy_gen = PhyGen(tf_var_common.phy_lef_table, tf_var_common.phy_verilog_table, tf_var_common.phy_cl_table,
+                            tf_var_common.phy_gds_table)
         tf_phy_gen.make_lef_list()
         tf_phy_gen.make_verilog_list()
         tf_phy_gen.make_cl_list()
+        tf_phy_gen.make_gds_list()
         tf_phy_gen.make_phy_config_file()
