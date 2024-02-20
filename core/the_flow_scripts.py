@@ -192,7 +192,7 @@ if __name__ == "__main__":
 
     if global_tf_vars.tf_update_run_dir_in_cfg:
         for i in os.scandir(global_tf_vars.tf_run_dir_in_cfg):
-            if i != 'vars_config.tcl':
+            if i.name != 'vars_config.tcl':
                 os.remove(i)
         MmmcGen.run_mmmc_gen()
         PhyGen.run_phy_gen()
