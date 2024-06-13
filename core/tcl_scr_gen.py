@@ -137,12 +137,10 @@ class TclScrGen(Messages):
             print('set STEP_NAME \"' + step_name + '\"')
             print('set PREVIOUS_STEP_NAME \"' + previous_step_name + '\"')
             print('')
-
-            print('source ../in/cfg/vars_config.tcl')
-            print('')
-
             if self.flow_name == 'syn' or self.flow_name == 'impl' or self.flow_name == 'power':
                 print('if {$PREVIOUS_STEP_NAME != \"\"} {read_db ../db/$PREVIOUS_STEP_NAME.db}')
+            print('')
+            print('source ../in/cfg/vars_config.tcl')
             print('')
             print('# STEP START')
             print(step_body)
