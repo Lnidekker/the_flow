@@ -7,14 +7,17 @@ Run directory structure:
     +-- EXP_NAME_*
     |   +-- db
     |   +-- in
-    |   |   +-- sdc
-    |   |   +-- rtl
-    |   |   +-- src
+    |   |   +-- cdb
     |   |   +-- cfg
-    |   +-- out
-    |   +-- scripts
-    |   +-- reports
+    |   |   +-- lef
+    |   |   +-- lib
+    |   |   +-- rtl
+    |   |   +-- sdc
+    |   |   +-- src
     |   +-- logs
+    |   +-- out
+    |   +-- reports
+    |   +-- scripts
     |   +-- work
 """
 import os
@@ -40,14 +43,17 @@ def run_dir_structure_is():
 
     global_tf_vars.tf_run_dir_db = global_tf_vars.tf_run_dir + '/db'
     global_tf_vars.tf_run_dir_in = global_tf_vars.tf_run_dir + '/in'
-    global_tf_vars.tf_run_dir_in_sdc = global_tf_vars.tf_run_dir_in + '/sdc'
-    global_tf_vars.tf_run_dir_in_rtl = global_tf_vars.tf_run_dir_in + '/rtl'
-    global_tf_vars.tf_run_dir_in_src = global_tf_vars.tf_run_dir_in + '/src'
+    global_tf_vars.tf_run_dir_in_cdb = global_tf_vars.tf_run_dir_in + '/cdb'
     global_tf_vars.tf_run_dir_in_cfg = global_tf_vars.tf_run_dir_in + '/cfg'
-    global_tf_vars.tf_run_dir_out = global_tf_vars.tf_run_dir + '/out'
-    global_tf_vars.tf_run_dir_scripts = global_tf_vars.tf_run_dir + '/scripts'
-    global_tf_vars.tf_run_dir_reports = global_tf_vars.tf_run_dir + '/reports'
+    global_tf_vars.tf_run_dir_in_lef = global_tf_vars.tf_run_dir_in + '/lef'
+    global_tf_vars.tf_run_dir_in_lib = global_tf_vars.tf_run_dir_in + '/lib'
+    global_tf_vars.tf_run_dir_in_rtl = global_tf_vars.tf_run_dir_in + '/rtl'
+    global_tf_vars.tf_run_dir_in_sdc = global_tf_vars.tf_run_dir_in + '/sdc'
+    global_tf_vars.tf_run_dir_in_src = global_tf_vars.tf_run_dir_in + '/src'
     global_tf_vars.tf_run_dir_logs = global_tf_vars.tf_run_dir + '/logs'
+    global_tf_vars.tf_run_dir_out = global_tf_vars.tf_run_dir + '/out'
+    global_tf_vars.tf_run_dir_reports = global_tf_vars.tf_run_dir + '/reports'
+    global_tf_vars.tf_run_dir_scripts = global_tf_vars.tf_run_dir + '/scripts'
     global_tf_vars.tf_run_dir_work = global_tf_vars.tf_run_dir + '/work'
     global_tf_vars.tf_run_dir_work_tmp = global_tf_vars.tf_run_dir_work + '/tmp'
 
@@ -62,14 +68,17 @@ def create_run_dir():
     for i in global_tf_vars.tf_run_dir, \
             global_tf_vars.tf_run_dir_db, \
             global_tf_vars.tf_run_dir_in, \
-            global_tf_vars.tf_run_dir_in_rtl,\
-            global_tf_vars.tf_run_dir_in_src, \
+            global_tf_vars.tf_run_dir_in_cdb, \
             global_tf_vars.tf_run_dir_in_cfg, \
-            global_tf_vars.tf_run_dir_in_sdc,\
-            global_tf_vars.tf_run_dir_out, \
-            global_tf_vars.tf_run_dir_scripts, \
-            global_tf_vars.tf_run_dir_reports,\
+            global_tf_vars.tf_run_dir_in_lef, \
+            global_tf_vars.tf_run_dir_in_lib, \
+            global_tf_vars.tf_run_dir_in_rtl,\
+            global_tf_vars.tf_run_dir_in_sdc, \
+            global_tf_vars.tf_run_dir_in_src, \
             global_tf_vars.tf_run_dir_logs, \
+            global_tf_vars.tf_run_dir_out, \
+            global_tf_vars.tf_run_dir_reports,\
+            global_tf_vars.tf_run_dir_scripts, \
             global_tf_vars.tf_run_dir_work, \
             global_tf_vars.tf_run_dir_work_tmp:
 

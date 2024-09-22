@@ -1,16 +1,17 @@
 """
 MMMC analysis views generator for Cadence tools in Common_UI mode
 """
-import sys
+import sys, os
 from jinja2 import Template
 from itertools import product
 import global_tf_vars
 import tf_var_tmp
 import tf_var_common
 from messages import Messages
+from common_func import CommonFunc
 
 
-class MmmcGen(Messages):
+class MmmcGen(Messages, CommonFunc):
     def __init__(self,
                  mmmc_analysis_view_table_,
                  mmmc_pvt_p_table_,
@@ -139,6 +140,19 @@ class MmmcGen(Messages):
                                                         global_tf_vars.mmmc_analysis_view_table_lib[m] = \
                                                             global_tf_vars.mmmc_analysis_view_table_lib[m] + \
                                                             ' perehod_na_novuy_stroku ' + \
+                                                            '../in/lib/' + \
+                                                            os.path.basename(
+                                                                self.create_lib_cdb_file_template(
+                                                                    '',
+                                                                    pvt_pvt[0],
+                                                                    pvt_pvt[1],
+                                                                    pvt_pvt[2],
+                                                                    '',
+                                                                    '',
+                                                                    '',
+                                                                    self.mmmc_lib_file_table[lib][lib_file])
+                                                            )
+                                                        self.tf_cp_file(
                                                             self.create_lib_cdb_file_template(
                                                                 '',
                                                                 pvt_pvt[0],
@@ -147,8 +161,9 @@ class MmmcGen(Messages):
                                                                 '',
                                                                 '',
                                                                 '',
-                                                                self.mmmc_lib_file_table[lib][lib_file])
-
+                                                                self.mmmc_lib_file_table[lib][lib_file]),
+                                                            global_tf_vars.tf_run_dir_in_lib
+                                                        )
                                                 if existing_flag == 0:
                                                     self.mmmcgen_2(
                                                         self.mmmc_lib_file_table[lib][lib_file],
@@ -177,8 +192,21 @@ class MmmcGen(Messages):
                                             if answer == 'True':
                                                 existing_flag = 1
                                                 global_tf_vars.mmmc_analysis_view_table_lib[view] = \
-                                                    global_tf_vars.mmmc_analysis_view_table_lib[
-                                                        view] + ' perehod_na_novuy_stroku ' + \
+                                                    global_tf_vars.mmmc_analysis_view_table_lib[view] + \
+                                                    ' perehod_na_novuy_stroku ' + \
+                                                    '../in/lib/' + \
+                                                    os.path.basename(
+                                                        self.create_lib_cdb_file_template(
+                                                            '',
+                                                            '',
+                                                            '',
+                                                            '',
+                                                            self.mmmc_pvt_table[i][j],
+                                                            '',
+                                                            '',
+                                                            self.mmmc_lib_file_table[lib][lib_file])
+                                                    )
+                                                self.tf_cp_file(
                                                     self.create_lib_cdb_file_template(
                                                         '',
                                                         '',
@@ -187,7 +215,9 @@ class MmmcGen(Messages):
                                                         self.mmmc_pvt_table[i][j],
                                                         '',
                                                         '',
-                                                        self.mmmc_lib_file_table[lib][lib_file])
+                                                        self.mmmc_lib_file_table[lib][lib_file]),
+                                                    global_tf_vars.tf_run_dir_in_lib
+                                                )
                                         if existing_flag == 0:
                                             self.mmmcgen_2(
                                                 self.mmmc_lib_file_table[lib][lib_file],
@@ -231,6 +261,19 @@ class MmmcGen(Messages):
                                                             global_tf_vars.mmmc_analysis_view_table_lib_partitions[m] = \
                                                                 global_tf_vars.mmmc_analysis_view_table_lib_partitions[m] + \
                                                                 ' perehod_na_novuy_stroku ' + \
+                                                                '../in/lib/' + \
+                                                                os.path.basename(
+                                                                    self.create_lib_cdb_file_template(
+                                                                        global_tf_vars.mmmc_analysis_view_table_sdc_mode[m],
+                                                                        pvt_pvt[0],
+                                                                        pvt_pvt[1],
+                                                                        pvt_pvt[2],
+                                                                        '',
+                                                                        pvt_pvt[3],
+                                                                        global_tf_vars.mmmc_analysis_view_table_mode[m],
+                                                                        self.mmmc_lib_file_table[lib][lib_file])
+                                                                )
+                                                            self.tf_cp_file(
                                                                 self.create_lib_cdb_file_template(
                                                                     global_tf_vars.mmmc_analysis_view_table_sdc_mode[m],
                                                                     pvt_pvt[0],
@@ -239,7 +282,9 @@ class MmmcGen(Messages):
                                                                     '',
                                                                     pvt_pvt[3],
                                                                     global_tf_vars.mmmc_analysis_view_table_mode[m],
-                                                                    self.mmmc_lib_file_table[lib][lib_file])
+                                                                    self.mmmc_lib_file_table[lib][lib_file]),
+                                                                global_tf_vars.tf_run_dir_in_lib
+                                                            )
                                                     if existing_flag == 0:
                                                         self.mmmcgen_2(
                                                             self.mmmc_lib_file_table[lib][lib_file],
@@ -307,6 +352,19 @@ class MmmcGen(Messages):
                                                         global_tf_vars.mmmc_analysis_view_table_cdb[m] = \
                                                             global_tf_vars.mmmc_analysis_view_table_cdb[m] + \
                                                             ' perehod_na_novuy_stroku ' + \
+                                                            '../in/cdb/' + \
+                                                            os.path.basename(
+                                                                self.create_lib_cdb_file_template(
+                                                                    '',
+                                                                    pvt[0],
+                                                                    pvt[1],
+                                                                    pvt[2],
+                                                                    '',
+                                                                    '',
+                                                                    '',
+                                                                    self.mmmc_cdb_file_table[cdb][cdb_file])
+                                                            )
+                                                        self.tf_cp_file(
                                                             self.create_lib_cdb_file_template(
                                                                 '',
                                                                 pvt[0],
@@ -315,7 +373,9 @@ class MmmcGen(Messages):
                                                                 '',
                                                                 '',
                                                                 '',
-                                                                self.mmmc_cdb_file_table[cdb][cdb_file])
+                                                                self.mmmc_cdb_file_table[cdb][cdb_file]),
+                                                            global_tf_vars.tf_run_dir_in_cdb
+                                                        )
                                                 if existing_flag == 0:
                                                     self.mmmcgen_2(
                                                         self.mmmc_cdb_file_table[cdb][cdb_file],
@@ -346,6 +406,19 @@ class MmmcGen(Messages):
                                                 global_tf_vars.mmmc_analysis_view_table_cdb[view] = \
                                                     global_tf_vars.mmmc_analysis_view_table_cdb[view] + \
                                                     ' perehod_na_novuy_stroku ' + \
+                                                    '../in/cdb/' + \
+                                                    os.path.basename(
+                                                        self.create_lib_cdb_file_template(
+                                                            '',
+                                                            '',
+                                                            '',
+                                                            '',
+                                                            self.mmmc_pvt_table[i][j],
+                                                            '',
+                                                            '',
+                                                            self.mmmc_cdb_file_table[cdb][cdb_file])
+                                                    )
+                                                self.tf_cp_file(
                                                     self.create_lib_cdb_file_template(
                                                         '',
                                                         '',
@@ -354,7 +427,9 @@ class MmmcGen(Messages):
                                                         self.mmmc_pvt_table[i][j],
                                                         '',
                                                         '',
-                                                        self.mmmc_cdb_file_table[cdb][cdb_file])
+                                                        self.mmmc_cdb_file_table[cdb][cdb_file]),
+                                                    global_tf_vars.tf_run_dir_in_cdb
+                                                )
                                         if existing_flag == 0:
                                             self.mmmcgen_2(
                                                 self.mmmc_cdb_file_table[cdb][cdb_file],
@@ -512,7 +587,7 @@ class MmmcGen(Messages):
                               global_tf_vars.mmmc_analysis_view_table_pvt_v[i] +
                               global_tf_vars.mmmc_analysis_view_table_pvt_t[i] + ' for analysis view ' +
                               global_tf_vars.mmmc_analysis_view_table_name[i] + ' is empty')
-                exit('exit with error')
+                self.tf_exit_with_error()
 
         original_stdout = sys.stdout
         mmmc_config_file = global_tf_vars.tf_run_dir_in_cfg + '/mmmc_config.tcl'

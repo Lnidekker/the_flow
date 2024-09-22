@@ -135,3 +135,10 @@ phy_cl_table = (
     ['', ''],
     ['', '']
 )
+
+# Variables from phy_gds_table are used to configurate gds_list during phy_gen execution.
+# Use the following mandatory template: ['<mmmc_preset name>', 'gds_file_1', 'gds_file_2', ... ]
+phy_gds_table = (
+    ['', ''],
+    ['', '']
+)

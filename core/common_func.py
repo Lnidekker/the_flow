@@ -1,6 +1,6 @@
 from jinja2 import Template
 from os import close, path, system
-from shutil import move
+from shutil import move, copy
 from tempfile import mkstemp
 import global_tf_vars
 
@@ -128,7 +128,7 @@ class CommonFunc:
         """
 
         system('rm -rf ' + global_tf_vars.tf_tmpdir_name)
-        exit('\033[31mExit with error.\033[0m')
+        exit('\033[31mTF_INFO    : Exit with error.\033[0m')
 
     @staticmethod
     def tf_exit_normal():
@@ -137,4 +137,12 @@ class CommonFunc:
         """
 
         system('rm -rf ' + global_tf_vars.tf_tmpdir_name)
-        exit('\033[33mNormal exit.\033[0m')
+        exit('\033[33mTF_INFO    : Normal exit.\033[0m')
+
+    @staticmethod
+    def tf_cp_file(file, direct):
+        """
+        This function is used to copy some file to some directory.
+        """
+
+        copy(file, direct)
