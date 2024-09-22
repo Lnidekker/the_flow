@@ -1,3 +1,5 @@
+import os.path
+
 from jinja2 import Template
 from os import close, path, system
 from shutil import move, copy
@@ -146,3 +148,4 @@ class CommonFunc:
         """
 
         copy(file, direct)
+        system('chmod 755 ' + direct + '/' + os.path.basename(file))
