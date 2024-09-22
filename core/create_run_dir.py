@@ -9,11 +9,13 @@ Run directory structure:
     |   +-- in
     |   |   +-- cdb
     |   |   +-- cfg
+    |   |   +-- cl
     |   |   +-- lef
     |   |   +-- lib
     |   |   +-- rtl
     |   |   +-- sdc
     |   |   +-- src
+    |   |   +-- vlg
     |   +-- logs
     |   +-- out
     |   +-- reports
@@ -45,11 +47,14 @@ def run_dir_structure_is():
     global_tf_vars.tf_run_dir_in = global_tf_vars.tf_run_dir + '/in'
     global_tf_vars.tf_run_dir_in_cdb = global_tf_vars.tf_run_dir_in + '/cdb'
     global_tf_vars.tf_run_dir_in_cfg = global_tf_vars.tf_run_dir_in + '/cfg'
+    global_tf_vars.tf_run_dir_in_cl = global_tf_vars.tf_run_dir_in + '/cl'
+    global_tf_vars.tf_run_dir_in_gds = global_tf_vars.tf_run_dir_in + '/gds'
     global_tf_vars.tf_run_dir_in_lef = global_tf_vars.tf_run_dir_in + '/lef'
     global_tf_vars.tf_run_dir_in_lib = global_tf_vars.tf_run_dir_in + '/lib'
     global_tf_vars.tf_run_dir_in_rtl = global_tf_vars.tf_run_dir_in + '/rtl'
     global_tf_vars.tf_run_dir_in_sdc = global_tf_vars.tf_run_dir_in + '/sdc'
     global_tf_vars.tf_run_dir_in_src = global_tf_vars.tf_run_dir_in + '/src'
+    global_tf_vars.tf_run_dir_in_vlg = global_tf_vars.tf_run_dir_in + '/vlg'
     global_tf_vars.tf_run_dir_logs = global_tf_vars.tf_run_dir + '/logs'
     global_tf_vars.tf_run_dir_out = global_tf_vars.tf_run_dir + '/out'
     global_tf_vars.tf_run_dir_reports = global_tf_vars.tf_run_dir + '/reports'
@@ -70,11 +75,14 @@ def create_run_dir():
             global_tf_vars.tf_run_dir_in, \
             global_tf_vars.tf_run_dir_in_cdb, \
             global_tf_vars.tf_run_dir_in_cfg, \
+            global_tf_vars.tf_run_dir_in_cl, \
+            global_tf_vars.tf_run_dir_in_gds, \
             global_tf_vars.tf_run_dir_in_lef, \
             global_tf_vars.tf_run_dir_in_lib, \
             global_tf_vars.tf_run_dir_in_rtl,\
             global_tf_vars.tf_run_dir_in_sdc, \
             global_tf_vars.tf_run_dir_in_src, \
+            global_tf_vars.tf_run_dir_in_vlg, \
             global_tf_vars.tf_run_dir_logs, \
             global_tf_vars.tf_run_dir_out, \
             global_tf_vars.tf_run_dir_reports,\
