@@ -132,8 +132,8 @@ phy_verilog_table = (
 # Variables from phy_cl_table are used to configurate cl_list during phy_gen execution.
 # Use the following mandatory template: ['<mmmc_preset name>', 'cl_dir_1', 'cl_dir_2', ... ]
 phy_cl_table = (
-    ['', ''],
-    ['', '']
+    ['std_lib', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/cl_view/std_ml.cl'],
+    ['mem', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/mem/cl_view/mem_ml.cl']
 )
 
 # Variables from phy_gds_table are used to configurate gds_list during phy_gen execution.

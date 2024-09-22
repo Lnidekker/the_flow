@@ -152,10 +152,10 @@ class CommonFunc:
         system('chmod 755 ' + direct + '/' + os.path.basename(file))
 
     @staticmethod
-    def tf_cp_dir(dir_, direct):
+    def tf_cp_dir(src_dir, dst_dir):
         """
-        This function is used to copy some directory to some directory.
+        This function is used to copy some src_dir to some dst_dir.
         """
 
-        shutil.copytree(dir_, direct)
-        system('chmod -R 755 ' + direct + '/' + os.path.basename(dir_))
+        shutil.copytree(src_dir, os.path.join(dst_dir, os.path.basename(src_dir)), dirs_exist_ok=True)
+        system('chmod -R 755 ' + dst_dir + '/' + os.path.basename(src_dir))
