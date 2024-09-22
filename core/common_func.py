@@ -1,4 +1,5 @@
 import os.path
+import shutil
 
 from jinja2 import Template
 from os import close, path, system
@@ -149,3 +150,12 @@ class CommonFunc:
 
         copy(file, direct)
         system('chmod 755 ' + direct + '/' + os.path.basename(file))
+
+    @staticmethod
+    def tf_cp_dir(dir_, direct):
+        """
+        This function is used to copy some directory to some directory.
+        """
+
+        shutil.copytree(dir_, direct)
+        system('chmod -R 755 ' + direct + '/' + os.path.basename(dir_))

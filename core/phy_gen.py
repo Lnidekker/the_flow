@@ -99,7 +99,7 @@ class PhyGen(Messages, CommonFunc):
                                 os.path.basename(
                                     self.phy_cl_table[i][n]
                                 )
-                            self.tf_cp_file(self.phy_cl_table[i][n], global_tf_vars.tf_run_dir_in_cl)
+                            self.tf_cp_dir(self.phy_cl_table[i][n], global_tf_vars.tf_run_dir_in_cl)
                         else:
                             self.phygen_1(self.phy_cl_table[i][n], 'phy_cl_table')
 
