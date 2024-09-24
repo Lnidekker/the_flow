@@ -447,4 +447,7 @@ if __name__ == "__main__":
     elif global_tf_vars.tf_q2_flag == '2':
         CommonFunc.tf_exit_normal()
 
+    # Copy config file to experiment
+    shutil.copy(global_tf_vars.tf_config, global_tf_vars.tf_run_dir_work)
+
     CommonFunc.tf_exit_normal()
