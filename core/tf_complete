@@ -12,7 +12,7 @@ tf_complete(){
     subcmd_1="${COMP_WORDS[COMP_CWORD-1]}"
     case "${subcmd_1}" in
     -config)
-      COMPREPLY=()
+      COMPREPLY=($(compgen -df -- ${cur}))
       ;;
     -syn)
       COMPREPLY=( $(compgen -W "${subcommands_1}" -- ${cur}) )
