@@ -451,6 +451,6 @@ if __name__ == "__main__":
         CommonFunc.tf_exit_normal()
 
     # Copy config file to experiment
-    shutil.copy(global_tf_vars.tf_config, global_tf_vars.tf_run_dir_work)
+    # shutil.copy(global_tf_vars.tf_config, global_tf_vars.tf_run_dir_work)
 
     CommonFunc.tf_exit_normal()
