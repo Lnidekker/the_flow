@@ -691,7 +691,7 @@ class MmmcGen(Messages, CommonFunc):
         with open(mmmc_config_file, 'a') as f:
             sys.stdout = f
             print(self.set_analysis_view_template(
-                self.make_analysis_view_setup() + ' ' + self.make_analysis_view_power(),
+                self.make_analysis_view_setup(),
                 self.make_analysis_view_setup() + ' ' +
                 self.make_analysis_view_hold() + ' ' +
                 self.make_analysis_view_power()
