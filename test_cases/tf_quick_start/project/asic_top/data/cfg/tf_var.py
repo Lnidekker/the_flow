@@ -146,7 +146,7 @@ tf_step_syn_table = (
 # Types of analysis: s - setup; h - hold.
 mmmc_analysis_view_impl_table = (
     ['func scan_capture scan_shift', 'ss', 'lv', '125', 'cw', 's'],
-    ['func scan_capture scan_shift', 'ff', 'hv', '0', 'cb', 'h']
+    ['func scan_capture scan_shift', 'ff', 'hv', '0', 'cb', 'h p']
 )
 
 # tf_step_impl_table contains set of steps for implementation.
