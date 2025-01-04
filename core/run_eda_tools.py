@@ -53,7 +53,7 @@ class RunEDATools(Questions):
             return t.render(step_name=step_name)
         if self.flow_name == 'formal':
             t = Template(
-                'lec -lp -nogui -dofile ../scripts/{{ step_name }}.tcl -logfile ../logs/{{ step_name }}.log')
+                'lec -lpgxl -nogui -sl4 -dofile ../scripts/{{ step_name }}.tcl -logfile ../logs/{{ step_name }}.log')
             return t.render(step_name=step_name)
 
     def execute_step(self, step):
