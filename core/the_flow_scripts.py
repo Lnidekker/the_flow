@@ -366,9 +366,6 @@ if __name__ == "__main__":
     # Go to work dir
     os.chdir(global_tf_vars.tf_run_dir_work)
 
-    # Copy config file to experiment
-    # shutil.copy(global_tf_vars.tf_config, global_tf_vars.tf_run_dir_work)
-
     # Run to execute steps one by one
 
     Questions.q2()

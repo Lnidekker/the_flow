@@ -170,8 +170,22 @@ class PhyGen(Messages, CommonFunc):
 
         tf_phy_gen = PhyGen(tf_var_common.phy_lef_table, tf_var_common.phy_verilog_table, tf_var_common.phy_cl_table,
                             tf_var_common.phy_gds_table)
-        tf_phy_gen.make_lef_list()
-        tf_phy_gen.make_verilog_list()
-        tf_phy_gen.make_cl_list()
-        tf_phy_gen.make_gds_list()
+
+        if global_tf_vars.tf_is_syn == 1 \
+                or global_tf_vars.tf_is_impl == 1 \
+                or global_tf_vars.tf_is_power == 1:
+            tf_phy_gen.make_lef_list()
+
+        if global_tf_vars.tf_is_syn == 1 \
+                or global_tf_vars.tf_is_atpg == 1 \
+                or global_tf_vars.tf_is_formal:
+            tf_phy_gen.make_verilog_list()
+
+        if global_tf_vars.tf_is_power == 1:
+            tf_phy_gen.make_cl_list()
+
+        if global_tf_vars.tf_is_impl == 1 \
+                or global_tf_vars.tf_is_power == 1:
+            tf_phy_gen.make_gds_list()
+
         tf_phy_gen.make_phy_config_file()
