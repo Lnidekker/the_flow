@@ -131,7 +131,7 @@ if __name__ == "__main__":
 
     # Delete run dir
     if os.path.isdir(global_tf_vars.tf_run_dir) and global_tf_vars.tf_remove_run_dir == 1:
-        os.system('chmod 755 -R ' + global_tf_vars.tf_run_dir)
+        os.system('chmod -R 755 ' + global_tf_vars.tf_run_dir)
         shutil.rmtree(global_tf_vars.tf_run_dir)
         CommonFunc.tf_info('Directory ' + global_tf_vars.tf_run_dir + ' has been deleted.')
 
@@ -366,12 +366,11 @@ if __name__ == "__main__":
     # Go to work dir
     os.chdir(global_tf_vars.tf_run_dir_work)
 
-    # Copy config file to experiment
-    # shutil.copy(global_tf_vars.tf_config, global_tf_vars.tf_run_dir_work)
-
     # Run to execute steps one by one
 
     Questions.q2()
+
+    os.system('chmod -R 755 ' + global_tf_vars.tf_run_dir)
 
     if global_tf_vars.tf_q2_flag == '1':
         if global_tf_vars.tf_is_syn == 1:
@@ -449,8 +448,5 @@ if __name__ == "__main__":
 
     elif global_tf_vars.tf_q2_flag == '2':
         CommonFunc.tf_exit_normal()
-
-    # Copy config file to experiment
-    # shutil.copy(global_tf_vars.tf_config, global_tf_vars.tf_run_dir_work)
 
     CommonFunc.tf_exit_normal()
