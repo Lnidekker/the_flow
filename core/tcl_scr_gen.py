@@ -149,7 +149,7 @@ class TclScrGen(Messages):
             if self.flow_name == 'syn':
                 print('write_db -all_root_attributes ../db/' + step_name + '.db')
             elif self.flow_name == 'impl':
-                print('write_db -def -sdc ../db/' + step_name + '.db')
+                print('write_db -def ../db/' + step_name + '.db')
             elif self.flow_name == 'power':
                 print('write_db ../db/' + step_name + '.db')
             print('')
