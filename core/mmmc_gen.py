@@ -169,7 +169,6 @@ class MmmcGen(Messages, CommonFunc):
                                                                 self.mmmc_lib_file_table[lib][lib_file]),
                                                             global_tf_vars.tf_run_dir_in_lib
                                                         )
-                                                        break
                                                 if existing_flag == 0:
                                                     self.mmmcgen_2(
                                                         self.mmmc_lib_file_table[lib][lib_file],
@@ -224,7 +223,6 @@ class MmmcGen(Messages, CommonFunc):
                                                         self.mmmc_lib_file_table[lib][lib_file]),
                                                     global_tf_vars.tf_run_dir_in_lib
                                                 )
-                                                break
                                         if existing_flag == 0:
                                             self.mmmcgen_2(
                                                 self.mmmc_lib_file_table[lib][lib_file],
@@ -292,7 +290,6 @@ class MmmcGen(Messages, CommonFunc):
                                                                     self.mmmc_lib_file_table[lib][lib_file]),
                                                                 global_tf_vars.tf_run_dir_in_lib
                                                             )
-                                                            break
                                                     if existing_flag == 0:
                                                         self.mmmcgen_2(
                                                             self.mmmc_lib_file_table[lib][lib_file],
@@ -374,11 +371,17 @@ class MmmcGen(Messages, CommonFunc):
 
                         temp_type_flag_1 = 0
                         temp_type_flag_2 = 0
+                        temp_type_flag_3 = 0
+                        temp_type_flag_4 = 0
 
                         if '{{ process_voltage_temperature }}' in self.mmmc_cdb_file_table[cdb][cdb_file]:
                             temp_type_flag_2 = 1
-                        else:
+                        elif '{{ process }}' in self.mmmc_cdb_file_table[cdb][cdb_file] or \
+                             '{{ voltage }}' in self.mmmc_cdb_file_table[cdb][cdb_file] or \
+                             '{{ temperature }}' in self.mmmc_cdb_file_table[cdb][cdb_file]:
                             temp_type_flag_1 = 1
+                        else:
+                            temp_type_flag_4 = 1
 
                         existing_flag = 0
 
@@ -490,6 +493,58 @@ class MmmcGen(Messages, CommonFunc):
                                                         self.mmmc_cdb_file_table[cdb][cdb_file]),
                                                     global_tf_vars.tf_run_dir_in_cdb
                                                 )
+                                        if existing_flag == 0:
+                                            self.mmmcgen_2(
+                                                self.mmmc_cdb_file_table[cdb][cdb_file],
+                                                self.mmmc_pvt_table[i][0],
+                                                self.mmmc_lib_file_table[cdb][0]
+                                            )
+                        if temp_type_flag_4 == 1:
+                            for i in range(len(self.mmmc_pvt_table)):
+                                for view in range(len(global_tf_vars.mmmc_analysis_view_table_sdc_mode)):
+                                    if global_tf_vars.mmmc_analysis_view_table_pvt[view] == self.mmmc_pvt_table[i][0]:
+                                        existing_flag = 0
+                                        for j in range(len(self.mmmc_pvt_table[i])):
+                                            answer = self.tf_file_exists_check(
+                                                self.create_lib_cdb_file_template(
+                                                    '',
+                                                    '',
+                                                    '',
+                                                    '',
+                                                    '',
+                                                    '',
+                                                    '',
+                                                    self.mmmc_cdb_file_table[cdb][cdb_file]))
+                                            if answer == 'True':
+                                                existing_flag = 1
+                                                global_tf_vars.mmmc_analysis_view_table_cdb[view] = \
+                                                    global_tf_vars.mmmc_analysis_view_table_cdb[view] + \
+                                                    ' perehod_na_novuy_stroku ' + \
+                                                    '../in/cdb/' + \
+                                                    os.path.basename(
+                                                        self.create_lib_cdb_file_template(
+                                                            '',
+                                                            '',
+                                                            '',
+                                                            '',
+                                                            '',
+                                                            '',
+                                                            '',
+                                                            self.mmmc_cdb_file_table[cdb][cdb_file])
+                                                    )
+                                                self.tf_cp_file(
+                                                    self.create_lib_cdb_file_template(
+                                                        '',
+                                                        '',
+                                                        '',
+                                                        '',
+                                                        self.mmmc_pvt_table[i][j],
+                                                        '',
+                                                        '',
+                                                        self.mmmc_cdb_file_table[cdb][cdb_file]),
+                                                    global_tf_vars.tf_run_dir_in_cdb
+                                                )
+                                                break
                                         if existing_flag == 0:
                                             self.mmmcgen_2(
                                                 self.mmmc_cdb_file_table[cdb][cdb_file],
