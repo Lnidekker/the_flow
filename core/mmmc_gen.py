@@ -169,6 +169,7 @@ class MmmcGen(Messages, CommonFunc):
                                                                 self.mmmc_lib_file_table[lib][lib_file]),
                                                             global_tf_vars.tf_run_dir_in_lib
                                                         )
+                                                        break
                                                 if existing_flag == 0:
                                                     self.mmmcgen_2(
                                                         self.mmmc_lib_file_table[lib][lib_file],
@@ -223,6 +224,7 @@ class MmmcGen(Messages, CommonFunc):
                                                         self.mmmc_lib_file_table[lib][lib_file]),
                                                     global_tf_vars.tf_run_dir_in_lib
                                                 )
+                                                break
                                         if existing_flag == 0:
                                             self.mmmcgen_2(
                                                 self.mmmc_lib_file_table[lib][lib_file],
@@ -290,6 +292,7 @@ class MmmcGen(Messages, CommonFunc):
                                                                     self.mmmc_lib_file_table[lib][lib_file]),
                                                                 global_tf_vars.tf_run_dir_in_lib
                                                             )
+                                                            break
                                                     if existing_flag == 0:
                                                         self.mmmcgen_2(
                                                             self.mmmc_lib_file_table[lib][lib_file],
@@ -348,7 +351,7 @@ class MmmcGen(Messages, CommonFunc):
                                                         self.mmmc_lib_file_table[lib][lib_file]),
                                                     global_tf_vars.tf_run_dir_in_lib
                                                 )
-                                            break
+                                                break
                                         if existing_flag == 0:
                                             self.mmmcgen_2(
                                                 self.mmmc_lib_file_table[lib][lib_file],
