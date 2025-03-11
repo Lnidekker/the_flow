@@ -68,7 +68,8 @@ mmmc_pvt_qrc_table = (
 mmmc_lib_file_table = (
     ['std_lib', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_hvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
                 os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_lvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
-                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib'
+                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
+                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/mem/lib/memory_tc.lib'
      ],
     ['mem', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/mem/lib/memory_{{ process_voltage_temperature }}.lib'
      ],

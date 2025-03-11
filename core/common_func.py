@@ -148,8 +148,9 @@ class CommonFunc:
         This function is used to copy some file to some directory.
         """
 
-        copy(file, direct)
-        system('chmod 755 ' + direct + '/' + os.path.basename(file))
+        if not os.path.exists(direct + '/' + os.path.basename(file)):
+            copy(file, direct)
+            system('chmod 755 ' + direct + '/' + os.path.basename(file))
 
     @staticmethod
     def tf_cp_dir(src_dir, dst_dir):
