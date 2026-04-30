@@ -109,6 +109,7 @@ mmmc_analysis_view_table_pvt_t = {}
 mmmc_analysis_view_table_pvt = {}
 mmmc_analysis_view_table_parasitic = {}
 mmmc_analysis_view_table_mode = {}
+mmmc_analysis_view_table_active_status = {}
 mmmc_analysis_view_table_name = {}
 mmmc_analysis_view_table_lib = {}
 mmmc_analysis_view_table_lib_partitions = {}

@@ -128,7 +128,7 @@ mmmc_sdc_mode_table = (
 #   ['<constraint mode>', '<process>', '<voltage>', '<temperature>', '<extraction>', '<type of analysis>']
 # Types of analysis: s - setup; h - hold.
 mmmc_analysis_view_syn_table = (
-    ['func scan_capture scan_shift', 'ss', 'lv', '125', 'cw', 's h'],
+    ['func scan_capture scan_shift', 'ss', 'lv', '125', 'cw', 's h' 'active'],
     ['', '', '', '', '', '']
 )
 
@@ -145,8 +145,10 @@ tf_step_syn_table = (
 #   ['<constraint mode>', '<process>', '<voltage>', '<temperature>', '<extraction>', '<type of analysis>']
 # Types of analysis: s - setup; h - hold.
 mmmc_analysis_view_impl_table = (
-    ['func scan_capture scan_shift', 'ss', 'lv', '125', 'cw', 's'],
-    ['func scan_capture scan_shift', 'ff', 'hv', '0', 'cb', 'h p']
+    ['func', 'ss', 'lv', '125', 'cw', 's', 'active'],
+    ['scan_capture scan_shift', 'ss', 'lv', '125', 'cw', 's', 'non_active'],
+    ['func', 'ff', 'hv', '0', 'cb', 'h p', 'active'],
+    ['scan_capture scan_shift', 'ff', 'hv', '0', 'cb', 'h p', 'non_active']
 )
 
 # tf_step_impl_table contains set of steps for implementation.

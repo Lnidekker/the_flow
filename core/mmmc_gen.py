@@ -69,7 +69,8 @@ class MmmcGen(Messages, CommonFunc):
                                self.mmmc_analysis_view_table[i][2].split(),
                                self.mmmc_analysis_view_table[i][3].split(),
                                self.mmmc_analysis_view_table[i][4].split(),
-                               self.mmmc_analysis_view_table[i][5].split()
+                               self.mmmc_analysis_view_table[i][5].split(),
+                               self.mmmc_analysis_view_table[i][6].split()
                                ):
                 global_tf_vars.mmmc_analysis_view_table_sdc_mode[n] = mix[0]
                 global_tf_vars.mmmc_analysis_view_table_pvt_p[n] = mix[1]
@@ -78,6 +79,7 @@ class MmmcGen(Messages, CommonFunc):
                 global_tf_vars.mmmc_analysis_view_table_pvt[n] = mix[1] + mix[2] + mix[3]
                 global_tf_vars.mmmc_analysis_view_table_parasitic[n] = mix[4]
                 global_tf_vars.mmmc_analysis_view_table_mode[n] = mix[5]
+                global_tf_vars.mmmc_analysis_view_table_active_status[n] = mix[6]
                 global_tf_vars.mmmc_analysis_view_table_name[n] = mix[0] + '_' + mix[1] + mix[2] + mix[3] + mix[4] + \
                     '_' + mix[5]
                 global_tf_vars.mmmc_analysis_view_table_lib[n] = ''
@@ -626,7 +628,8 @@ class MmmcGen(Messages, CommonFunc):
         mmmc_analysis_view_setup = ''
 
         for i in range(len(global_tf_vars.mmmc_analysis_view_table_sdc_mode)):
-            if global_tf_vars.mmmc_analysis_view_table_mode[i] == 's':
+            if global_tf_vars.mmmc_analysis_view_table_mode[i] == 's' and \
+                    global_tf_vars.mmmc_analysis_view_table_active_status[i] == 'active':
                 mmmc_analysis_view_setup = mmmc_analysis_view_setup + ' ' + \
                                            global_tf_vars.mmmc_analysis_view_table_name[i]
 
@@ -637,7 +640,8 @@ class MmmcGen(Messages, CommonFunc):
         mmmc_analysis_view_hold = ''
 
         for i in range(len(global_tf_vars.mmmc_analysis_view_table_sdc_mode)):
-            if global_tf_vars.mmmc_analysis_view_table_mode[i] == 'h':
+            if global_tf_vars.mmmc_analysis_view_table_mode[i] == 'h' and \
+                    global_tf_vars.mmmc_analysis_view_table_active_status[i] == 'active':
                 mmmc_analysis_view_hold = mmmc_analysis_view_hold + ' ' + \
                                           global_tf_vars.mmmc_analysis_view_table_name[i]
 
@@ -648,7 +652,8 @@ class MmmcGen(Messages, CommonFunc):
         mmmc_analysis_view_power = ''
 
         for i in range(len(global_tf_vars.mmmc_analysis_view_table_sdc_mode)):
-            if global_tf_vars.mmmc_analysis_view_table_mode[i] == 'p':
+            if global_tf_vars.mmmc_analysis_view_table_mode[i] == 'p' and \
+                    global_tf_vars.mmmc_analysis_view_table_active_status[i] == 'active':
                 mmmc_analysis_view_power = mmmc_analysis_view_power + ' ' + \
                                            global_tf_vars.mmmc_analysis_view_table_name[i]
 
