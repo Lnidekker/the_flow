@@ -19,6 +19,9 @@ Run directory structure:
     |   +-- logs
     |   +-- out
     |   +-- reports
+    |   |   +-- design
+    |   |   +-- timing
+    |   |   +-- clock
     |   +-- scripts
     |   +-- work
 """
@@ -58,6 +61,9 @@ def run_dir_structure_is():
     global_tf_vars.tf_run_dir_logs = global_tf_vars.tf_run_dir + '/logs'
     global_tf_vars.tf_run_dir_out = global_tf_vars.tf_run_dir + '/out'
     global_tf_vars.tf_run_dir_reports = global_tf_vars.tf_run_dir + '/reports'
+    global_tf_vars.tf_run_dir_reports_design = global_tf_vars.tf_run_dir_reports + '/design'
+    global_tf_vars.tf_run_dir_reports_timing = global_tf_vars.tf_run_dir_reports + '/timing'
+    global_tf_vars.tf_run_dir_reports_clock = global_tf_vars.tf_run_dir_reports + '/clock'
     global_tf_vars.tf_run_dir_scripts = global_tf_vars.tf_run_dir + '/scripts'
     global_tf_vars.tf_run_dir_work = global_tf_vars.tf_run_dir + '/work'
     global_tf_vars.tf_run_dir_work_tmp = global_tf_vars.tf_run_dir_work + '/tmp'
@@ -85,7 +91,10 @@ def create_run_dir():
             global_tf_vars.tf_run_dir_in_vlg, \
             global_tf_vars.tf_run_dir_logs, \
             global_tf_vars.tf_run_dir_out, \
-            global_tf_vars.tf_run_dir_reports,\
+            global_tf_vars.tf_run_dir_reports, \
+            global_tf_vars.tf_run_dir_reports_design, \
+            global_tf_vars.tf_run_dir_reports_timing, \
+            global_tf_vars.tf_run_dir_reports_clock, \
             global_tf_vars.tf_run_dir_scripts, \
             global_tf_vars.tf_run_dir_work, \
             global_tf_vars.tf_run_dir_work_tmp:
