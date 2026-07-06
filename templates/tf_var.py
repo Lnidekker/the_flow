@@ -177,7 +177,7 @@ tf_step_atpg_table = (
 # Use the following mandatory template:
 #   ['<constraint mode>', '<process>', '<voltage>', '<temperature>', '<extraction>', '<type of analysis>', '<active status>']
 # Types of analysis: s - setup; h - hold.
-# Active status: active or non_active.
+# Active status: 'active' or 'non_active'.
 mmmc_analysis_view_power_table = (
     ['', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '']

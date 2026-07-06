@@ -64,16 +64,20 @@ mmmc_pvt_qrc_table = (
 )
 
 # Variables from mmmc_lib_file_table are used to configurate library_set during mmmc_gen execution.
-# Use the following mandatory template: ['<mmmc_preset name>', 'lib_file_1', 'lib_file_2', ... ]
+# Use the following mandatory template: ['<mmmc_preset name>', '<cp_link_mode name>', 'lib_file_1', 'lib_file_2', ... ]
+# cp_link_mode: 'copy' or 'link'
 mmmc_lib_file_table = (
-    ['std_lib', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_hvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
-                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_lvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
-                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
-                os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/mem/lib/memory_tc.lib'
+    ['std_lib', 'link',
+        os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_hvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
+        os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_lvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
+        os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/std/lib/std_lib_rvt_{{ process }}_{{ voltage }}_{{ temperature }}.lib',
+        os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/mem/lib/memory_tc.lib'
      ],
-    ['mem', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/mem/lib/memory_{{ process_voltage_temperature }}.lib'
+    ['mem', 'link',
+        os.environ['TF_PATH'] + '/test_cases/tf_quick_start/src/mem/lib/memory_{{ process_voltage_temperature }}.lib'
      ],
-    ['partitions', os.environ['TF_PATH'] + '/test_cases/tf_quick_start/project/block/lib/block_{{ constraint_mode }}_{{ process }}{{ voltage }}{{ temperature }}{{ extraction }}_{{ analysis_mode }}.lib'
+    ['partitions', 'copy',
+        os.environ['TF_PATH'] + '/test_cases/tf_quick_start/project/block/lib/block_{{ constraint_mode }}_{{ process }}{{ voltage }}{{ temperature }}{{ extraction }}_{{ analysis_mode }}.lib'
      ]
 )
 

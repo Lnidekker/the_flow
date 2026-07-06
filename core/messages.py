@@ -164,6 +164,18 @@ class Messages(CommonFunc):
                       '" are used twice. Please, remove repeating aliases.')
         self.tf_exit_with_error()
 
+    def mmmcgen_4(self, preset_name):
+        """
+        ERROR : Wrong value of cp_link_mode variable in mmmc_lib_file_table[preset_name]. Please, use 'link' or 'copy'
+
+        :param preset_name: Preset name.
+        :return: Text message into terminal window.
+        """
+
+        self.tf_error('[MMMCGEN-4] Wrong value of cp_link_mode variable in mmmc_lib_file_table[' + preset_name +
+                      ']. Please, use \'link\' or \'copy\'')
+        self.tf_exit_with_error()
+
     def tclscr_1(self, file_name, files):
         """
         ERROR : There are several step files * with the same names.

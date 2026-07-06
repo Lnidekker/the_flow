@@ -64,10 +64,11 @@ mmmc_pvt_qrc_table = (
 )
 
 # Variables from mmmc_lib_file_table are used to configurate library_set during mmmc_gen execution.
-# Use the following mandatory template: ['<mmmc_preset name>', 'lib_file_1', 'lib_file_2', ... ]
+# Use the following mandatory template: ['<mmmc_preset name>', '<cp_link_mode name>', 'lib_file_1', 'lib_file_2', ... ]
+# cp_link_mode: 'copy' or 'link'
 mmmc_lib_file_table = (
-    ['', ''],
-    ['', '']
+    ['', 'copy', ''],
+    ['', 'link', '']
 )
 
 # Variables from mmmc_cdb_file_table are used to configurate library_set during mmmc_gen execution.

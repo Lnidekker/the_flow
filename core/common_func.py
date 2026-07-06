@@ -2,9 +2,10 @@ import os.path
 import shutil
 
 from jinja2 import Template
-from os import close, path, system
+from os import close, path, system, symlink
 from shutil import move, copy
 from tempfile import mkstemp
+from pathlib import Path
 import global_tf_vars
 
 
@@ -160,3 +161,12 @@ class CommonFunc:
 
         shutil.copytree(src_dir, os.path.join(dst_dir, os.path.basename(src_dir)), dirs_exist_ok=True)
         system('chmod -R 755 ' + dst_dir + '/' + os.path.basename(src_dir))
+
+    @staticmethod
+    def tf_link_file(file, direct):
+        """
+        This function is used to create link to some file inside some directory.
+        """
+        if not Path(direct + '/' + os.path.basename(file)).is_symlink():
+            symlink(file, direct + '/' + os.path.basename(file))
+            system('chmod 755 ' + direct + '/' + os.path.basename(file))
